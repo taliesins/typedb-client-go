@@ -17,12 +17,12 @@
 
 syntax = "proto3";
 
-option go_package = "./grakn_protocol;grakn_protocol";
+option go_package = "./grakn_protocol_v2;grakn_protocol_v2";
 option java_package = "grakn.protocol";
 option java_outer_classname = "QueryProto";
 
-import "protobuf/answer.proto";
-import "protobuf/options.proto";
+import "protobuf_v2/answer.proto";
+import "protobuf_v2/options.proto";
 
 package grakn.protocol;
 

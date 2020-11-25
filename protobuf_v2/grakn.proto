@@ -17,13 +17,13 @@
 
 syntax = "proto3";
 
-option go_package = "./grakn_protocol;grakn_protocol";
+option go_package = "./grakn_protocol_v2;grakn_protocol_v2";
 option java_package = "grakn.protocol";
 option java_outer_classname = "GraknProto";
 
-import "protobuf/database.proto";
-import "protobuf/session.proto";
-import "protobuf/transaction.proto";
+import "protobuf_v2/database.proto";
+import "protobuf_v2/session.proto";
+import "protobuf_v2/transaction.proto";
 
 package grakn.protocol;
 

@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	grakn "github.com/taliesins/client-go/grakn_protocol"
+	grakn "github.com/taliesins/client-go/grakn_protocol_v1"
 	grpc "google.golang.org/grpc"
 	"log"
 	"time"
@@ -10,6 +10,8 @@ import (
 
 func main() {
 	address := ":48555"
+	username := ""
+	password := ""
 
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
@@ -22,9 +24,11 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	client := grakn.NewGraknClient(conn)
+	client := grakn.NewKeyspaceServiceClient(conn)
 
-	databaseAllResult, err := client.DatabaseAll(ctx, &grakn.Database_All_Req{
+	databaseAllResult, err := client.Retrieve(ctx, &grakn.Keyspace_Retrieve_Req{
+		Username: username,
+		Password: password,
 	})
 	if err != nil {
 		log.Fatalf("could not list databases: %v", err)

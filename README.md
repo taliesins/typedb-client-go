@@ -31,6 +31,9 @@ For more information see https://grpc.io/docs/languages/go/quickstart/
 # To generate GRPC client
 
 ```
-protoc --go_out=. protobuf/*.proto
-protoc --go_grpc_out=. protobuf/*.proto
+protoc --go_out=. protobuf_v1/*.proto
+protoc --go_grpc_out=. protobuf_v1/*.proto
+
+protoc --go_out=. protobuf_v2/*.proto
+protoc --go_grpc_out=. protobuf_v2/*.proto
 ```

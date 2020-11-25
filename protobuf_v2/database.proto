@@ -17,35 +17,40 @@
 
 syntax = "proto3";
 
-option go_package = "./grakn_protocol;grakn_protocol";
+option go_package = "./grakn_protocol_v2;grakn_protocol_v2";
 option java_package = "grakn.protocol";
-option java_outer_classname = "SessionProto";
-
-import "protobuf/options.proto";
+option java_outer_classname = "DatabaseProto";
 
 package grakn.protocol;
 
-message Session {
+message Database {
 
-    enum Type {
-        DATA = 0;
-        SCHEMA = 1;
-    }
-
-    message Open {
+    message Contains {
         message Req {
-            string database = 1;
-            Type type = 2;
-            Options options = 3;
+            string name = 1;
         }
         message Res {
-            bytes session_id = 1;
+            bool contains = 1;
         }
     }
 
-    message Close {
+    message Create {
         message Req {
-            bytes session_id = 1;
+            string name = 1;
+        }
+        message Res {}
+    }
+
+    message All {
+        message Req {}
+        message Res {
+            repeated string names = 1;
+        }
+    }
+
+    message Delete {
+        message Req {
+            string name = 1;
         }
         message Res {}
     }

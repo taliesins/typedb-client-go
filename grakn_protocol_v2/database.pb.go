@@ -19,9 +19,9 @@
 // versions:
 // 	protoc-gen-go v1.25.0
 // 	protoc        v3.14.0
-// source: protobuf/database.proto
+// source: protobuf_v2/database.proto
 
-package grakn_protocol
+package grakn_protocol_v2
 
 import (
 	proto "github.com/golang/protobuf/proto"
@@ -51,7 +51,7 @@ type Database struct {
 func (x *Database) Reset() {
 	*x = Database{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[0]
+		mi := &file_protobuf_v2_database_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -64,7 +64,7 @@ func (x *Database) String() string {
 func (*Database) ProtoMessage() {}
 
 func (x *Database) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[0]
+	mi := &file_protobuf_v2_database_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -77,7 +77,7 @@ func (x *Database) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database.ProtoReflect.Descriptor instead.
 func (*Database) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0}
 }
 
 type Database_Contains struct {
@@ -89,7 +89,7 @@ type Database_Contains struct {
 func (x *Database_Contains) Reset() {
 	*x = Database_Contains{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[1]
+		mi := &file_protobuf_v2_database_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -102,7 +102,7 @@ func (x *Database_Contains) String() string {
 func (*Database_Contains) ProtoMessage() {}
 
 func (x *Database_Contains) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[1]
+	mi := &file_protobuf_v2_database_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115,7 +115,7 @@ func (x *Database_Contains) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_Contains.ProtoReflect.Descriptor instead.
 func (*Database_Contains) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 0}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 0}
 }
 
 type Database_Create struct {
@@ -127,7 +127,7 @@ type Database_Create struct {
 func (x *Database_Create) Reset() {
 	*x = Database_Create{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[2]
+		mi := &file_protobuf_v2_database_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -140,7 +140,7 @@ func (x *Database_Create) String() string {
 func (*Database_Create) ProtoMessage() {}
 
 func (x *Database_Create) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[2]
+	mi := &file_protobuf_v2_database_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -153,7 +153,7 @@ func (x *Database_Create) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_Create.ProtoReflect.Descriptor instead.
 func (*Database_Create) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 1}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 1}
 }
 
 type Database_All struct {
@@ -165,7 +165,7 @@ type Database_All struct {
 func (x *Database_All) Reset() {
 	*x = Database_All{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[3]
+		mi := &file_protobuf_v2_database_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -178,7 +178,7 @@ func (x *Database_All) String() string {
 func (*Database_All) ProtoMessage() {}
 
 func (x *Database_All) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[3]
+	mi := &file_protobuf_v2_database_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -191,7 +191,7 @@ func (x *Database_All) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_All.ProtoReflect.Descriptor instead.
 func (*Database_All) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 2}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 2}
 }
 
 type Database_Delete struct {
@@ -203,7 +203,7 @@ type Database_Delete struct {
 func (x *Database_Delete) Reset() {
 	*x = Database_Delete{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[4]
+		mi := &file_protobuf_v2_database_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -216,7 +216,7 @@ func (x *Database_Delete) String() string {
 func (*Database_Delete) ProtoMessage() {}
 
 func (x *Database_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[4]
+	mi := &file_protobuf_v2_database_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -229,7 +229,7 @@ func (x *Database_Delete) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_Delete.ProtoReflect.Descriptor instead.
 func (*Database_Delete) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 3}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 3}
 }
 
 type Database_Contains_Req struct {
@@ -243,7 +243,7 @@ type Database_Contains_Req struct {
 func (x *Database_Contains_Req) Reset() {
 	*x = Database_Contains_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[5]
+		mi := &file_protobuf_v2_database_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -256,7 +256,7 @@ func (x *Database_Contains_Req) String() string {
 func (*Database_Contains_Req) ProtoMessage() {}
 
 func (x *Database_Contains_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[5]
+	mi := &file_protobuf_v2_database_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -269,7 +269,7 @@ func (x *Database_Contains_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_Contains_Req.ProtoReflect.Descriptor instead.
 func (*Database_Contains_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 0, 0}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 0, 0}
 }
 
 func (x *Database_Contains_Req) GetName() string {
@@ -290,7 +290,7 @@ type Database_Contains_Res struct {
 func (x *Database_Contains_Res) Reset() {
 	*x = Database_Contains_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[6]
+		mi := &file_protobuf_v2_database_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -303,7 +303,7 @@ func (x *Database_Contains_Res) String() string {
 func (*Database_Contains_Res) ProtoMessage() {}
 
 func (x *Database_Contains_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[6]
+	mi := &file_protobuf_v2_database_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -316,7 +316,7 @@ func (x *Database_Contains_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_Contains_Res.ProtoReflect.Descriptor instead.
 func (*Database_Contains_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 0, 1}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 0, 1}
 }
 
 func (x *Database_Contains_Res) GetContains() bool {
@@ -337,7 +337,7 @@ type Database_Create_Req struct {
 func (x *Database_Create_Req) Reset() {
 	*x = Database_Create_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[7]
+		mi := &file_protobuf_v2_database_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -350,7 +350,7 @@ func (x *Database_Create_Req) String() string {
 func (*Database_Create_Req) ProtoMessage() {}
 
 func (x *Database_Create_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[7]
+	mi := &file_protobuf_v2_database_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -363,7 +363,7 @@ func (x *Database_Create_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_Create_Req.ProtoReflect.Descriptor instead.
 func (*Database_Create_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 1, 0}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 1, 0}
 }
 
 func (x *Database_Create_Req) GetName() string {
@@ -382,7 +382,7 @@ type Database_Create_Res struct {
 func (x *Database_Create_Res) Reset() {
 	*x = Database_Create_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[8]
+		mi := &file_protobuf_v2_database_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -395,7 +395,7 @@ func (x *Database_Create_Res) String() string {
 func (*Database_Create_Res) ProtoMessage() {}
 
 func (x *Database_Create_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[8]
+	mi := &file_protobuf_v2_database_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -408,7 +408,7 @@ func (x *Database_Create_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_Create_Res.ProtoReflect.Descriptor instead.
 func (*Database_Create_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 1, 1}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 1, 1}
 }
 
 type Database_All_Req struct {
@@ -420,7 +420,7 @@ type Database_All_Req struct {
 func (x *Database_All_Req) Reset() {
 	*x = Database_All_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[9]
+		mi := &file_protobuf_v2_database_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -433,7 +433,7 @@ func (x *Database_All_Req) String() string {
 func (*Database_All_Req) ProtoMessage() {}
 
 func (x *Database_All_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[9]
+	mi := &file_protobuf_v2_database_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -446,7 +446,7 @@ func (x *Database_All_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_All_Req.ProtoReflect.Descriptor instead.
 func (*Database_All_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 2, 0}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 2, 0}
 }
 
 type Database_All_Res struct {
@@ -460,7 +460,7 @@ type Database_All_Res struct {
 func (x *Database_All_Res) Reset() {
 	*x = Database_All_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[10]
+		mi := &file_protobuf_v2_database_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -473,7 +473,7 @@ func (x *Database_All_Res) String() string {
 func (*Database_All_Res) ProtoMessage() {}
 
 func (x *Database_All_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[10]
+	mi := &file_protobuf_v2_database_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -486,7 +486,7 @@ func (x *Database_All_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_All_Res.ProtoReflect.Descriptor instead.
 func (*Database_All_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 2, 1}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 2, 1}
 }
 
 func (x *Database_All_Res) GetNames() []string {
@@ -507,7 +507,7 @@ type Database_Delete_Req struct {
 func (x *Database_Delete_Req) Reset() {
 	*x = Database_Delete_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[11]
+		mi := &file_protobuf_v2_database_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -520,7 +520,7 @@ func (x *Database_Delete_Req) String() string {
 func (*Database_Delete_Req) ProtoMessage() {}
 
 func (x *Database_Delete_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[11]
+	mi := &file_protobuf_v2_database_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -533,7 +533,7 @@ func (x *Database_Delete_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_Delete_Req.ProtoReflect.Descriptor instead.
 func (*Database_Delete_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 3, 0}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 3, 0}
 }
 
 func (x *Database_Delete_Req) GetName() string {
@@ -552,7 +552,7 @@ type Database_Delete_Res struct {
 func (x *Database_Delete_Res) Reset() {
 	*x = Database_Delete_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_database_proto_msgTypes[12]
+		mi := &file_protobuf_v2_database_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -565,7 +565,7 @@ func (x *Database_Delete_Res) String() string {
 func (*Database_Delete_Res) ProtoMessage() {}
 
 func (x *Database_Delete_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_database_proto_msgTypes[12]
+	mi := &file_protobuf_v2_database_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -578,49 +578,50 @@ func (x *Database_Delete_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Database_Delete_Res.ProtoReflect.Descriptor instead.
 func (*Database_Delete_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_database_proto_rawDescGZIP(), []int{0, 3, 1}
+	return file_protobuf_v2_database_proto_rawDescGZIP(), []int{0, 3, 1}
 }
 
-var File_protobuf_database_proto protoreflect.FileDescriptor
+var File_protobuf_v2_database_proto protoreflect.FileDescriptor
 
-var file_protobuf_database_proto_rawDesc = []byte{
-	0x0a, 0x17, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x62,
-	0x61, 0x73, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67, 0x72, 0x61, 0x6b, 0x6e,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x22, 0xd7, 0x01, 0x0a, 0x08, 0x44, 0x61,
-	0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x1a, 0x48, 0x0a, 0x08, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69,
-	0x6e, 0x73, 0x1a, 0x19, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x1a, 0x21, 0x0a,
-	0x03, 0x52, 0x65, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x73,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x08, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x73,
-	0x1a, 0x2a, 0x0a, 0x06, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x1a, 0x19, 0x0a, 0x03, 0x52, 0x65,
-	0x71, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x1a, 0x29, 0x0a, 0x03,
-	0x41, 0x6c, 0x6c, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65,
-	0x73, 0x12, 0x14, 0x0a, 0x05, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09,
-	0x52, 0x05, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x1a, 0x2a, 0x0a, 0x06, 0x44, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x1a, 0x19, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x1a, 0x05, 0x0a, 0x03,
-	0x52, 0x65, 0x73, 0x42, 0x40, 0x0a, 0x0e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x42, 0x0d, 0x44, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x50,
-	0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x1f, 0x2e, 0x2f, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x3b, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+var file_protobuf_v2_database_proto_rawDesc = []byte{
+	0x0a, 0x1a, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x76, 0x32, 0x2f, 0x64, 0x61,
+	0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67, 0x72,
+	0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x22, 0xd7, 0x01, 0x0a,
+	0x08, 0x44, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x1a, 0x48, 0x0a, 0x08, 0x43, 0x6f, 0x6e,
+	0x74, 0x61, 0x69, 0x6e, 0x73, 0x1a, 0x19, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x12, 0x0a, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x1a, 0x21, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x6f, 0x6e, 0x74, 0x61,
+	0x69, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x08, 0x63, 0x6f, 0x6e, 0x74, 0x61,
+	0x69, 0x6e, 0x73, 0x1a, 0x2a, 0x0a, 0x06, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x1a, 0x19, 0x0a,
+	0x03, 0x52, 0x65, 0x71, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x1a,
+	0x29, 0x0a, 0x03, 0x41, 0x6c, 0x6c, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x1a, 0x1b, 0x0a,
+	0x03, 0x52, 0x65, 0x73, 0x12, 0x14, 0x0a, 0x05, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x09, 0x52, 0x05, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x1a, 0x2a, 0x0a, 0x06, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x1a, 0x19, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x12, 0x0a, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x1a,
+	0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x42, 0x46, 0x0a, 0x0e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x42, 0x0d, 0x44, 0x61, 0x74, 0x61, 0x62, 0x61,
+	0x73, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x25, 0x2e, 0x2f, 0x67, 0x72, 0x61, 0x6b, 0x6e,
+	0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x5f, 0x76, 0x32, 0x3b, 0x67, 0x72, 0x61,
+	0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x5f, 0x76, 0x32, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_protobuf_database_proto_rawDescOnce sync.Once
-	file_protobuf_database_proto_rawDescData = file_protobuf_database_proto_rawDesc
+	file_protobuf_v2_database_proto_rawDescOnce sync.Once
+	file_protobuf_v2_database_proto_rawDescData = file_protobuf_v2_database_proto_rawDesc
 )
 
-func file_protobuf_database_proto_rawDescGZIP() []byte {
-	file_protobuf_database_proto_rawDescOnce.Do(func() {
-		file_protobuf_database_proto_rawDescData = protoimpl.X.CompressGZIP(file_protobuf_database_proto_rawDescData)
+func file_protobuf_v2_database_proto_rawDescGZIP() []byte {
+	file_protobuf_v2_database_proto_rawDescOnce.Do(func() {
+		file_protobuf_v2_database_proto_rawDescData = protoimpl.X.CompressGZIP(file_protobuf_v2_database_proto_rawDescData)
 	})
-	return file_protobuf_database_proto_rawDescData
+	return file_protobuf_v2_database_proto_rawDescData
 }
 
-var file_protobuf_database_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
-var file_protobuf_database_proto_goTypes = []interface{}{
+var file_protobuf_v2_database_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_protobuf_v2_database_proto_goTypes = []interface{}{
 	(*Database)(nil),              // 0: grakn.protocol.Database
 	(*Database_Contains)(nil),     // 1: grakn.protocol.Database.Contains
 	(*Database_Create)(nil),       // 2: grakn.protocol.Database.Create
@@ -635,7 +636,7 @@ var file_protobuf_database_proto_goTypes = []interface{}{
 	(*Database_Delete_Req)(nil),   // 11: grakn.protocol.Database.Delete.Req
 	(*Database_Delete_Res)(nil),   // 12: grakn.protocol.Database.Delete.Res
 }
-var file_protobuf_database_proto_depIdxs = []int32{
+var file_protobuf_v2_database_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -643,13 +644,13 @@ var file_protobuf_database_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_protobuf_database_proto_init() }
-func file_protobuf_database_proto_init() {
-	if File_protobuf_database_proto != nil {
+func init() { file_protobuf_v2_database_proto_init() }
+func file_protobuf_v2_database_proto_init() {
+	if File_protobuf_v2_database_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_protobuf_database_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database); i {
 			case 0:
 				return &v.state
@@ -661,7 +662,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_Contains); i {
 			case 0:
 				return &v.state
@@ -673,7 +674,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_Create); i {
 			case 0:
 				return &v.state
@@ -685,7 +686,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_All); i {
 			case 0:
 				return &v.state
@@ -697,7 +698,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_Delete); i {
 			case 0:
 				return &v.state
@@ -709,7 +710,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_Contains_Req); i {
 			case 0:
 				return &v.state
@@ -721,7 +722,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_Contains_Res); i {
 			case 0:
 				return &v.state
@@ -733,7 +734,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_Create_Req); i {
 			case 0:
 				return &v.state
@@ -745,7 +746,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_Create_Res); i {
 			case 0:
 				return &v.state
@@ -757,7 +758,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_All_Req); i {
 			case 0:
 				return &v.state
@@ -769,7 +770,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_All_Res); i {
 			case 0:
 				return &v.state
@@ -781,7 +782,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_Delete_Req); i {
 			case 0:
 				return &v.state
@@ -793,7 +794,7 @@ func file_protobuf_database_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_database_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_protobuf_v2_database_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Database_Delete_Res); i {
 			case 0:
 				return &v.state
@@ -810,18 +811,18 @@ func file_protobuf_database_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_protobuf_database_proto_rawDesc,
+			RawDescriptor: file_protobuf_v2_database_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_protobuf_database_proto_goTypes,
-		DependencyIndexes: file_protobuf_database_proto_depIdxs,
-		MessageInfos:      file_protobuf_database_proto_msgTypes,
+		GoTypes:           file_protobuf_v2_database_proto_goTypes,
+		DependencyIndexes: file_protobuf_v2_database_proto_depIdxs,
+		MessageInfos:      file_protobuf_v2_database_proto_msgTypes,
 	}.Build()
-	File_protobuf_database_proto = out.File
-	file_protobuf_database_proto_rawDesc = nil
-	file_protobuf_database_proto_goTypes = nil
-	file_protobuf_database_proto_depIdxs = nil
+	File_protobuf_v2_database_proto = out.File
+	file_protobuf_v2_database_proto_rawDesc = nil
+	file_protobuf_v2_database_proto_goTypes = nil
+	file_protobuf_v2_database_proto_depIdxs = nil
 }
