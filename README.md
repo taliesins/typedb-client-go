@@ -1,5 +1,5 @@
 # client-go
-Grakn Go Client
+A very rough and quick spike to get a Grakn Go Client up and running. Does not follow the official client patterns, but all the functionality seems to work.
 
 # Pre requisites
 
@@ -31,9 +31,9 @@ For more information see https://grpc.io/docs/languages/go/quickstart/
 # To generate GRPC client
 
 ```
-protoc --go_out=. protobuf_v1/*.proto
-protoc --go_grpc_out=. protobuf_v1/*.proto
+protoc --go_out=. v1/protobuf/*.proto
+protoc --go_grpc_out=. v1/protobuf/*.proto
 
-protoc --go_out=. protobuf_v2/*.proto
-protoc --go_grpc_out=. protobuf_v2/*.proto
+protoc --go_out=. v2/protobuf/*.proto
+protoc --go_grpc_out=. v2/protobuf/*.proto
 ```

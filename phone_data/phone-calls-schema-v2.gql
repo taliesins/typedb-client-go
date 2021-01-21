@@ -1,0 +1,42 @@
+define
+
+    name sub attribute,
+      value string;
+    started_at sub attribute,
+      value datetime;
+    duration sub attribute,
+      value long;
+    first_name sub attribute,
+      value string;
+    last_name sub attribute,
+      value string;
+    phone_number sub attribute,
+      value string;
+    city sub attribute,
+      value string;
+    age sub attribute,
+      value long;
+
+    contract sub relation,
+        relates provider,
+        relates customer;
+
+    call sub relation,
+        relates caller,
+        relates callee,
+        owns started_at,
+        owns duration;
+
+    company sub entity,
+        plays contract:provider,
+        owns name;
+
+    person sub entity,
+        plays contract:customer,
+        plays call:caller,
+        plays call:callee,
+        owns first_name,
+        owns last_name,
+        owns phone_number,
+        owns city,
+        owns age;
