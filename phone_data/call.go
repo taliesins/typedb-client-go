@@ -1,8 +1,8 @@
 package phone_data
 
 import (
-	"bytes"
 	"encoding/json"
+	"io"
 	"io/ioutil"
 	"text/template"
 )
@@ -24,25 +24,24 @@ insert
 	$call has duration {{.Duration}};
 `))
 
-func GetCallsGsql(templateRendered *bytes.Buffer) (err error) {
+func GetCalls() (companies []Call, err error) {
 	file, err := ioutil.ReadFile("phone_data/calls.json")
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	var calls []Call
-	err = json.Unmarshal([]byte(file), &calls)
+	err = json.Unmarshal([]byte(file), &companies)
+	if err != nil {
+		return nil, err
+	}
+
+	return companies, nil
+}
+
+func GetCallGql(call *Call, wr io.Writer) (err error) {
+	err = insertCallTemplate.Execute(wr, call)
 	if err != nil {
 		return err
 	}
-
-	 for _, call := range calls {
-		 err = insertCallTemplate.Execute(templateRendered, call)
-
-		 if err != nil {
-			 return err
-		 }
-	}
-
-	return nil
+	return err
 }

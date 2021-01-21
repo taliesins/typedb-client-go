@@ -1,8 +1,8 @@
 package phone_data
 
 import (
-	"bytes"
 	"encoding/json"
+	"io"
 	"io/ioutil"
 	"text/template"
 )
@@ -17,25 +17,24 @@ insert
 		has name "{{.Name}}";
 `))
 
-func GetCompaniesGsql(templateRendered *bytes.Buffer) (err error) {
+func GetCompanies() (companies []Company, err error) {
 	file, err := ioutil.ReadFile("phone_data/companies.json")
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	var companies []Company
 	err = json.Unmarshal([]byte(file), &companies)
+	if err != nil {
+		return nil, err
+	}
+
+	return companies, nil
+}
+
+func GetCompanyGql(company *Company, wr io.Writer) (err error) {
+	err = insertCompanyTemplate.Execute(wr, company)
 	if err != nil {
 		return err
 	}
-
-	for _, company := range companies {
-		err = insertCompanyTemplate.Execute(templateRendered, company)
-
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
+	return err
 }

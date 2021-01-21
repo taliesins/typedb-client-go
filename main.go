@@ -1,9 +1,9 @@
 package main
 
 import (
-	v1 "github.com/taliesins/client-go/v1"
+	v2 "github.com/taliesins/client-go/v2"
 )
 
 func main() {
-	v1.Run()
+	v2.Run()
 }

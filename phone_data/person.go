@@ -1,8 +1,8 @@
 package phone_data
 
 import (
-	"bytes"
 	"encoding/json"
+	"io"
 	"io/ioutil"
 	"text/template"
 )
@@ -25,25 +25,24 @@ insert
 		has phone-number "{{.PhoneNumber}}";
 `))
 
-func GetPeopleGsql(templateRendered *bytes.Buffer) (err error) {
+func GetPeople() (people []Person, err error) {
 	file, err := ioutil.ReadFile("phone_data/people.json")
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	var people []Person
 	err = json.Unmarshal([]byte(file), &people)
+	if err != nil {
+		return nil, err
+	}
+
+	return people, nil
+}
+
+func GetPersonGql(person *Person, wr io.Writer) (err error) {
+	err = insertPersonTemplate.Execute(wr, person)
 	if err != nil {
 		return err
 	}
-
-	for _, person := range people {
-		err = insertPersonTemplate.Execute(templateRendered, person)
-
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
+	return err
 }

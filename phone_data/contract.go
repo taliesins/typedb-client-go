@@ -1,8 +1,8 @@
 package phone_data
 
 import (
-	"bytes"
 	"encoding/json"
+	"io"
 	"io/ioutil"
 	"text/template"
 )
@@ -22,26 +22,24 @@ insert
 	(provider: $company, customer: $customer) isa contract;
 `))
 
-
-func GetContractsGsql(templateRendered *bytes.Buffer) (err error) {
+func GetContracts() (companies []Contract, err error) {
 	file, err := ioutil.ReadFile("phone_data/contracts.json")
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	var contracts []Contract
-	err = json.Unmarshal([]byte(file), &contracts)
+	err = json.Unmarshal([]byte(file), &companies)
+	if err != nil {
+		return nil, err
+	}
+
+	return companies, nil
+}
+
+func GetContractGql(contract *Contract, wr io.Writer) (err error) {
+	err = insertContractTemplate.Execute(wr, contract)
 	if err != nil {
 		return err
 	}
-
-	for _, contract := range contracts {
-		err = insertContractTemplate.Execute(templateRendered, contract)
-
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
+	return err
 }

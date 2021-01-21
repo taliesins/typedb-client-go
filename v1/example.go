@@ -196,7 +196,7 @@ func SetupDatabase(keyspaceServiceClient grakn.KeyspaceServiceClient, ctx contex
 }
 
 func CreateTestDatabaseSchema(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string) (err error) {
-	query, err := phone_data.GetPhoneCallsSchemaV1Gsql()
+	query, err := phone_data.GetPhoneCallsSchemaV1Gql()
 	if err != nil {
 		return fmt.Errorf("could not get phone calls gsql: %w", err)
 	}
@@ -240,22 +240,24 @@ get
 
 
 func CreateTestDatabaseData(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string) (err error) {
-	query, err := phone_data.GetPhoneCallsDataGsql()
-	if err != nil {
-		return fmt.Errorf("could not get phone calls gsql: %w", err)
-	}
-
 	infer := true
 	explain := true
 	batchSize := int32(0)
 
-	answers, err := client.RunQuery(transactionClient, metadata, query, infer, explain, batchSize)
+	gql, err := phone_data.GetPhoneCallsDataGql()
 	if err != nil {
-		return fmt.Errorf("could not insert phone calls data: %w", err)
+		return fmt.Errorf("could not get phone calls data gql: %w", err)
 	}
 
-	for _, answer := range answers {
-		log.Printf("inserted: %v", answer.String())
+	for _, query := range gql {
+		answers, err := client.RunQuery(transactionClient, metadata, query, infer, explain, batchSize)
+		if err != nil {
+			return fmt.Errorf("could not insert phone calls data: %w", err)
+		}
+
+		for _, answer := range answers {
+			log.Printf("inserted: %v", answer.String())
+		}
 	}
 
 	return err
