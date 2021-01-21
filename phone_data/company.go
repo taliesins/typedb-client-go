@@ -1,6 +1,7 @@
 package phone_data
 
 import (
+	"bytes"
 	"encoding/json"
 	"io"
 	"io/ioutil"
@@ -13,8 +14,15 @@ type Company struct {
 
 var insertCompanyTemplate = template.Must(template.New("InsertCompany").Parse(`
 insert 
-	$company isa company, 
+	$_ isa company, 
 		has name "{{.Name}}";
+`))
+
+var insertCompaniesTemplate = template.Must(template.New("InsertCompanies").Parse(`
+insert
+{{range .}}
+	$_ isa company, has name "{{.Name}}";
+{{end}}
 `))
 
 func GetCompanies() (companies []Company, err error) {
@@ -37,4 +45,20 @@ func GetCompanyGql(company *Company, wr io.Writer) (err error) {
 		return err
 	}
 	return err
+}
+
+func GetCompaniesGql() (gql []string, err error){
+	gql = []string{}
+	companies, err := GetCompanies()
+	if err != nil {
+		return nil, err
+	}
+
+	templateRendered := bytes.Buffer{}
+	err = insertCompaniesTemplate.Execute(&templateRendered, companies)
+	if err != nil {
+		return nil, err
+	}
+	gql = append(gql, templateRendered.String())
+	return gql, err
 }

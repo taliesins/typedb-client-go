@@ -1,6 +1,7 @@
 package phone_data
 
 import (
+	"bytes"
 	"encoding/json"
 	"io"
 	"io/ioutil"
@@ -44,4 +45,23 @@ func GetCallGql(call *Call, wr io.Writer) (err error) {
 		return err
 	}
 	return err
+}
+
+func GetCallsGql() (gql []string, err error){
+	gql = []string{}
+	calls, err := GetCalls()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, call := range calls {
+		templateRendered := bytes.Buffer{}
+		err = GetCallGql(&call, &templateRendered)
+		if err != nil {
+			return nil, err
+		}
+		gql = append(gql, templateRendered.String())
+	}
+
+	return gql, err
 }

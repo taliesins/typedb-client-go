@@ -315,18 +315,17 @@ func CreateTestDatabaseData(transactionClient grakn.Grakn_TransactionClient, tra
 }
 
 func GetTestDatabaseData(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, latencyMillis int32) (err error) {
-	query := `
-match
-	$company isa company;
-	$people isa people;
-	$contract isa contract;
-	$call isa call;
-get $company;
-`
-
 	infer := true
 	explain := true
 	batchSize := int32(0)
+
+
+	query := `
+match
+	$person isa person;
+get; 
+count;
+`
 
 	matchResponses, err := client.RunMatchQuery(transactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
 	if err != nil {
@@ -335,7 +334,58 @@ get $company;
 
 	for _, matchResponse := range matchResponses {
 		answer := matchResponse.GetAnswer()
-		log.Printf("database schema: %v", answer.String())
+		log.Printf("Number of people: %v", answer.String())
+	}
+
+	query = `
+match
+	$company isa company;
+get; 
+count;
+`
+
+	matchResponses, err = client.RunMatchQuery(transactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
+	if err != nil {
+		return fmt.Errorf("could not get database data: %w", err)
+	}
+
+	for _, matchResponse := range matchResponses {
+		answer := matchResponse.GetAnswer()
+		log.Printf("Number of companies: %v", answer.String())
+	}
+
+	query = `
+match
+	$contract isa contract;
+get; 
+count;
+`
+
+	matchResponses, err = client.RunMatchQuery(transactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
+	if err != nil {
+		return fmt.Errorf("could not get database data: %w", err)
+	}
+
+	for _, matchResponse := range matchResponses {
+		answer := matchResponse.GetAnswer()
+		log.Printf("Number of contracts: %v", answer.String())
+	}
+
+	query = `
+match
+	$call isa call;
+get; 
+count;
+`
+
+	matchResponses, err = client.RunMatchQuery(transactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
+	if err != nil {
+		return fmt.Errorf("could not get database data: %w", err)
+	}
+
+	for _, matchResponse := range matchResponses {
+		answer := matchResponse.GetAnswer()
+		log.Printf("Number of calls: %v", answer.String())
 	}
 
 	return err

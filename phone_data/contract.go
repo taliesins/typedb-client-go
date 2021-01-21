@@ -1,6 +1,7 @@
 package phone_data
 
 import (
+	"bytes"
 	"encoding/json"
 	"io"
 	"io/ioutil"
@@ -42,4 +43,23 @@ func GetContractGql(contract *Contract, wr io.Writer) (err error) {
 		return err
 	}
 	return err
+}
+
+func GetContractsGql() (gql []string, err error){
+	gql = []string{}
+	contracts, err := GetContracts()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, contract := range contracts {
+		templateRendered := bytes.Buffer{}
+		err = GetContractGql(&contract, &templateRendered)
+		if err != nil {
+			return nil, err
+		}
+		gql = append(gql, templateRendered.String())
+	}
+
+	return gql, err
 }

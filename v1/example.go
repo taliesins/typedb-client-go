@@ -264,24 +264,16 @@ func CreateTestDatabaseData(transactionClient grakn.SessionService_TransactionCl
 }
 
 func GetTestDatabaseData(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string) (err error) {
-/*
-	$company isa company;
-	$person isa person;
-	$contract isa contract;
-	$call isa call;
-
-
- */
-	query := `
-match
-	$company isa company;
-get; 
-count;
-`
-
 	infer := true
 	explain := true
 	batchSize := int32(0)
+
+	query := `
+match
+	$person isa person;
+get; 
+count;
+`
 
 	answers, err := client.RunQuery(transactionClient, metadata, query, infer, explain, batchSize)
 	if err != nil {
@@ -289,7 +281,55 @@ count;
 	}
 
 	for _, answer := range answers {
-		log.Printf("database schema: %v", answer.String())
+		log.Printf("Number of people: %v", answer.String())
+	}
+
+	query = `
+match
+	$company isa company;
+get; 
+count;
+`
+
+	answers, err = client.RunQuery(transactionClient, metadata, query, infer, explain, batchSize)
+	if err != nil {
+		return fmt.Errorf("could not get database data: %w", err)
+	}
+
+	for _, answer := range answers {
+		log.Printf("Number of companies: %v", answer.String())
+	}
+
+	query = `
+match
+	$contract isa contract;
+get; 
+count;
+`
+
+	answers, err = client.RunQuery(transactionClient, metadata, query, infer, explain, batchSize)
+	if err != nil {
+		return fmt.Errorf("could not get database data: %w", err)
+	}
+
+	for _, answer := range answers {
+		log.Printf("Number of contracts: %v", answer.String())
+	}
+
+	query = `
+match
+	$call isa call;
+get; 
+count;
+`
+
+	answers, err = client.RunQuery(transactionClient, metadata, query, infer, explain, batchSize)
+	if err != nil {
+		return fmt.Errorf("could not get database data: %w", err)
+	}
+
+	for _, answer := range answers {
+		log.Printf("Number of calls: %v", answer.String())
 	}
 
 	return err
