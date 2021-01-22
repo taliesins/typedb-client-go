@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2020 Grakn Labs
+// Copyright (C) 2021 Grakn Labs
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0
 // 	protoc        v3.14.0
-// source: protobuf/session.proto
+// source: v2/protobuf/session.proto
 
 package grakn_protocol
 
@@ -72,11 +72,11 @@ func (x Session_Type) String() string {
 }
 
 func (Session_Type) Descriptor() protoreflect.EnumDescriptor {
-	return file_protobuf_v2_session_proto_enumTypes[0].Descriptor()
+	return file_v2_protobuf_session_proto_enumTypes[0].Descriptor()
 }
 
 func (Session_Type) Type() protoreflect.EnumType {
-	return &file_protobuf_v2_session_proto_enumTypes[0]
+	return &file_v2_protobuf_session_proto_enumTypes[0]
 }
 
 func (x Session_Type) Number() protoreflect.EnumNumber {
@@ -85,7 +85,7 @@ func (x Session_Type) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Session_Type.Descriptor instead.
 func (Session_Type) EnumDescriptor() ([]byte, []int) {
-	return file_protobuf_v2_session_proto_rawDescGZIP(), []int{0, 0}
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0, 0}
 }
 
 type Session struct {
@@ -97,7 +97,7 @@ type Session struct {
 func (x *Session) Reset() {
 	*x = Session{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_session_proto_msgTypes[0]
+		mi := &file_v2_protobuf_session_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -110,7 +110,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_session_proto_msgTypes[0]
+	mi := &file_v2_protobuf_session_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,7 +123,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_session_proto_rawDescGZIP(), []int{0}
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0}
 }
 
 type Session_Open struct {
@@ -135,7 +135,7 @@ type Session_Open struct {
 func (x *Session_Open) Reset() {
 	*x = Session_Open{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_session_proto_msgTypes[1]
+		mi := &file_v2_protobuf_session_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -148,7 +148,7 @@ func (x *Session_Open) String() string {
 func (*Session_Open) ProtoMessage() {}
 
 func (x *Session_Open) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_session_proto_msgTypes[1]
+	mi := &file_v2_protobuf_session_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -161,7 +161,7 @@ func (x *Session_Open) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Open.ProtoReflect.Descriptor instead.
 func (*Session_Open) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_session_proto_rawDescGZIP(), []int{0, 0}
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0, 0}
 }
 
 type Session_Close struct {
@@ -173,7 +173,7 @@ type Session_Close struct {
 func (x *Session_Close) Reset() {
 	*x = Session_Close{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_session_proto_msgTypes[2]
+		mi := &file_v2_protobuf_session_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -186,7 +186,7 @@ func (x *Session_Close) String() string {
 func (*Session_Close) ProtoMessage() {}
 
 func (x *Session_Close) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_session_proto_msgTypes[2]
+	mi := &file_v2_protobuf_session_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -199,7 +199,45 @@ func (x *Session_Close) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Close.ProtoReflect.Descriptor instead.
 func (*Session_Close) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_session_proto_rawDescGZIP(), []int{0, 1}
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0, 1}
+}
+
+type Session_Pulse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Session_Pulse) Reset() {
+	*x = Session_Pulse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_session_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Session_Pulse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Session_Pulse) ProtoMessage() {}
+
+func (x *Session_Pulse) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_session_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Session_Pulse.ProtoReflect.Descriptor instead.
+func (*Session_Pulse) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0, 2}
 }
 
 type Session_Open_Req struct {
@@ -215,7 +253,7 @@ type Session_Open_Req struct {
 func (x *Session_Open_Req) Reset() {
 	*x = Session_Open_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_session_proto_msgTypes[3]
+		mi := &file_v2_protobuf_session_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -228,7 +266,7 @@ func (x *Session_Open_Req) String() string {
 func (*Session_Open_Req) ProtoMessage() {}
 
 func (x *Session_Open_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_session_proto_msgTypes[3]
+	mi := &file_v2_protobuf_session_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -241,7 +279,7 @@ func (x *Session_Open_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Open_Req.ProtoReflect.Descriptor instead.
 func (*Session_Open_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_session_proto_rawDescGZIP(), []int{0, 0, 0}
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0, 0, 0}
 }
 
 func (x *Session_Open_Req) GetDatabase() string {
@@ -276,7 +314,7 @@ type Session_Open_Res struct {
 func (x *Session_Open_Res) Reset() {
 	*x = Session_Open_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_session_proto_msgTypes[4]
+		mi := &file_v2_protobuf_session_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -289,7 +327,7 @@ func (x *Session_Open_Res) String() string {
 func (*Session_Open_Res) ProtoMessage() {}
 
 func (x *Session_Open_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_session_proto_msgTypes[4]
+	mi := &file_v2_protobuf_session_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -302,7 +340,7 @@ func (x *Session_Open_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Open_Res.ProtoReflect.Descriptor instead.
 func (*Session_Open_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_session_proto_rawDescGZIP(), []int{0, 0, 1}
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0, 0, 1}
 }
 
 func (x *Session_Open_Res) GetSessionId() []byte {
@@ -323,7 +361,7 @@ type Session_Close_Req struct {
 func (x *Session_Close_Req) Reset() {
 	*x = Session_Close_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_session_proto_msgTypes[5]
+		mi := &file_v2_protobuf_session_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -336,7 +374,7 @@ func (x *Session_Close_Req) String() string {
 func (*Session_Close_Req) ProtoMessage() {}
 
 func (x *Session_Close_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_session_proto_msgTypes[5]
+	mi := &file_v2_protobuf_session_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -349,7 +387,7 @@ func (x *Session_Close_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Close_Req.ProtoReflect.Descriptor instead.
 func (*Session_Close_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_session_proto_rawDescGZIP(), []int{0, 1, 0}
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0, 1, 0}
 }
 
 func (x *Session_Close_Req) GetSessionId() []byte {
@@ -368,7 +406,7 @@ type Session_Close_Res struct {
 func (x *Session_Close_Res) Reset() {
 	*x = Session_Close_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_session_proto_msgTypes[6]
+		mi := &file_v2_protobuf_session_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -381,7 +419,7 @@ func (x *Session_Close_Res) String() string {
 func (*Session_Close_Res) ProtoMessage() {}
 
 func (x *Session_Close_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_session_proto_msgTypes[6]
+	mi := &file_v2_protobuf_session_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -394,17 +432,111 @@ func (x *Session_Close_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Close_Res.ProtoReflect.Descriptor instead.
 func (*Session_Close_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_session_proto_rawDescGZIP(), []int{0, 1, 1}
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0, 1, 1}
 }
 
-var File_protobuf_v2_session_proto protoreflect.FileDescriptor
+type Session_Pulse_Req struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
 
-var file_protobuf_v2_session_proto_rawDesc = []byte{
-	0x0a, 0x19, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x76, 0x32, 0x2f, 0x73, 0x65,
+	SessionId []byte `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+}
+
+func (x *Session_Pulse_Req) Reset() {
+	*x = Session_Pulse_Req{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_session_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Session_Pulse_Req) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Session_Pulse_Req) ProtoMessage() {}
+
+func (x *Session_Pulse_Req) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_session_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Session_Pulse_Req.ProtoReflect.Descriptor instead.
+func (*Session_Pulse_Req) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0, 2, 0}
+}
+
+func (x *Session_Pulse_Req) GetSessionId() []byte {
+	if x != nil {
+		return x.SessionId
+	}
+	return nil
+}
+
+type Session_Pulse_Res struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Alive bool `protobuf:"varint,1,opt,name=alive,proto3" json:"alive,omitempty"`
+}
+
+func (x *Session_Pulse_Res) Reset() {
+	*x = Session_Pulse_Res{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_session_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Session_Pulse_Res) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Session_Pulse_Res) ProtoMessage() {}
+
+func (x *Session_Pulse_Res) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_session_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Session_Pulse_Res.ProtoReflect.Descriptor instead.
+func (*Session_Pulse_Res) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_session_proto_rawDescGZIP(), []int{0, 2, 1}
+}
+
+func (x *Session_Pulse_Res) GetAlive() bool {
+	if x != nil {
+		return x.Alive
+	}
+	return false
+}
+
+var File_v2_protobuf_session_proto protoreflect.FileDescriptor
+
+var file_v2_protobuf_session_proto_rawDesc = []byte{
+	0x0a, 0x19, 0x76, 0x32, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x73, 0x65,
 	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67, 0x72, 0x61,
-	0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x1a, 0x19, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x76, 0x32, 0x2f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x95, 0x02, 0x0a, 0x07, 0x53, 0x65, 0x73, 0x73, 0x69,
+	0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x1a, 0x19, 0x76, 0x32, 0x2f,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xe1, 0x02, 0x0a, 0x07, 0x53, 0x65, 0x73, 0x73, 0x69,
 	0x6f, 0x6e, 0x1a, 0xb5, 0x01, 0x0a, 0x04, 0x4f, 0x70, 0x65, 0x6e, 0x1a, 0x86, 0x01, 0x0a, 0x03,
 	0x52, 0x65, 0x71, 0x12, 0x1a, 0x0a, 0x08, 0x64, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x12,
@@ -420,58 +552,66 @@ var file_protobuf_v2_session_proto_rawDesc = []byte{
 	0x6f, 0x73, 0x65, 0x1a, 0x24, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x65,
 	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x09,
 	0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73,
-	0x22, 0x1c, 0x0a, 0x04, 0x54, 0x79, 0x70, 0x65, 0x12, 0x08, 0x0a, 0x04, 0x44, 0x41, 0x54, 0x41,
-	0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x43, 0x48, 0x45, 0x4d, 0x41, 0x10, 0x01, 0x42, 0x45,
-	0x0a, 0x0e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c,
-	0x42, 0x0c, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x25,
-	0x2e, 0x2f, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c,
-	0x5f, 0x76, 0x32, 0x3b, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63,
-	0x6f, 0x6c, 0x5f, 0x76, 0x32, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x1a, 0x4a, 0x0a, 0x05, 0x50, 0x75, 0x6c, 0x73, 0x65, 0x1a, 0x24, 0x0a, 0x03, 0x52, 0x65, 0x71,
+	0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0c, 0x52, 0x09, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x1a,
+	0x1b, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x14, 0x0a, 0x05, 0x61, 0x6c, 0x69, 0x76, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x61, 0x6c, 0x69, 0x76, 0x65, 0x22, 0x1c, 0x0a, 0x04,
+	0x54, 0x79, 0x70, 0x65, 0x12, 0x08, 0x0a, 0x04, 0x44, 0x41, 0x54, 0x41, 0x10, 0x00, 0x12, 0x0a,
+	0x0a, 0x06, 0x53, 0x43, 0x48, 0x45, 0x4d, 0x41, 0x10, 0x01, 0x42, 0x42, 0x0a, 0x0e, 0x67, 0x72,
+	0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x42, 0x0c, 0x53, 0x65,
+	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x22, 0x2e, 0x2f, 0x76, 0x32,
+	0x2f, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x3b,
+	0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_protobuf_v2_session_proto_rawDescOnce sync.Once
-	file_protobuf_v2_session_proto_rawDescData = file_protobuf_v2_session_proto_rawDesc
+	file_v2_protobuf_session_proto_rawDescOnce sync.Once
+	file_v2_protobuf_session_proto_rawDescData = file_v2_protobuf_session_proto_rawDesc
 )
 
-func file_protobuf_v2_session_proto_rawDescGZIP() []byte {
-	file_protobuf_v2_session_proto_rawDescOnce.Do(func() {
-		file_protobuf_v2_session_proto_rawDescData = protoimpl.X.CompressGZIP(file_protobuf_v2_session_proto_rawDescData)
+func file_v2_protobuf_session_proto_rawDescGZIP() []byte {
+	file_v2_protobuf_session_proto_rawDescOnce.Do(func() {
+		file_v2_protobuf_session_proto_rawDescData = protoimpl.X.CompressGZIP(file_v2_protobuf_session_proto_rawDescData)
 	})
-	return file_protobuf_v2_session_proto_rawDescData
+	return file_v2_protobuf_session_proto_rawDescData
 }
 
-var file_protobuf_v2_session_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_protobuf_v2_session_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
-var file_protobuf_v2_session_proto_goTypes = []interface{}{
+var file_v2_protobuf_session_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_v2_protobuf_session_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_v2_protobuf_session_proto_goTypes = []interface{}{
 	(Session_Type)(0),         // 0: grakn.protocol.Session.Type
 	(*Session)(nil),           // 1: grakn.protocol.Session
 	(*Session_Open)(nil),      // 2: grakn.protocol.Session.Open
 	(*Session_Close)(nil),     // 3: grakn.protocol.Session.Close
-	(*Session_Open_Req)(nil),  // 4: grakn.protocol.Session.Open.Req
-	(*Session_Open_Res)(nil),  // 5: grakn.protocol.Session.Open.Res
-	(*Session_Close_Req)(nil), // 6: grakn.protocol.Session.Close.Req
-	(*Session_Close_Res)(nil), // 7: grakn.protocol.Session.Close.Res
-	(*Options)(nil),           // 8: grakn.protocol.Options
+	(*Session_Pulse)(nil),     // 4: grakn.protocol.Session.Pulse
+	(*Session_Open_Req)(nil),  // 5: grakn.protocol.Session.Open.Req
+	(*Session_Open_Res)(nil),  // 6: grakn.protocol.Session.Open.Res
+	(*Session_Close_Req)(nil), // 7: grakn.protocol.Session.Close.Req
+	(*Session_Close_Res)(nil), // 8: grakn.protocol.Session.Close.Res
+	(*Session_Pulse_Req)(nil), // 9: grakn.protocol.Session.Pulse.Req
+	(*Session_Pulse_Res)(nil), // 10: grakn.protocol.Session.Pulse.Res
+	(*Options)(nil),           // 11: grakn.protocol.Options
 }
-var file_protobuf_v2_session_proto_depIdxs = []int32{
-	0, // 0: grakn.protocol.Session.Open.Req.type:type_name -> grakn.protocol.Session.Type
-	8, // 1: grakn.protocol.Session.Open.Req.options:type_name -> grakn.protocol.Options
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+var file_v2_protobuf_session_proto_depIdxs = []int32{
+	0,  // 0: grakn.protocol.Session.Open.Req.type:type_name -> grakn.protocol.Session.Type
+	11, // 1: grakn.protocol.Session.Open.Req.options:type_name -> grakn.protocol.Options
+	2,  // [2:2] is the sub-list for method output_type
+	2,  // [2:2] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_protobuf_v2_session_proto_init() }
-func file_protobuf_v2_session_proto_init() {
-	if File_protobuf_v2_session_proto != nil {
+func init() { file_v2_protobuf_session_proto_init() }
+func file_v2_protobuf_session_proto_init() {
+	if File_v2_protobuf_session_proto != nil {
 		return
 	}
-	file_protobuf_v2_options_proto_init()
+	file_v2_protobuf_options_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_protobuf_v2_session_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_session_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session); i {
 			case 0:
 				return &v.state
@@ -483,7 +623,7 @@ func file_protobuf_v2_session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_session_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_session_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Open); i {
 			case 0:
 				return &v.state
@@ -495,7 +635,7 @@ func file_protobuf_v2_session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_session_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_session_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Close); i {
 			case 0:
 				return &v.state
@@ -507,7 +647,19 @@ func file_protobuf_v2_session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_session_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_session_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Session_Pulse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_session_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Open_Req); i {
 			case 0:
 				return &v.state
@@ -519,7 +671,7 @@ func file_protobuf_v2_session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_session_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_session_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Open_Res); i {
 			case 0:
 				return &v.state
@@ -531,7 +683,7 @@ func file_protobuf_v2_session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_session_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_session_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Close_Req); i {
 			case 0:
 				return &v.state
@@ -543,8 +695,32 @@ func file_protobuf_v2_session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_session_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_session_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Close_Res); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_session_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Session_Pulse_Req); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_session_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Session_Pulse_Res); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -560,19 +736,19 @@ func file_protobuf_v2_session_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_protobuf_v2_session_proto_rawDesc,
+			RawDescriptor: file_v2_protobuf_session_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   7,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_protobuf_v2_session_proto_goTypes,
-		DependencyIndexes: file_protobuf_v2_session_proto_depIdxs,
-		EnumInfos:         file_protobuf_v2_session_proto_enumTypes,
-		MessageInfos:      file_protobuf_v2_session_proto_msgTypes,
+		GoTypes:           file_v2_protobuf_session_proto_goTypes,
+		DependencyIndexes: file_v2_protobuf_session_proto_depIdxs,
+		EnumInfos:         file_v2_protobuf_session_proto_enumTypes,
+		MessageInfos:      file_v2_protobuf_session_proto_msgTypes,
 	}.Build()
-	File_protobuf_v2_session_proto = out.File
-	file_protobuf_v2_session_proto_rawDesc = nil
-	file_protobuf_v2_session_proto_goTypes = nil
-	file_protobuf_v2_session_proto_depIdxs = nil
+	File_v2_protobuf_session_proto = out.File
+	file_v2_protobuf_session_proto_rawDesc = nil
+	file_v2_protobuf_session_proto_goTypes = nil
+	file_v2_protobuf_session_proto_depIdxs = nil
 }

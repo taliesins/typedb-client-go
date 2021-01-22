@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2020 Grakn Labs
+// Copyright (C) 2021 Grakn Labs
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@ import "v2/protobuf/concept.proto";
 
 package grakn.protocol;
 
-message Answer {
-    oneof answer {
-        AnswerGroup answer_group = 1;
-        ConceptMap concept_map = 2;
-        Number number = 3;
-    }
-}
-
-message AnswerGroup {
-    Concept owner = 1;
-    repeated Answer answers = 2;
-}
-
 message ConceptMap {
     map<string, Concept> map = 1;
     string pattern = 2;
 }
 
-message Number {
-    string value = 1;
-    // We use a string to contain the full representation of a number
+message ConceptMapGroup {
+    Concept owner = 1;
+    repeated ConceptMap concept_maps = 2;
+}
+
+message Numeric {
+    oneof value {
+        int64 long_value = 1;
+        double double_value = 2;
+        bool nan = 3;
+    }
+}
+
+message NumericGroup {
+    Concept owner = 1;
+    Numeric number = 2;
 }

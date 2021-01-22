@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2020 Grakn Labs
+// Copyright (C) 2021 Grakn Labs
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0
 // 	protoc        v3.14.0
-// source: protobuf/query.proto
+// source: v2/protobuf/query.proto
 
 package grakn_protocol
 
@@ -51,7 +51,7 @@ type Query struct {
 func (x *Query) Reset() {
 	*x = Query{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[0]
+		mi := &file_v2_protobuf_query_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -64,7 +64,7 @@ func (x *Query) String() string {
 func (*Query) ProtoMessage() {}
 
 func (x *Query) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[0]
+	mi := &file_v2_protobuf_query_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -77,45 +77,7 @@ func (x *Query) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Query.ProtoReflect.Descriptor instead.
 func (*Query) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{0}
-}
-
-type Graql struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *Graql) Reset() {
-	*x = Graql{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Graql) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Graql) ProtoMessage() {}
-
-func (x *Graql) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Graql.ProtoReflect.Descriptor instead.
-func (*Graql) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1}
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0}
 }
 
 type Query_Req struct {
@@ -129,6 +91,9 @@ type Query_Req struct {
 	//	*Query_Req_DefineReq
 	//	*Query_Req_UndefineReq
 	//	*Query_Req_MatchReq
+	//	*Query_Req_MatchAggregateReq
+	//	*Query_Req_MatchGroupReq
+	//	*Query_Req_MatchGroupAggregateReq
 	//	*Query_Req_InsertReq
 	Req isQuery_Req_Req `protobuf_oneof:"req"`
 }
@@ -136,7 +101,7 @@ type Query_Req struct {
 func (x *Query_Req) Reset() {
 	*x = Query_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[2]
+		mi := &file_v2_protobuf_query_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -149,7 +114,7 @@ func (x *Query_Req) String() string {
 func (*Query_Req) ProtoMessage() {}
 
 func (x *Query_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[2]
+	mi := &file_v2_protobuf_query_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -162,7 +127,7 @@ func (x *Query_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Query_Req.ProtoReflect.Descriptor instead.
 func (*Query_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{0, 0}
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 0}
 }
 
 func (x *Query_Req) GetOptions() *Options {
@@ -179,35 +144,56 @@ func (m *Query_Req) GetReq() isQuery_Req_Req {
 	return nil
 }
 
-func (x *Query_Req) GetDeleteReq() *Graql_Delete_Req {
+func (x *Query_Req) GetDeleteReq() *Query_Delete_Req {
 	if x, ok := x.GetReq().(*Query_Req_DeleteReq); ok {
 		return x.DeleteReq
 	}
 	return nil
 }
 
-func (x *Query_Req) GetDefineReq() *Graql_Define_Req {
+func (x *Query_Req) GetDefineReq() *Query_Define_Req {
 	if x, ok := x.GetReq().(*Query_Req_DefineReq); ok {
 		return x.DefineReq
 	}
 	return nil
 }
 
-func (x *Query_Req) GetUndefineReq() *Graql_Undefine_Req {
+func (x *Query_Req) GetUndefineReq() *Query_Undefine_Req {
 	if x, ok := x.GetReq().(*Query_Req_UndefineReq); ok {
 		return x.UndefineReq
 	}
 	return nil
 }
 
-func (x *Query_Req) GetMatchReq() *Graql_Match_Req {
+func (x *Query_Req) GetMatchReq() *Query_Match_Req {
 	if x, ok := x.GetReq().(*Query_Req_MatchReq); ok {
 		return x.MatchReq
 	}
 	return nil
 }
 
-func (x *Query_Req) GetInsertReq() *Graql_Insert_Req {
+func (x *Query_Req) GetMatchAggregateReq() *Query_MatchAggregate_Req {
+	if x, ok := x.GetReq().(*Query_Req_MatchAggregateReq); ok {
+		return x.MatchAggregateReq
+	}
+	return nil
+}
+
+func (x *Query_Req) GetMatchGroupReq() *Query_MatchGroup_Req {
+	if x, ok := x.GetReq().(*Query_Req_MatchGroupReq); ok {
+		return x.MatchGroupReq
+	}
+	return nil
+}
+
+func (x *Query_Req) GetMatchGroupAggregateReq() *Query_MatchGroupAggregate_Req {
+	if x, ok := x.GetReq().(*Query_Req_MatchGroupAggregateReq); ok {
+		return x.MatchGroupAggregateReq
+	}
+	return nil
+}
+
+func (x *Query_Req) GetInsertReq() *Query_Insert_Req {
 	if x, ok := x.GetReq().(*Query_Req_InsertReq); ok {
 		return x.InsertReq
 	}
@@ -219,23 +205,35 @@ type isQuery_Req_Req interface {
 }
 
 type Query_Req_DeleteReq struct {
-	DeleteReq *Graql_Delete_Req `protobuf:"bytes,100,opt,name=delete_req,json=deleteReq,proto3,oneof"`
+	DeleteReq *Query_Delete_Req `protobuf:"bytes,100,opt,name=delete_req,json=deleteReq,proto3,oneof"`
 }
 
 type Query_Req_DefineReq struct {
-	DefineReq *Graql_Define_Req `protobuf:"bytes,101,opt,name=define_req,json=defineReq,proto3,oneof"`
+	DefineReq *Query_Define_Req `protobuf:"bytes,101,opt,name=define_req,json=defineReq,proto3,oneof"`
 }
 
 type Query_Req_UndefineReq struct {
-	UndefineReq *Graql_Undefine_Req `protobuf:"bytes,102,opt,name=undefine_req,json=undefineReq,proto3,oneof"`
+	UndefineReq *Query_Undefine_Req `protobuf:"bytes,102,opt,name=undefine_req,json=undefineReq,proto3,oneof"`
 }
 
 type Query_Req_MatchReq struct {
-	MatchReq *Graql_Match_Req `protobuf:"bytes,103,opt,name=match_req,json=matchReq,proto3,oneof"`
+	MatchReq *Query_Match_Req `protobuf:"bytes,103,opt,name=match_req,json=matchReq,proto3,oneof"`
+}
+
+type Query_Req_MatchAggregateReq struct {
+	MatchAggregateReq *Query_MatchAggregate_Req `protobuf:"bytes,104,opt,name=match_aggregate_req,json=matchAggregateReq,proto3,oneof"`
+}
+
+type Query_Req_MatchGroupReq struct {
+	MatchGroupReq *Query_MatchGroup_Req `protobuf:"bytes,105,opt,name=match_group_req,json=matchGroupReq,proto3,oneof"`
+}
+
+type Query_Req_MatchGroupAggregateReq struct {
+	MatchGroupAggregateReq *Query_MatchGroupAggregate_Req `protobuf:"bytes,106,opt,name=match_group_aggregate_req,json=matchGroupAggregateReq,proto3,oneof"`
 }
 
 type Query_Req_InsertReq struct {
-	InsertReq *Graql_Insert_Req `protobuf:"bytes,104,opt,name=insert_req,json=insertReq,proto3,oneof"`
+	InsertReq *Query_Insert_Req `protobuf:"bytes,107,opt,name=insert_req,json=insertReq,proto3,oneof"`
 }
 
 func (*Query_Req_DeleteReq) isQuery_Req_Req() {}
@@ -245,6 +243,12 @@ func (*Query_Req_DefineReq) isQuery_Req_Req() {}
 func (*Query_Req_UndefineReq) isQuery_Req_Req() {}
 
 func (*Query_Req_MatchReq) isQuery_Req_Req() {}
+
+func (*Query_Req_MatchAggregateReq) isQuery_Req_Req() {}
+
+func (*Query_Req_MatchGroupReq) isQuery_Req_Req() {}
+
+func (*Query_Req_MatchGroupAggregateReq) isQuery_Req_Req() {}
 
 func (*Query_Req_InsertReq) isQuery_Req_Req() {}
 
@@ -258,6 +262,9 @@ type Query_Res struct {
 	//	*Query_Res_DefineRes
 	//	*Query_Res_UndefineRes
 	//	*Query_Res_MatchRes
+	//	*Query_Res_MatchAggregateRes
+	//	*Query_Res_MatchGroupRes
+	//	*Query_Res_MatchGroupAggregateRes
 	//	*Query_Res_InsertRes
 	Res isQuery_Res_Res `protobuf_oneof:"res"`
 }
@@ -265,7 +272,7 @@ type Query_Res struct {
 func (x *Query_Res) Reset() {
 	*x = Query_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[3]
+		mi := &file_v2_protobuf_query_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -278,7 +285,7 @@ func (x *Query_Res) String() string {
 func (*Query_Res) ProtoMessage() {}
 
 func (x *Query_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[3]
+	mi := &file_v2_protobuf_query_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +298,7 @@ func (x *Query_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Query_Res.ProtoReflect.Descriptor instead.
 func (*Query_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{0, 1}
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 1}
 }
 
 func (m *Query_Res) GetRes() isQuery_Res_Res {
@@ -301,35 +308,56 @@ func (m *Query_Res) GetRes() isQuery_Res_Res {
 	return nil
 }
 
-func (x *Query_Res) GetDeleteRes() *Graql_Delete_Res {
+func (x *Query_Res) GetDeleteRes() *Query_Delete_Res {
 	if x, ok := x.GetRes().(*Query_Res_DeleteRes); ok {
 		return x.DeleteRes
 	}
 	return nil
 }
 
-func (x *Query_Res) GetDefineRes() *Graql_Define_Res {
+func (x *Query_Res) GetDefineRes() *Query_Define_Res {
 	if x, ok := x.GetRes().(*Query_Res_DefineRes); ok {
 		return x.DefineRes
 	}
 	return nil
 }
 
-func (x *Query_Res) GetUndefineRes() *Graql_Undefine_Res {
+func (x *Query_Res) GetUndefineRes() *Query_Undefine_Res {
 	if x, ok := x.GetRes().(*Query_Res_UndefineRes); ok {
 		return x.UndefineRes
 	}
 	return nil
 }
 
-func (x *Query_Res) GetMatchRes() *Graql_Match_Res {
+func (x *Query_Res) GetMatchRes() *Query_Match_Res {
 	if x, ok := x.GetRes().(*Query_Res_MatchRes); ok {
 		return x.MatchRes
 	}
 	return nil
 }
 
-func (x *Query_Res) GetInsertRes() *Graql_Insert_Res {
+func (x *Query_Res) GetMatchAggregateRes() *Query_MatchAggregate_Res {
+	if x, ok := x.GetRes().(*Query_Res_MatchAggregateRes); ok {
+		return x.MatchAggregateRes
+	}
+	return nil
+}
+
+func (x *Query_Res) GetMatchGroupRes() *Query_MatchGroup_Res {
+	if x, ok := x.GetRes().(*Query_Res_MatchGroupRes); ok {
+		return x.MatchGroupRes
+	}
+	return nil
+}
+
+func (x *Query_Res) GetMatchGroupAggregateRes() *Query_MatchGroupAggregate_Res {
+	if x, ok := x.GetRes().(*Query_Res_MatchGroupAggregateRes); ok {
+		return x.MatchGroupAggregateRes
+	}
+	return nil
+}
+
+func (x *Query_Res) GetInsertRes() *Query_Insert_Res {
 	if x, ok := x.GetRes().(*Query_Res_InsertRes); ok {
 		return x.InsertRes
 	}
@@ -341,23 +369,35 @@ type isQuery_Res_Res interface {
 }
 
 type Query_Res_DeleteRes struct {
-	DeleteRes *Graql_Delete_Res `protobuf:"bytes,100,opt,name=delete_res,json=deleteRes,proto3,oneof"`
+	DeleteRes *Query_Delete_Res `protobuf:"bytes,100,opt,name=delete_res,json=deleteRes,proto3,oneof"`
 }
 
 type Query_Res_DefineRes struct {
-	DefineRes *Graql_Define_Res `protobuf:"bytes,101,opt,name=define_res,json=defineRes,proto3,oneof"`
+	DefineRes *Query_Define_Res `protobuf:"bytes,101,opt,name=define_res,json=defineRes,proto3,oneof"`
 }
 
 type Query_Res_UndefineRes struct {
-	UndefineRes *Graql_Undefine_Res `protobuf:"bytes,102,opt,name=undefine_res,json=undefineRes,proto3,oneof"`
+	UndefineRes *Query_Undefine_Res `protobuf:"bytes,102,opt,name=undefine_res,json=undefineRes,proto3,oneof"`
 }
 
 type Query_Res_MatchRes struct {
-	MatchRes *Graql_Match_Res `protobuf:"bytes,103,opt,name=match_res,json=matchRes,proto3,oneof"`
+	MatchRes *Query_Match_Res `protobuf:"bytes,103,opt,name=match_res,json=matchRes,proto3,oneof"`
+}
+
+type Query_Res_MatchAggregateRes struct {
+	MatchAggregateRes *Query_MatchAggregate_Res `protobuf:"bytes,104,opt,name=match_aggregate_res,json=matchAggregateRes,proto3,oneof"`
+}
+
+type Query_Res_MatchGroupRes struct {
+	MatchGroupRes *Query_MatchGroup_Res `protobuf:"bytes,105,opt,name=match_group_res,json=matchGroupRes,proto3,oneof"`
+}
+
+type Query_Res_MatchGroupAggregateRes struct {
+	MatchGroupAggregateRes *Query_MatchGroupAggregate_Res `protobuf:"bytes,106,opt,name=match_group_aggregate_res,json=matchGroupAggregateRes,proto3,oneof"`
 }
 
 type Query_Res_InsertRes struct {
-	InsertRes *Graql_Insert_Res `protobuf:"bytes,104,opt,name=insert_res,json=insertRes,proto3,oneof"`
+	InsertRes *Query_Insert_Res `protobuf:"bytes,107,opt,name=insert_res,json=insertRes,proto3,oneof"`
 }
 
 func (*Query_Res_DeleteRes) isQuery_Res_Res() {}
@@ -368,31 +408,37 @@ func (*Query_Res_UndefineRes) isQuery_Res_Res() {}
 
 func (*Query_Res_MatchRes) isQuery_Res_Res() {}
 
+func (*Query_Res_MatchAggregateRes) isQuery_Res_Res() {}
+
+func (*Query_Res_MatchGroupRes) isQuery_Res_Res() {}
+
+func (*Query_Res_MatchGroupAggregateRes) isQuery_Res_Res() {}
+
 func (*Query_Res_InsertRes) isQuery_Res_Res() {}
 
-type Graql_Match struct {
+type Query_Match struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *Graql_Match) Reset() {
-	*x = Graql_Match{}
+func (x *Query_Match) Reset() {
+	*x = Query_Match{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[4]
+		mi := &file_v2_protobuf_query_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Match) String() string {
+func (x *Query_Match) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Match) ProtoMessage() {}
+func (*Query_Match) ProtoMessage() {}
 
-func (x *Graql_Match) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[4]
+func (x *Query_Match) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -403,34 +449,34 @@ func (x *Graql_Match) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Match.ProtoReflect.Descriptor instead.
-func (*Graql_Match) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 0}
+// Deprecated: Use Query_Match.ProtoReflect.Descriptor instead.
+func (*Query_Match) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 2}
 }
 
-type Graql_Insert struct {
+type Query_MatchAggregate struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *Graql_Insert) Reset() {
-	*x = Graql_Insert{}
+func (x *Query_MatchAggregate) Reset() {
+	*x = Query_MatchAggregate{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[5]
+		mi := &file_v2_protobuf_query_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Insert) String() string {
+func (x *Query_MatchAggregate) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Insert) ProtoMessage() {}
+func (*Query_MatchAggregate) ProtoMessage() {}
 
-func (x *Graql_Insert) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[5]
+func (x *Query_MatchAggregate) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -441,34 +487,34 @@ func (x *Graql_Insert) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Insert.ProtoReflect.Descriptor instead.
-func (*Graql_Insert) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 1}
+// Deprecated: Use Query_MatchAggregate.ProtoReflect.Descriptor instead.
+func (*Query_MatchAggregate) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 3}
 }
 
-type Graql_Delete struct {
+type Query_MatchGroup struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *Graql_Delete) Reset() {
-	*x = Graql_Delete{}
+func (x *Query_MatchGroup) Reset() {
+	*x = Query_MatchGroup{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[6]
+		mi := &file_v2_protobuf_query_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Delete) String() string {
+func (x *Query_MatchGroup) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Delete) ProtoMessage() {}
+func (*Query_MatchGroup) ProtoMessage() {}
 
-func (x *Graql_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[6]
+func (x *Query_MatchGroup) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -479,34 +525,34 @@ func (x *Graql_Delete) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Delete.ProtoReflect.Descriptor instead.
-func (*Graql_Delete) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 2}
+// Deprecated: Use Query_MatchGroup.ProtoReflect.Descriptor instead.
+func (*Query_MatchGroup) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 4}
 }
 
-type Graql_Define struct {
+type Query_MatchGroupAggregate struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *Graql_Define) Reset() {
-	*x = Graql_Define{}
+func (x *Query_MatchGroupAggregate) Reset() {
+	*x = Query_MatchGroupAggregate{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[7]
+		mi := &file_v2_protobuf_query_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Define) String() string {
+func (x *Query_MatchGroupAggregate) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Define) ProtoMessage() {}
+func (*Query_MatchGroupAggregate) ProtoMessage() {}
 
-func (x *Graql_Define) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[7]
+func (x *Query_MatchGroupAggregate) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -517,34 +563,34 @@ func (x *Graql_Define) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Define.ProtoReflect.Descriptor instead.
-func (*Graql_Define) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 3}
+// Deprecated: Use Query_MatchGroupAggregate.ProtoReflect.Descriptor instead.
+func (*Query_MatchGroupAggregate) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 5}
 }
 
-type Graql_Undefine struct {
+type Query_Insert struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *Graql_Undefine) Reset() {
-	*x = Graql_Undefine{}
+func (x *Query_Insert) Reset() {
+	*x = Query_Insert{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[8]
+		mi := &file_v2_protobuf_query_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Undefine) String() string {
+func (x *Query_Insert) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Undefine) ProtoMessage() {}
+func (*Query_Insert) ProtoMessage() {}
 
-func (x *Graql_Undefine) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[8]
+func (x *Query_Insert) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -555,12 +601,126 @@ func (x *Graql_Undefine) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Undefine.ProtoReflect.Descriptor instead.
-func (*Graql_Undefine) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 4}
+// Deprecated: Use Query_Insert.ProtoReflect.Descriptor instead.
+func (*Query_Insert) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 6}
 }
 
-type Graql_Match_Req struct {
+type Query_Delete struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Query_Delete) Reset() {
+	*x = Query_Delete{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_query_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Query_Delete) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Query_Delete) ProtoMessage() {}
+
+func (x *Query_Delete) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Query_Delete.ProtoReflect.Descriptor instead.
+func (*Query_Delete) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 7}
+}
+
+type Query_Define struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Query_Define) Reset() {
+	*x = Query_Define{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_query_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Query_Define) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Query_Define) ProtoMessage() {}
+
+func (x *Query_Define) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Query_Define.ProtoReflect.Descriptor instead.
+func (*Query_Define) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 8}
+}
+
+type Query_Undefine struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Query_Undefine) Reset() {
+	*x = Query_Undefine{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_query_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Query_Undefine) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Query_Undefine) ProtoMessage() {}
+
+func (x *Query_Undefine) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Query_Undefine.ProtoReflect.Descriptor instead.
+func (*Query_Undefine) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 9}
+}
+
+type Query_Match_Req struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -568,23 +728,23 @@ type Graql_Match_Req struct {
 	Query string `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 
-func (x *Graql_Match_Req) Reset() {
-	*x = Graql_Match_Req{}
+func (x *Query_Match_Req) Reset() {
+	*x = Query_Match_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[9]
+		mi := &file_v2_protobuf_query_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Match_Req) String() string {
+func (x *Query_Match_Req) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Match_Req) ProtoMessage() {}
+func (*Query_Match_Req) ProtoMessage() {}
 
-func (x *Graql_Match_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[9]
+func (x *Query_Match_Req) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -595,44 +755,43 @@ func (x *Graql_Match_Req) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Match_Req.ProtoReflect.Descriptor instead.
-func (*Graql_Match_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 0, 0}
+// Deprecated: Use Query_Match_Req.ProtoReflect.Descriptor instead.
+func (*Query_Match_Req) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 2, 0}
 }
 
-func (x *Graql_Match_Req) GetQuery() string {
+func (x *Query_Match_Req) GetQuery() string {
 	if x != nil {
 		return x.Query
 	}
 	return ""
 }
 
-// @Iterable
-type Graql_Match_Res struct {
+type Query_Match_Res struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Answer *ConceptMap `protobuf:"bytes,1,opt,name=answer,proto3" json:"answer,omitempty"`
+	Answers []*ConceptMap `protobuf:"bytes,1,rep,name=answers,proto3" json:"answers,omitempty"`
 }
 
-func (x *Graql_Match_Res) Reset() {
-	*x = Graql_Match_Res{}
+func (x *Query_Match_Res) Reset() {
+	*x = Query_Match_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[10]
+		mi := &file_v2_protobuf_query_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Match_Res) String() string {
+func (x *Query_Match_Res) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Match_Res) ProtoMessage() {}
+func (*Query_Match_Res) ProtoMessage() {}
 
-func (x *Graql_Match_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[10]
+func (x *Query_Match_Res) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -643,19 +802,113 @@ func (x *Graql_Match_Res) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Match_Res.ProtoReflect.Descriptor instead.
-func (*Graql_Match_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 0, 1}
+// Deprecated: Use Query_Match_Res.ProtoReflect.Descriptor instead.
+func (*Query_Match_Res) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 2, 1}
 }
 
-func (x *Graql_Match_Res) GetAnswer() *ConceptMap {
+func (x *Query_Match_Res) GetAnswers() []*ConceptMap {
+	if x != nil {
+		return x.Answers
+	}
+	return nil
+}
+
+type Query_MatchAggregate_Req struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Query string `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+}
+
+func (x *Query_MatchAggregate_Req) Reset() {
+	*x = Query_MatchAggregate_Req{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_query_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Query_MatchAggregate_Req) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Query_MatchAggregate_Req) ProtoMessage() {}
+
+func (x *Query_MatchAggregate_Req) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Query_MatchAggregate_Req.ProtoReflect.Descriptor instead.
+func (*Query_MatchAggregate_Req) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 3, 0}
+}
+
+func (x *Query_MatchAggregate_Req) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+type Query_MatchAggregate_Res struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Answer *Numeric `protobuf:"bytes,1,opt,name=answer,proto3" json:"answer,omitempty"`
+}
+
+func (x *Query_MatchAggregate_Res) Reset() {
+	*x = Query_MatchAggregate_Res{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_query_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Query_MatchAggregate_Res) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Query_MatchAggregate_Res) ProtoMessage() {}
+
+func (x *Query_MatchAggregate_Res) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Query_MatchAggregate_Res.ProtoReflect.Descriptor instead.
+func (*Query_MatchAggregate_Res) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 3, 1}
+}
+
+func (x *Query_MatchAggregate_Res) GetAnswer() *Numeric {
 	if x != nil {
 		return x.Answer
 	}
 	return nil
 }
 
-type Graql_Insert_Req struct {
+type Query_MatchGroup_Req struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -663,23 +916,23 @@ type Graql_Insert_Req struct {
 	Query string `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 
-func (x *Graql_Insert_Req) Reset() {
-	*x = Graql_Insert_Req{}
+func (x *Query_MatchGroup_Req) Reset() {
+	*x = Query_MatchGroup_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[11]
+		mi := &file_v2_protobuf_query_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Insert_Req) String() string {
+func (x *Query_MatchGroup_Req) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Insert_Req) ProtoMessage() {}
+func (*Query_MatchGroup_Req) ProtoMessage() {}
 
-func (x *Graql_Insert_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[11]
+func (x *Query_MatchGroup_Req) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -690,44 +943,43 @@ func (x *Graql_Insert_Req) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Insert_Req.ProtoReflect.Descriptor instead.
-func (*Graql_Insert_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 1, 0}
+// Deprecated: Use Query_MatchGroup_Req.ProtoReflect.Descriptor instead.
+func (*Query_MatchGroup_Req) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 4, 0}
 }
 
-func (x *Graql_Insert_Req) GetQuery() string {
+func (x *Query_MatchGroup_Req) GetQuery() string {
 	if x != nil {
 		return x.Query
 	}
 	return ""
 }
 
-// @Iterable
-type Graql_Insert_Res struct {
+type Query_MatchGroup_Res struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Answer *ConceptMap `protobuf:"bytes,1,opt,name=answer,proto3" json:"answer,omitempty"`
+	Answers []*ConceptMapGroup `protobuf:"bytes,1,rep,name=answers,proto3" json:"answers,omitempty"`
 }
 
-func (x *Graql_Insert_Res) Reset() {
-	*x = Graql_Insert_Res{}
+func (x *Query_MatchGroup_Res) Reset() {
+	*x = Query_MatchGroup_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[12]
+		mi := &file_v2_protobuf_query_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Insert_Res) String() string {
+func (x *Query_MatchGroup_Res) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Insert_Res) ProtoMessage() {}
+func (*Query_MatchGroup_Res) ProtoMessage() {}
 
-func (x *Graql_Insert_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[12]
+func (x *Query_MatchGroup_Res) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -738,19 +990,19 @@ func (x *Graql_Insert_Res) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Insert_Res.ProtoReflect.Descriptor instead.
-func (*Graql_Insert_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 1, 1}
+// Deprecated: Use Query_MatchGroup_Res.ProtoReflect.Descriptor instead.
+func (*Query_MatchGroup_Res) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 4, 1}
 }
 
-func (x *Graql_Insert_Res) GetAnswer() *ConceptMap {
+func (x *Query_MatchGroup_Res) GetAnswers() []*ConceptMapGroup {
 	if x != nil {
-		return x.Answer
+		return x.Answers
 	}
 	return nil
 }
 
-type Graql_Delete_Req struct {
+type Query_MatchGroupAggregate_Req struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -758,23 +1010,23 @@ type Graql_Delete_Req struct {
 	Query string `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 
-func (x *Graql_Delete_Req) Reset() {
-	*x = Graql_Delete_Req{}
+func (x *Query_MatchGroupAggregate_Req) Reset() {
+	*x = Query_MatchGroupAggregate_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[13]
+		mi := &file_v2_protobuf_query_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Delete_Req) String() string {
+func (x *Query_MatchGroupAggregate_Req) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Delete_Req) ProtoMessage() {}
+func (*Query_MatchGroupAggregate_Req) ProtoMessage() {}
 
-func (x *Graql_Delete_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[13]
+func (x *Query_MatchGroupAggregate_Req) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -785,41 +1037,43 @@ func (x *Graql_Delete_Req) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Delete_Req.ProtoReflect.Descriptor instead.
-func (*Graql_Delete_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 2, 0}
+// Deprecated: Use Query_MatchGroupAggregate_Req.ProtoReflect.Descriptor instead.
+func (*Query_MatchGroupAggregate_Req) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 5, 0}
 }
 
-func (x *Graql_Delete_Req) GetQuery() string {
+func (x *Query_MatchGroupAggregate_Req) GetQuery() string {
 	if x != nil {
 		return x.Query
 	}
 	return ""
 }
 
-type Graql_Delete_Res struct {
+type Query_MatchGroupAggregate_Res struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	Answers []*NumericGroup `protobuf:"bytes,1,rep,name=answers,proto3" json:"answers,omitempty"`
 }
 
-func (x *Graql_Delete_Res) Reset() {
-	*x = Graql_Delete_Res{}
+func (x *Query_MatchGroupAggregate_Res) Reset() {
+	*x = Query_MatchGroupAggregate_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[14]
+		mi := &file_v2_protobuf_query_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Delete_Res) String() string {
+func (x *Query_MatchGroupAggregate_Res) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Delete_Res) ProtoMessage() {}
+func (*Query_MatchGroupAggregate_Res) ProtoMessage() {}
 
-func (x *Graql_Delete_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[14]
+func (x *Query_MatchGroupAggregate_Res) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -830,12 +1084,19 @@ func (x *Graql_Delete_Res) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Delete_Res.ProtoReflect.Descriptor instead.
-func (*Graql_Delete_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 2, 1}
+// Deprecated: Use Query_MatchGroupAggregate_Res.ProtoReflect.Descriptor instead.
+func (*Query_MatchGroupAggregate_Res) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 5, 1}
 }
 
-type Graql_Define_Req struct {
+func (x *Query_MatchGroupAggregate_Res) GetAnswers() []*NumericGroup {
+	if x != nil {
+		return x.Answers
+	}
+	return nil
+}
+
+type Query_Insert_Req struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -843,23 +1104,23 @@ type Graql_Define_Req struct {
 	Query string `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 
-func (x *Graql_Define_Req) Reset() {
-	*x = Graql_Define_Req{}
+func (x *Query_Insert_Req) Reset() {
+	*x = Query_Insert_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[15]
+		mi := &file_v2_protobuf_query_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Define_Req) String() string {
+func (x *Query_Insert_Req) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Define_Req) ProtoMessage() {}
+func (*Query_Insert_Req) ProtoMessage() {}
 
-func (x *Graql_Define_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[15]
+func (x *Query_Insert_Req) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -870,41 +1131,43 @@ func (x *Graql_Define_Req) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Define_Req.ProtoReflect.Descriptor instead.
-func (*Graql_Define_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 3, 0}
+// Deprecated: Use Query_Insert_Req.ProtoReflect.Descriptor instead.
+func (*Query_Insert_Req) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 6, 0}
 }
 
-func (x *Graql_Define_Req) GetQuery() string {
+func (x *Query_Insert_Req) GetQuery() string {
 	if x != nil {
 		return x.Query
 	}
 	return ""
 }
 
-type Graql_Define_Res struct {
+type Query_Insert_Res struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	Answers []*ConceptMap `protobuf:"bytes,1,rep,name=answers,proto3" json:"answers,omitempty"`
 }
 
-func (x *Graql_Define_Res) Reset() {
-	*x = Graql_Define_Res{}
+func (x *Query_Insert_Res) Reset() {
+	*x = Query_Insert_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[16]
+		mi := &file_v2_protobuf_query_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Define_Res) String() string {
+func (x *Query_Insert_Res) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Define_Res) ProtoMessage() {}
+func (*Query_Insert_Res) ProtoMessage() {}
 
-func (x *Graql_Define_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[16]
+func (x *Query_Insert_Res) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -915,12 +1178,19 @@ func (x *Graql_Define_Res) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Define_Res.ProtoReflect.Descriptor instead.
-func (*Graql_Define_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 3, 1}
+// Deprecated: Use Query_Insert_Res.ProtoReflect.Descriptor instead.
+func (*Query_Insert_Res) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 6, 1}
 }
 
-type Graql_Undefine_Req struct {
+func (x *Query_Insert_Res) GetAnswers() []*ConceptMap {
+	if x != nil {
+		return x.Answers
+	}
+	return nil
+}
+
+type Query_Delete_Req struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -928,23 +1198,23 @@ type Graql_Undefine_Req struct {
 	Query string `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 
-func (x *Graql_Undefine_Req) Reset() {
-	*x = Graql_Undefine_Req{}
+func (x *Query_Delete_Req) Reset() {
+	*x = Query_Delete_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[17]
+		mi := &file_v2_protobuf_query_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Undefine_Req) String() string {
+func (x *Query_Delete_Req) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Undefine_Req) ProtoMessage() {}
+func (*Query_Delete_Req) ProtoMessage() {}
 
-func (x *Graql_Undefine_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[17]
+func (x *Query_Delete_Req) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -955,41 +1225,41 @@ func (x *Graql_Undefine_Req) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Undefine_Req.ProtoReflect.Descriptor instead.
-func (*Graql_Undefine_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 4, 0}
+// Deprecated: Use Query_Delete_Req.ProtoReflect.Descriptor instead.
+func (*Query_Delete_Req) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 7, 0}
 }
 
-func (x *Graql_Undefine_Req) GetQuery() string {
+func (x *Query_Delete_Req) GetQuery() string {
 	if x != nil {
 		return x.Query
 	}
 	return ""
 }
 
-type Graql_Undefine_Res struct {
+type Query_Delete_Res struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *Graql_Undefine_Res) Reset() {
-	*x = Graql_Undefine_Res{}
+func (x *Query_Delete_Res) Reset() {
+	*x = Query_Delete_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v2_query_proto_msgTypes[18]
+		mi := &file_v2_protobuf_query_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *Graql_Undefine_Res) String() string {
+func (x *Query_Delete_Res) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Graql_Undefine_Res) ProtoMessage() {}
+func (*Query_Delete_Res) ProtoMessage() {}
 
-func (x *Graql_Undefine_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v2_query_proto_msgTypes[18]
+func (x *Query_Delete_Res) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1000,163 +1270,408 @@ func (x *Graql_Undefine_Res) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Graql_Undefine_Res.ProtoReflect.Descriptor instead.
-func (*Graql_Undefine_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v2_query_proto_rawDescGZIP(), []int{1, 4, 1}
+// Deprecated: Use Query_Delete_Res.ProtoReflect.Descriptor instead.
+func (*Query_Delete_Res) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 7, 1}
 }
 
-var File_protobuf_v2_query_proto protoreflect.FileDescriptor
+type Query_Define_Req struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
 
-var file_protobuf_v2_query_proto_rawDesc = []byte{
-	0x0a, 0x17, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x76, 0x32, 0x2f, 0x71, 0x75,
+	Query string `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+}
+
+func (x *Query_Define_Req) Reset() {
+	*x = Query_Define_Req{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_query_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Query_Define_Req) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Query_Define_Req) ProtoMessage() {}
+
+func (x *Query_Define_Req) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Query_Define_Req.ProtoReflect.Descriptor instead.
+func (*Query_Define_Req) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 8, 0}
+}
+
+func (x *Query_Define_Req) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+type Query_Define_Res struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Query_Define_Res) Reset() {
+	*x = Query_Define_Res{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_query_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Query_Define_Res) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Query_Define_Res) ProtoMessage() {}
+
+func (x *Query_Define_Res) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Query_Define_Res.ProtoReflect.Descriptor instead.
+func (*Query_Define_Res) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 8, 1}
+}
+
+type Query_Undefine_Req struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Query string `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+}
+
+func (x *Query_Undefine_Req) Reset() {
+	*x = Query_Undefine_Req{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_query_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Query_Undefine_Req) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Query_Undefine_Req) ProtoMessage() {}
+
+func (x *Query_Undefine_Req) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Query_Undefine_Req.ProtoReflect.Descriptor instead.
+func (*Query_Undefine_Req) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 9, 0}
+}
+
+func (x *Query_Undefine_Req) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+type Query_Undefine_Res struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Query_Undefine_Res) Reset() {
+	*x = Query_Undefine_Res{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_query_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Query_Undefine_Res) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Query_Undefine_Res) ProtoMessage() {}
+
+func (x *Query_Undefine_Res) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_query_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Query_Undefine_Res.ProtoReflect.Descriptor instead.
+func (*Query_Undefine_Res) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_query_proto_rawDescGZIP(), []int{0, 9, 1}
+}
+
+var File_v2_protobuf_query_proto protoreflect.FileDescriptor
+
+var file_v2_protobuf_query_proto_rawDesc = []byte{
+	0x0a, 0x17, 0x76, 0x32, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x71, 0x75,
 	0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67, 0x72, 0x61, 0x6b, 0x6e,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x1a, 0x18, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x5f, 0x76, 0x32, 0x2f, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x76, 0x32,
-	0x2f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xfc,
-	0x05, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x1a, 0x91, 0x03, 0x0a, 0x03, 0x52, 0x65, 0x71,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x1a, 0x18, 0x76, 0x32, 0x2f, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x76, 0x32, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xc6,
+	0x0f, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x1a, 0xa9, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x71,
 	0x12, 0x31, 0x0a, 0x07, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x17, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63,
 	0x6f, 0x6c, 0x2e, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x07, 0x6f, 0x70, 0x74, 0x69,
 	0x6f, 0x6e, 0x73, 0x12, 0x41, 0x0a, 0x0a, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x72, 0x65,
 	0x71, 0x18, 0x64, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x47, 0x72, 0x61, 0x71, 0x6c, 0x2e, 0x44,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x44,
 	0x65, 0x6c, 0x65, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x09, 0x64, 0x65, 0x6c,
 	0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x12, 0x41, 0x0a, 0x0a, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65,
 	0x5f, 0x72, 0x65, 0x71, 0x18, 0x65, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x67, 0x72, 0x61,
-	0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x47, 0x72, 0x61, 0x71,
-	0x6c, 0x2e, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x09,
+	0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x2e, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x09,
 	0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x71, 0x12, 0x47, 0x0a, 0x0c, 0x75, 0x6e, 0x64,
 	0x65, 0x66, 0x69, 0x6e, 0x65, 0x5f, 0x72, 0x65, 0x71, 0x18, 0x66, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x22, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c,
-	0x2e, 0x47, 0x72, 0x61, 0x71, 0x6c, 0x2e, 0x55, 0x6e, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x2e,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x55, 0x6e, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x2e,
 	0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x0b, 0x75, 0x6e, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x52,
 	0x65, 0x71, 0x12, 0x3e, 0x0a, 0x09, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x5f, 0x72, 0x65, 0x71, 0x18,
 	0x67, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x47, 0x72, 0x61, 0x71, 0x6c, 0x2e, 0x4d, 0x61, 0x74,
+	0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x4d, 0x61, 0x74,
 	0x63, 0x68, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x08, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x52,
-	0x65, 0x71, 0x12, 0x41, 0x0a, 0x0a, 0x69, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x5f, 0x72, 0x65, 0x71,
-	0x18, 0x68, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x47, 0x72, 0x61, 0x71, 0x6c, 0x2e, 0x49, 0x6e,
-	0x73, 0x65, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x09, 0x69, 0x6e, 0x73, 0x65,
-	0x72, 0x74, 0x52, 0x65, 0x71, 0x42, 0x05, 0x0a, 0x03, 0x72, 0x65, 0x71, 0x1a, 0xde, 0x02, 0x0a,
-	0x03, 0x52, 0x65, 0x73, 0x12, 0x41, 0x0a, 0x0a, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x72,
-	0x65, 0x73, 0x18, 0x64, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x47, 0x72, 0x61, 0x71, 0x6c, 0x2e,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x09, 0x64, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x12, 0x41, 0x0a, 0x0a, 0x64, 0x65, 0x66, 0x69, 0x6e,
-	0x65, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x65, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x67, 0x72,
-	0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x47, 0x72, 0x61,
-	0x71, 0x6c, 0x2e, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52,
-	0x09, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x73, 0x12, 0x47, 0x0a, 0x0c, 0x75, 0x6e,
-	0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x66, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x22, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f,
-	0x6c, 0x2e, 0x47, 0x72, 0x61, 0x71, 0x6c, 0x2e, 0x55, 0x6e, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65,
-	0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0b, 0x75, 0x6e, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65,
-	0x52, 0x65, 0x73, 0x12, 0x3e, 0x0a, 0x09, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x5f, 0x72, 0x65, 0x73,
-	0x18, 0x67, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x47, 0x72, 0x61, 0x71, 0x6c, 0x2e, 0x4d, 0x61,
-	0x74, 0x63, 0x68, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x08, 0x6d, 0x61, 0x74, 0x63, 0x68,
+	0x65, 0x71, 0x12, 0x5a, 0x0a, 0x13, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x5f, 0x61, 0x67, 0x67, 0x72,
+	0x65, 0x67, 0x61, 0x74, 0x65, 0x5f, 0x72, 0x65, 0x71, 0x18, 0x68, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x28, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x41, 0x67, 0x67, 0x72,
+	0x65, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x11, 0x6d, 0x61, 0x74,
+	0x63, 0x68, 0x41, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x12, 0x4e,
+	0x0a, 0x0f, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x72, 0x65,
+	0x71, 0x18, 0x69, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x4d,
+	0x61, 0x74, 0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52,
+	0x0d, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71, 0x12, 0x6a,
+	0x0a, 0x19, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x61, 0x67,
+	0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65, 0x5f, 0x72, 0x65, 0x71, 0x18, 0x6a, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x2d, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63,
+	0x6f, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x47, 0x72,
+	0x6f, 0x75, 0x70, 0x41, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x71,
+	0x48, 0x00, 0x52, 0x16, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x41, 0x67,
+	0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x12, 0x41, 0x0a, 0x0a, 0x69, 0x6e,
+	0x73, 0x65, 0x72, 0x74, 0x5f, 0x72, 0x65, 0x71, 0x18, 0x6b, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20,
+	0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x71,
+	0x48, 0x00, 0x52, 0x09, 0x69, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x52, 0x65, 0x71, 0x42, 0x05, 0x0a,
+	0x03, 0x72, 0x65, 0x71, 0x1a, 0xf6, 0x04, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x41, 0x0a, 0x0a,
+	0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x64, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x20, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f,
+	0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x2e, 0x52,
+	0x65, 0x73, 0x48, 0x00, 0x52, 0x09, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x12,
+	0x41, 0x0a, 0x0a, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x65, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x44, 0x65, 0x66, 0x69, 0x6e,
+	0x65, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x09, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x52,
+	0x65, 0x73, 0x12, 0x47, 0x0a, 0x0c, 0x75, 0x6e, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x5f, 0x72,
+	0x65, 0x73, 0x18, 0x66, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e,
+	0x55, 0x6e, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0b,
+	0x75, 0x6e, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x52, 0x65, 0x73, 0x12, 0x3e, 0x0a, 0x09, 0x6d,
+	0x61, 0x74, 0x63, 0x68, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x67, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f,
+	0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x2e, 0x52, 0x65, 0x73, 0x48,
+	0x00, 0x52, 0x08, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x52, 0x65, 0x73, 0x12, 0x5a, 0x0a, 0x13, 0x6d,
+	0x61, 0x74, 0x63, 0x68, 0x5f, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65, 0x5f, 0x72,
+	0x65, 0x73, 0x18, 0x68, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e,
+	0x4d, 0x61, 0x74, 0x63, 0x68, 0x41, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x52,
+	0x65, 0x73, 0x48, 0x00, 0x52, 0x11, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x41, 0x67, 0x67, 0x72, 0x65,
+	0x67, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x12, 0x4e, 0x0a, 0x0f, 0x6d, 0x61, 0x74, 0x63, 0x68,
+	0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x69, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x24, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f,
+	0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x47, 0x72, 0x6f,
+	0x75, 0x70, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0d, 0x6d, 0x61, 0x74, 0x63, 0x68, 0x47,
+	0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x73, 0x12, 0x6a, 0x0a, 0x19, 0x6d, 0x61, 0x74, 0x63, 0x68,
+	0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65,
+	0x5f, 0x72, 0x65, 0x73, 0x18, 0x6a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x67, 0x72, 0x61,
+	0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x2e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x41, 0x67, 0x67, 0x72,
+	0x65, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x16, 0x6d, 0x61, 0x74,
+	0x63, 0x68, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x41, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65,
 	0x52, 0x65, 0x73, 0x12, 0x41, 0x0a, 0x0a, 0x69, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x5f, 0x72, 0x65,
-	0x73, 0x18, 0x68, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x47, 0x72, 0x61, 0x71, 0x6c, 0x2e, 0x49,
+	0x73, 0x18, 0x6b, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x49,
 	0x6e, 0x73, 0x65, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x09, 0x69, 0x6e, 0x73,
-	0x65, 0x72, 0x74, 0x52, 0x65, 0x73, 0x42, 0x05, 0x0a, 0x03, 0x72, 0x65, 0x73, 0x22, 0xd6, 0x02,
-	0x0a, 0x05, 0x47, 0x72, 0x61, 0x71, 0x6c, 0x1a, 0x5f, 0x0a, 0x05, 0x4d, 0x61, 0x74, 0x63, 0x68,
-	0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x1a, 0x39, 0x0a,
-	0x03, 0x52, 0x65, 0x73, 0x12, 0x32, 0x0a, 0x06, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x43, 0x6f, 0x6e, 0x63, 0x65, 0x70, 0x74, 0x4d, 0x61, 0x70,
-	0x52, 0x06, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x1a, 0x60, 0x0a, 0x06, 0x49, 0x6e, 0x73, 0x65,
-	0x72, 0x74, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75, 0x65,
+	0x65, 0x72, 0x74, 0x52, 0x65, 0x73, 0x42, 0x05, 0x0a, 0x03, 0x72, 0x65, 0x73, 0x1a, 0x61, 0x0a,
+	0x05, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a,
+	0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75,
+	0x65, 0x72, 0x79, 0x1a, 0x3b, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x34, 0x0a, 0x07, 0x61, 0x6e,
+	0x73, 0x77, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x72,
+	0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x43, 0x6f, 0x6e,
+	0x63, 0x65, 0x70, 0x74, 0x4d, 0x61, 0x70, 0x52, 0x07, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x73,
+	0x1a, 0x65, 0x0a, 0x0e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x41, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61,
+	0x74, 0x65, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75, 0x65,
 	0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x1a,
-	0x39, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x32, 0x0a, 0x06, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70,
+	0x36, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x2f, 0x0a, 0x06, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x4e, 0x75, 0x6d, 0x65, 0x72, 0x69, 0x63, 0x52,
+	0x06, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x1a, 0x6b, 0x0a, 0x0a, 0x4d, 0x61, 0x74, 0x63, 0x68,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05,
+	0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65,
+	0x72, 0x79, 0x1a, 0x40, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x39, 0x0a, 0x07, 0x61, 0x6e, 0x73,
+	0x77, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x67, 0x72, 0x61,
+	0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x43, 0x6f, 0x6e, 0x63,
+	0x65, 0x70, 0x74, 0x4d, 0x61, 0x70, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x07, 0x61, 0x6e, 0x73,
+	0x77, 0x65, 0x72, 0x73, 0x1a, 0x71, 0x0a, 0x13, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x47, 0x72, 0x6f,
+	0x75, 0x70, 0x41, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65, 0x1a, 0x1b, 0x0a, 0x03, 0x52,
+	0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x1a, 0x3d, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12,
+	0x36, 0x0a, 0x07, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x1c, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f,
+	0x6c, 0x2e, 0x4e, 0x75, 0x6d, 0x65, 0x72, 0x69, 0x63, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x07,
+	0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x73, 0x1a, 0x62, 0x0a, 0x06, 0x49, 0x6e, 0x73, 0x65, 0x72,
+	0x74, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72,
+	0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x1a, 0x3b,
+	0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x34, 0x0a, 0x07, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x43, 0x6f, 0x6e, 0x63, 0x65, 0x70, 0x74, 0x4d,
-	0x61, 0x70, 0x52, 0x06, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x1a, 0x2c, 0x0a, 0x06, 0x44, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x71,
-	0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72,
-	0x79, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x1a, 0x2c, 0x0a, 0x06, 0x44, 0x65, 0x66, 0x69,
-	0x6e, 0x65, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75, 0x65,
-	0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x1a,
-	0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x1a, 0x2e, 0x0a, 0x08, 0x55, 0x6e, 0x64, 0x65, 0x66, 0x69,
-	0x6e, 0x65, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75, 0x65,
-	0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x1a,
-	0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x42, 0x43, 0x0a, 0x0e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50,
-	0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x25, 0x2e, 0x2f, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x5f, 0x76, 0x32, 0x3b, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x5f, 0x76, 0x32, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x61, 0x70, 0x52, 0x07, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x73, 0x1a, 0x2c, 0x0a, 0x06, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05,
+	0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65,
+	0x72, 0x79, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x1a, 0x2c, 0x0a, 0x06, 0x44, 0x65, 0x66,
+	0x69, 0x6e, 0x65, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75,
+	0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79,
+	0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x1a, 0x2e, 0x0a, 0x08, 0x55, 0x6e, 0x64, 0x65, 0x66,
+	0x69, 0x6e, 0x65, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75,
+	0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79,
+	0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x42, 0x40, 0x0a, 0x0e, 0x67, 0x72, 0x61, 0x6b, 0x6e,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x22, 0x2e, 0x2f, 0x76, 0x32, 0x2f, 0x67, 0x72, 0x61, 0x6b,
+	0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x3b, 0x67, 0x72, 0x61, 0x6b, 0x6e,
+	0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
-	file_protobuf_v2_query_proto_rawDescOnce sync.Once
-	file_protobuf_v2_query_proto_rawDescData = file_protobuf_v2_query_proto_rawDesc
+	file_v2_protobuf_query_proto_rawDescOnce sync.Once
+	file_v2_protobuf_query_proto_rawDescData = file_v2_protobuf_query_proto_rawDesc
 )
 
-func file_protobuf_v2_query_proto_rawDescGZIP() []byte {
-	file_protobuf_v2_query_proto_rawDescOnce.Do(func() {
-		file_protobuf_v2_query_proto_rawDescData = protoimpl.X.CompressGZIP(file_protobuf_v2_query_proto_rawDescData)
+func file_v2_protobuf_query_proto_rawDescGZIP() []byte {
+	file_v2_protobuf_query_proto_rawDescOnce.Do(func() {
+		file_v2_protobuf_query_proto_rawDescData = protoimpl.X.CompressGZIP(file_v2_protobuf_query_proto_rawDescData)
 	})
-	return file_protobuf_v2_query_proto_rawDescData
+	return file_v2_protobuf_query_proto_rawDescData
 }
 
-var file_protobuf_v2_query_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
-var file_protobuf_v2_query_proto_goTypes = []interface{}{
-	(*Query)(nil),              // 0: grakn.protocol.Query
-	(*Graql)(nil),              // 1: grakn.protocol.Graql
-	(*Query_Req)(nil),          // 2: grakn.protocol.Query.Req
-	(*Query_Res)(nil),          // 3: grakn.protocol.Query.Res
-	(*Graql_Match)(nil),        // 4: grakn.protocol.Graql.Match
-	(*Graql_Insert)(nil),       // 5: grakn.protocol.Graql.Insert
-	(*Graql_Delete)(nil),       // 6: grakn.protocol.Graql.Delete
-	(*Graql_Define)(nil),       // 7: grakn.protocol.Graql.Define
-	(*Graql_Undefine)(nil),     // 8: grakn.protocol.Graql.Undefine
-	(*Graql_Match_Req)(nil),    // 9: grakn.protocol.Graql.Match.Req
-	(*Graql_Match_Res)(nil),    // 10: grakn.protocol.Graql.Match.Res
-	(*Graql_Insert_Req)(nil),   // 11: grakn.protocol.Graql.Insert.Req
-	(*Graql_Insert_Res)(nil),   // 12: grakn.protocol.Graql.Insert.Res
-	(*Graql_Delete_Req)(nil),   // 13: grakn.protocol.Graql.Delete.Req
-	(*Graql_Delete_Res)(nil),   // 14: grakn.protocol.Graql.Delete.Res
-	(*Graql_Define_Req)(nil),   // 15: grakn.protocol.Graql.Define.Req
-	(*Graql_Define_Res)(nil),   // 16: grakn.protocol.Graql.Define.Res
-	(*Graql_Undefine_Req)(nil), // 17: grakn.protocol.Graql.Undefine.Req
-	(*Graql_Undefine_Res)(nil), // 18: grakn.protocol.Graql.Undefine.Res
-	(*Options)(nil),            // 19: grakn.protocol.Options
-	(*ConceptMap)(nil),         // 20: grakn.protocol.ConceptMap
+var file_v2_protobuf_query_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
+var file_v2_protobuf_query_proto_goTypes = []interface{}{
+	(*Query)(nil),                         // 0: grakn.protocol.Query
+	(*Query_Req)(nil),                     // 1: grakn.protocol.Query.Req
+	(*Query_Res)(nil),                     // 2: grakn.protocol.Query.Res
+	(*Query_Match)(nil),                   // 3: grakn.protocol.Query.Match
+	(*Query_MatchAggregate)(nil),          // 4: grakn.protocol.Query.MatchAggregate
+	(*Query_MatchGroup)(nil),              // 5: grakn.protocol.Query.MatchGroup
+	(*Query_MatchGroupAggregate)(nil),     // 6: grakn.protocol.Query.MatchGroupAggregate
+	(*Query_Insert)(nil),                  // 7: grakn.protocol.Query.Insert
+	(*Query_Delete)(nil),                  // 8: grakn.protocol.Query.Delete
+	(*Query_Define)(nil),                  // 9: grakn.protocol.Query.Define
+	(*Query_Undefine)(nil),                // 10: grakn.protocol.Query.Undefine
+	(*Query_Match_Req)(nil),               // 11: grakn.protocol.Query.Match.Req
+	(*Query_Match_Res)(nil),               // 12: grakn.protocol.Query.Match.Res
+	(*Query_MatchAggregate_Req)(nil),      // 13: grakn.protocol.Query.MatchAggregate.Req
+	(*Query_MatchAggregate_Res)(nil),      // 14: grakn.protocol.Query.MatchAggregate.Res
+	(*Query_MatchGroup_Req)(nil),          // 15: grakn.protocol.Query.MatchGroup.Req
+	(*Query_MatchGroup_Res)(nil),          // 16: grakn.protocol.Query.MatchGroup.Res
+	(*Query_MatchGroupAggregate_Req)(nil), // 17: grakn.protocol.Query.MatchGroupAggregate.Req
+	(*Query_MatchGroupAggregate_Res)(nil), // 18: grakn.protocol.Query.MatchGroupAggregate.Res
+	(*Query_Insert_Req)(nil),              // 19: grakn.protocol.Query.Insert.Req
+	(*Query_Insert_Res)(nil),              // 20: grakn.protocol.Query.Insert.Res
+	(*Query_Delete_Req)(nil),              // 21: grakn.protocol.Query.Delete.Req
+	(*Query_Delete_Res)(nil),              // 22: grakn.protocol.Query.Delete.Res
+	(*Query_Define_Req)(nil),              // 23: grakn.protocol.Query.Define.Req
+	(*Query_Define_Res)(nil),              // 24: grakn.protocol.Query.Define.Res
+	(*Query_Undefine_Req)(nil),            // 25: grakn.protocol.Query.Undefine.Req
+	(*Query_Undefine_Res)(nil),            // 26: grakn.protocol.Query.Undefine.Res
+	(*Options)(nil),                       // 27: grakn.protocol.Options
+	(*ConceptMap)(nil),                    // 28: grakn.protocol.ConceptMap
+	(*Numeric)(nil),                       // 29: grakn.protocol.Numeric
+	(*ConceptMapGroup)(nil),               // 30: grakn.protocol.ConceptMapGroup
+	(*NumericGroup)(nil),                  // 31: grakn.protocol.NumericGroup
 }
-var file_protobuf_v2_query_proto_depIdxs = []int32{
-	19, // 0: grakn.protocol.Query.Req.options:type_name -> grakn.protocol.Options
-	13, // 1: grakn.protocol.Query.Req.delete_req:type_name -> grakn.protocol.Graql.Delete.Req
-	15, // 2: grakn.protocol.Query.Req.define_req:type_name -> grakn.protocol.Graql.Define.Req
-	17, // 3: grakn.protocol.Query.Req.undefine_req:type_name -> grakn.protocol.Graql.Undefine.Req
-	9,  // 4: grakn.protocol.Query.Req.match_req:type_name -> grakn.protocol.Graql.Match.Req
-	11, // 5: grakn.protocol.Query.Req.insert_req:type_name -> grakn.protocol.Graql.Insert.Req
-	14, // 6: grakn.protocol.Query.Res.delete_res:type_name -> grakn.protocol.Graql.Delete.Res
-	16, // 7: grakn.protocol.Query.Res.define_res:type_name -> grakn.protocol.Graql.Define.Res
-	18, // 8: grakn.protocol.Query.Res.undefine_res:type_name -> grakn.protocol.Graql.Undefine.Res
-	10, // 9: grakn.protocol.Query.Res.match_res:type_name -> grakn.protocol.Graql.Match.Res
-	12, // 10: grakn.protocol.Query.Res.insert_res:type_name -> grakn.protocol.Graql.Insert.Res
-	20, // 11: grakn.protocol.Graql.Match.Res.answer:type_name -> grakn.protocol.ConceptMap
-	20, // 12: grakn.protocol.Graql.Insert.Res.answer:type_name -> grakn.protocol.ConceptMap
-	13, // [13:13] is the sub-list for method output_type
-	13, // [13:13] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+var file_v2_protobuf_query_proto_depIdxs = []int32{
+	27, // 0: grakn.protocol.Query.Req.options:type_name -> grakn.protocol.Options
+	21, // 1: grakn.protocol.Query.Req.delete_req:type_name -> grakn.protocol.Query.Delete.Req
+	23, // 2: grakn.protocol.Query.Req.define_req:type_name -> grakn.protocol.Query.Define.Req
+	25, // 3: grakn.protocol.Query.Req.undefine_req:type_name -> grakn.protocol.Query.Undefine.Req
+	11, // 4: grakn.protocol.Query.Req.match_req:type_name -> grakn.protocol.Query.Match.Req
+	13, // 5: grakn.protocol.Query.Req.match_aggregate_req:type_name -> grakn.protocol.Query.MatchAggregate.Req
+	15, // 6: grakn.protocol.Query.Req.match_group_req:type_name -> grakn.protocol.Query.MatchGroup.Req
+	17, // 7: grakn.protocol.Query.Req.match_group_aggregate_req:type_name -> grakn.protocol.Query.MatchGroupAggregate.Req
+	19, // 8: grakn.protocol.Query.Req.insert_req:type_name -> grakn.protocol.Query.Insert.Req
+	22, // 9: grakn.protocol.Query.Res.delete_res:type_name -> grakn.protocol.Query.Delete.Res
+	24, // 10: grakn.protocol.Query.Res.define_res:type_name -> grakn.protocol.Query.Define.Res
+	26, // 11: grakn.protocol.Query.Res.undefine_res:type_name -> grakn.protocol.Query.Undefine.Res
+	12, // 12: grakn.protocol.Query.Res.match_res:type_name -> grakn.protocol.Query.Match.Res
+	14, // 13: grakn.protocol.Query.Res.match_aggregate_res:type_name -> grakn.protocol.Query.MatchAggregate.Res
+	16, // 14: grakn.protocol.Query.Res.match_group_res:type_name -> grakn.protocol.Query.MatchGroup.Res
+	18, // 15: grakn.protocol.Query.Res.match_group_aggregate_res:type_name -> grakn.protocol.Query.MatchGroupAggregate.Res
+	20, // 16: grakn.protocol.Query.Res.insert_res:type_name -> grakn.protocol.Query.Insert.Res
+	28, // 17: grakn.protocol.Query.Match.Res.answers:type_name -> grakn.protocol.ConceptMap
+	29, // 18: grakn.protocol.Query.MatchAggregate.Res.answer:type_name -> grakn.protocol.Numeric
+	30, // 19: grakn.protocol.Query.MatchGroup.Res.answers:type_name -> grakn.protocol.ConceptMapGroup
+	31, // 20: grakn.protocol.Query.MatchGroupAggregate.Res.answers:type_name -> grakn.protocol.NumericGroup
+	28, // 21: grakn.protocol.Query.Insert.Res.answers:type_name -> grakn.protocol.ConceptMap
+	22, // [22:22] is the sub-list for method output_type
+	22, // [22:22] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
-func init() { file_protobuf_v2_query_proto_init() }
-func file_protobuf_v2_query_proto_init() {
-	if File_protobuf_v2_query_proto != nil {
+func init() { file_v2_protobuf_query_proto_init() }
+func file_v2_protobuf_query_proto_init() {
+	if File_v2_protobuf_query_proto != nil {
 		return
 	}
-	file_protobuf_v2_answer_proto_init()
-	file_protobuf_v2_options_proto_init()
+	file_v2_protobuf_answer_proto_init()
+	file_v2_protobuf_options_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_protobuf_v2_query_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_query_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Query); i {
 			case 0:
 				return &v.state
@@ -1168,19 +1683,7 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_protobuf_v2_query_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_query_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Query_Req); i {
 			case 0:
 				return &v.state
@@ -1192,7 +1695,7 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_query_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Query_Res); i {
 			case 0:
 				return &v.state
@@ -1204,8 +1707,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Match); i {
+		file_v2_protobuf_query_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Match); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1216,8 +1719,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Insert); i {
+		file_v2_protobuf_query_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_MatchAggregate); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1228,8 +1731,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Delete); i {
+		file_v2_protobuf_query_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_MatchGroup); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1240,8 +1743,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Define); i {
+		file_v2_protobuf_query_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_MatchGroupAggregate); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1252,8 +1755,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Undefine); i {
+		file_v2_protobuf_query_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Insert); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1264,8 +1767,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Match_Req); i {
+		file_v2_protobuf_query_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Delete); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1276,8 +1779,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Match_Res); i {
+		file_v2_protobuf_query_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Define); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1288,8 +1791,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Insert_Req); i {
+		file_v2_protobuf_query_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Undefine); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1300,8 +1803,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Insert_Res); i {
+		file_v2_protobuf_query_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Match_Req); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1312,8 +1815,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Delete_Req); i {
+		file_v2_protobuf_query_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Match_Res); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1324,8 +1827,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Delete_Res); i {
+		file_v2_protobuf_query_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_MatchAggregate_Req); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1336,8 +1839,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Define_Req); i {
+		file_v2_protobuf_query_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_MatchAggregate_Res); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1348,8 +1851,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Define_Res); i {
+		file_v2_protobuf_query_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_MatchGroup_Req); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1360,8 +1863,8 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Undefine_Req); i {
+		file_v2_protobuf_query_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_MatchGroup_Res); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1372,8 +1875,116 @@ func file_protobuf_v2_query_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v2_query_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Graql_Undefine_Res); i {
+		file_v2_protobuf_query_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_MatchGroupAggregate_Req); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_query_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_MatchGroupAggregate_Res); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_query_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Insert_Req); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_query_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Insert_Res); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_query_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Delete_Req); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_query_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Delete_Res); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_query_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Define_Req); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_query_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Define_Res); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_query_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Undefine_Req); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_query_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Query_Undefine_Res); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1385,36 +1996,42 @@ func file_protobuf_v2_query_proto_init() {
 			}
 		}
 	}
-	file_protobuf_v2_query_proto_msgTypes[2].OneofWrappers = []interface{}{
+	file_v2_protobuf_query_proto_msgTypes[1].OneofWrappers = []interface{}{
 		(*Query_Req_DeleteReq)(nil),
 		(*Query_Req_DefineReq)(nil),
 		(*Query_Req_UndefineReq)(nil),
 		(*Query_Req_MatchReq)(nil),
+		(*Query_Req_MatchAggregateReq)(nil),
+		(*Query_Req_MatchGroupReq)(nil),
+		(*Query_Req_MatchGroupAggregateReq)(nil),
 		(*Query_Req_InsertReq)(nil),
 	}
-	file_protobuf_v2_query_proto_msgTypes[3].OneofWrappers = []interface{}{
+	file_v2_protobuf_query_proto_msgTypes[2].OneofWrappers = []interface{}{
 		(*Query_Res_DeleteRes)(nil),
 		(*Query_Res_DefineRes)(nil),
 		(*Query_Res_UndefineRes)(nil),
 		(*Query_Res_MatchRes)(nil),
+		(*Query_Res_MatchAggregateRes)(nil),
+		(*Query_Res_MatchGroupRes)(nil),
+		(*Query_Res_MatchGroupAggregateRes)(nil),
 		(*Query_Res_InsertRes)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_protobuf_v2_query_proto_rawDesc,
+			RawDescriptor: file_v2_protobuf_query_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_protobuf_v2_query_proto_goTypes,
-		DependencyIndexes: file_protobuf_v2_query_proto_depIdxs,
-		MessageInfos:      file_protobuf_v2_query_proto_msgTypes,
+		GoTypes:           file_v2_protobuf_query_proto_goTypes,
+		DependencyIndexes: file_v2_protobuf_query_proto_depIdxs,
+		MessageInfos:      file_v2_protobuf_query_proto_msgTypes,
 	}.Build()
-	File_protobuf_v2_query_proto = out.File
-	file_protobuf_v2_query_proto_rawDesc = nil
-	file_protobuf_v2_query_proto_goTypes = nil
-	file_protobuf_v2_query_proto_depIdxs = nil
+	File_v2_protobuf_query_proto = out.File
+	file_v2_protobuf_query_proto_rawDesc = nil
+	file_v2_protobuf_query_proto_goTypes = nil
+	file_v2_protobuf_query_proto_depIdxs = nil
 }

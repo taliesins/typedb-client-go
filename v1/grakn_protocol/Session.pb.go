@@ -19,7 +19,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0
 // 	protoc        v3.14.0
-// source: protobuf/Session.proto
+// source: v1/protobuf/Session.proto
 
 package grakn_protocol
 
@@ -75,11 +75,11 @@ func (x Transaction_Type) String() string {
 }
 
 func (Transaction_Type) Descriptor() protoreflect.EnumDescriptor {
-	return file_protobuf_v1_Session_proto_enumTypes[0].Descriptor()
+	return file_v1_protobuf_Session_proto_enumTypes[0].Descriptor()
 }
 
 func (Transaction_Type) Type() protoreflect.EnumType {
-	return &file_protobuf_v1_Session_proto_enumTypes[0]
+	return &file_v1_protobuf_Session_proto_enumTypes[0]
 }
 
 func (x Transaction_Type) Number() protoreflect.EnumNumber {
@@ -88,7 +88,7 @@ func (x Transaction_Type) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Transaction_Type.Descriptor instead.
 func (Transaction_Type) EnumDescriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 0}
 }
 
 type Session struct {
@@ -100,7 +100,7 @@ type Session struct {
 func (x *Session) Reset() {
 	*x = Session{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[0]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -113,7 +113,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[0]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -126,7 +126,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{0}
 }
 
 type Transaction struct {
@@ -138,7 +138,7 @@ type Transaction struct {
 func (x *Transaction) Reset() {
 	*x = Transaction{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[1]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -151,7 +151,7 @@ func (x *Transaction) String() string {
 func (*Transaction) ProtoMessage() {}
 
 func (x *Transaction) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[1]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -164,7 +164,7 @@ func (x *Transaction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction.ProtoReflect.Descriptor instead.
 func (*Transaction) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1}
 }
 
 type Session_Open struct {
@@ -176,7 +176,7 @@ type Session_Open struct {
 func (x *Session_Open) Reset() {
 	*x = Session_Open{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[2]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -189,7 +189,7 @@ func (x *Session_Open) String() string {
 func (*Session_Open) ProtoMessage() {}
 
 func (x *Session_Open) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[2]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -202,7 +202,7 @@ func (x *Session_Open) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Open.ProtoReflect.Descriptor instead.
 func (*Session_Open) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{0, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{0, 0}
 }
 
 type Session_Close struct {
@@ -214,7 +214,7 @@ type Session_Close struct {
 func (x *Session_Close) Reset() {
 	*x = Session_Close{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[3]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -227,7 +227,7 @@ func (x *Session_Close) String() string {
 func (*Session_Close) ProtoMessage() {}
 
 func (x *Session_Close) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[3]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -240,7 +240,7 @@ func (x *Session_Close) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Close.ProtoReflect.Descriptor instead.
 func (*Session_Close) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{0, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{0, 1}
 }
 
 type Session_Open_Req struct {
@@ -258,7 +258,7 @@ type Session_Open_Req struct {
 func (x *Session_Open_Req) Reset() {
 	*x = Session_Open_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[4]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -271,7 +271,7 @@ func (x *Session_Open_Req) String() string {
 func (*Session_Open_Req) ProtoMessage() {}
 
 func (x *Session_Open_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[4]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -284,7 +284,7 @@ func (x *Session_Open_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Open_Req.ProtoReflect.Descriptor instead.
 func (*Session_Open_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{0, 0, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{0, 0, 0}
 }
 
 func (x *Session_Open_Req) GetMetadata() map[string]string {
@@ -326,7 +326,7 @@ type Session_Open_Res struct {
 func (x *Session_Open_Res) Reset() {
 	*x = Session_Open_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[5]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -339,7 +339,7 @@ func (x *Session_Open_Res) String() string {
 func (*Session_Open_Res) ProtoMessage() {}
 
 func (x *Session_Open_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[5]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -352,7 +352,7 @@ func (x *Session_Open_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Open_Res.ProtoReflect.Descriptor instead.
 func (*Session_Open_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{0, 0, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{0, 0, 1}
 }
 
 func (x *Session_Open_Res) GetSessionId() string {
@@ -374,7 +374,7 @@ type Session_Close_Req struct {
 func (x *Session_Close_Req) Reset() {
 	*x = Session_Close_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[7]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -387,7 +387,7 @@ func (x *Session_Close_Req) String() string {
 func (*Session_Close_Req) ProtoMessage() {}
 
 func (x *Session_Close_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[7]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -400,7 +400,7 @@ func (x *Session_Close_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Close_Req.ProtoReflect.Descriptor instead.
 func (*Session_Close_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{0, 1, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{0, 1, 0}
 }
 
 func (x *Session_Close_Req) GetMetadata() map[string]string {
@@ -426,7 +426,7 @@ type Session_Close_Res struct {
 func (x *Session_Close_Res) Reset() {
 	*x = Session_Close_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[8]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -439,7 +439,7 @@ func (x *Session_Close_Res) String() string {
 func (*Session_Close_Res) ProtoMessage() {}
 
 func (x *Session_Close_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[8]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -452,7 +452,7 @@ func (x *Session_Close_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Close_Res.ProtoReflect.Descriptor instead.
 func (*Session_Close_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{0, 1, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{0, 1, 1}
 }
 
 type Transaction_Req struct {
@@ -480,7 +480,7 @@ type Transaction_Req struct {
 func (x *Transaction_Req) Reset() {
 	*x = Transaction_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[10]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -493,7 +493,7 @@ func (x *Transaction_Req) String() string {
 func (*Transaction_Req) ProtoMessage() {}
 
 func (x *Transaction_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[10]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -506,7 +506,7 @@ func (x *Transaction_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 0}
 }
 
 func (x *Transaction_Req) GetMetadata() map[string]string {
@@ -707,7 +707,7 @@ type Transaction_Res struct {
 func (x *Transaction_Res) Reset() {
 	*x = Transaction_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[11]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -720,7 +720,7 @@ func (x *Transaction_Res) String() string {
 func (*Transaction_Res) ProtoMessage() {}
 
 func (x *Transaction_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[11]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -733,7 +733,7 @@ func (x *Transaction_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 1}
 }
 
 func (m *Transaction_Res) GetRes() isTransaction_Res_Res {
@@ -912,7 +912,7 @@ type Transaction_Iter struct {
 func (x *Transaction_Iter) Reset() {
 	*x = Transaction_Iter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[12]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -925,7 +925,7 @@ func (x *Transaction_Iter) String() string {
 func (*Transaction_Iter) ProtoMessage() {}
 
 func (x *Transaction_Iter) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[12]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -938,7 +938,7 @@ func (x *Transaction_Iter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Iter.ProtoReflect.Descriptor instead.
 func (*Transaction_Iter) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 2}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 2}
 }
 
 type Transaction_Open struct {
@@ -950,7 +950,7 @@ type Transaction_Open struct {
 func (x *Transaction_Open) Reset() {
 	*x = Transaction_Open{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[13]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -963,7 +963,7 @@ func (x *Transaction_Open) String() string {
 func (*Transaction_Open) ProtoMessage() {}
 
 func (x *Transaction_Open) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[13]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -976,7 +976,7 @@ func (x *Transaction_Open) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Open.ProtoReflect.Descriptor instead.
 func (*Transaction_Open) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 3}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 3}
 }
 
 type Transaction_Commit struct {
@@ -988,7 +988,7 @@ type Transaction_Commit struct {
 func (x *Transaction_Commit) Reset() {
 	*x = Transaction_Commit{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[14]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1001,7 +1001,7 @@ func (x *Transaction_Commit) String() string {
 func (*Transaction_Commit) ProtoMessage() {}
 
 func (x *Transaction_Commit) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[14]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1014,7 +1014,7 @@ func (x *Transaction_Commit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Commit.ProtoReflect.Descriptor instead.
 func (*Transaction_Commit) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 4}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 4}
 }
 
 type Transaction_Query struct {
@@ -1026,7 +1026,7 @@ type Transaction_Query struct {
 func (x *Transaction_Query) Reset() {
 	*x = Transaction_Query{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[15]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1039,7 +1039,7 @@ func (x *Transaction_Query) String() string {
 func (*Transaction_Query) ProtoMessage() {}
 
 func (x *Transaction_Query) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[15]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1052,7 +1052,7 @@ func (x *Transaction_Query) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Query.ProtoReflect.Descriptor instead.
 func (*Transaction_Query) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 5}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 5}
 }
 
 type Transaction_GetSchemaConcept struct {
@@ -1064,7 +1064,7 @@ type Transaction_GetSchemaConcept struct {
 func (x *Transaction_GetSchemaConcept) Reset() {
 	*x = Transaction_GetSchemaConcept{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[16]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1077,7 +1077,7 @@ func (x *Transaction_GetSchemaConcept) String() string {
 func (*Transaction_GetSchemaConcept) ProtoMessage() {}
 
 func (x *Transaction_GetSchemaConcept) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[16]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1090,7 +1090,7 @@ func (x *Transaction_GetSchemaConcept) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_GetSchemaConcept.ProtoReflect.Descriptor instead.
 func (*Transaction_GetSchemaConcept) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 6}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 6}
 }
 
 type Transaction_GetConcept struct {
@@ -1102,7 +1102,7 @@ type Transaction_GetConcept struct {
 func (x *Transaction_GetConcept) Reset() {
 	*x = Transaction_GetConcept{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[17]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1115,7 +1115,7 @@ func (x *Transaction_GetConcept) String() string {
 func (*Transaction_GetConcept) ProtoMessage() {}
 
 func (x *Transaction_GetConcept) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[17]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1128,7 +1128,7 @@ func (x *Transaction_GetConcept) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_GetConcept.ProtoReflect.Descriptor instead.
 func (*Transaction_GetConcept) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 7}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 7}
 }
 
 type Transaction_GetAttributes struct {
@@ -1140,7 +1140,7 @@ type Transaction_GetAttributes struct {
 func (x *Transaction_GetAttributes) Reset() {
 	*x = Transaction_GetAttributes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[18]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1153,7 +1153,7 @@ func (x *Transaction_GetAttributes) String() string {
 func (*Transaction_GetAttributes) ProtoMessage() {}
 
 func (x *Transaction_GetAttributes) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[18]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1166,7 +1166,7 @@ func (x *Transaction_GetAttributes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_GetAttributes.ProtoReflect.Descriptor instead.
 func (*Transaction_GetAttributes) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 8}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 8}
 }
 
 type Transaction_PutEntityType struct {
@@ -1178,7 +1178,7 @@ type Transaction_PutEntityType struct {
 func (x *Transaction_PutEntityType) Reset() {
 	*x = Transaction_PutEntityType{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[19]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1191,7 +1191,7 @@ func (x *Transaction_PutEntityType) String() string {
 func (*Transaction_PutEntityType) ProtoMessage() {}
 
 func (x *Transaction_PutEntityType) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[19]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1204,7 +1204,7 @@ func (x *Transaction_PutEntityType) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutEntityType.ProtoReflect.Descriptor instead.
 func (*Transaction_PutEntityType) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 9}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 9}
 }
 
 type Transaction_PutAttributeType struct {
@@ -1216,7 +1216,7 @@ type Transaction_PutAttributeType struct {
 func (x *Transaction_PutAttributeType) Reset() {
 	*x = Transaction_PutAttributeType{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[20]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1229,7 +1229,7 @@ func (x *Transaction_PutAttributeType) String() string {
 func (*Transaction_PutAttributeType) ProtoMessage() {}
 
 func (x *Transaction_PutAttributeType) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[20]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1242,7 +1242,7 @@ func (x *Transaction_PutAttributeType) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutAttributeType.ProtoReflect.Descriptor instead.
 func (*Transaction_PutAttributeType) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 10}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 10}
 }
 
 type Transaction_PutRelationType struct {
@@ -1254,7 +1254,7 @@ type Transaction_PutRelationType struct {
 func (x *Transaction_PutRelationType) Reset() {
 	*x = Transaction_PutRelationType{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[21]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1267,7 +1267,7 @@ func (x *Transaction_PutRelationType) String() string {
 func (*Transaction_PutRelationType) ProtoMessage() {}
 
 func (x *Transaction_PutRelationType) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[21]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1280,7 +1280,7 @@ func (x *Transaction_PutRelationType) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutRelationType.ProtoReflect.Descriptor instead.
 func (*Transaction_PutRelationType) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 11}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 11}
 }
 
 type Transaction_PutRole struct {
@@ -1292,7 +1292,7 @@ type Transaction_PutRole struct {
 func (x *Transaction_PutRole) Reset() {
 	*x = Transaction_PutRole{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[22]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1305,7 +1305,7 @@ func (x *Transaction_PutRole) String() string {
 func (*Transaction_PutRole) ProtoMessage() {}
 
 func (x *Transaction_PutRole) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[22]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1318,7 +1318,7 @@ func (x *Transaction_PutRole) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutRole.ProtoReflect.Descriptor instead.
 func (*Transaction_PutRole) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 12}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 12}
 }
 
 type Transaction_PutRule struct {
@@ -1330,7 +1330,7 @@ type Transaction_PutRule struct {
 func (x *Transaction_PutRule) Reset() {
 	*x = Transaction_PutRule{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[23]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1343,7 +1343,7 @@ func (x *Transaction_PutRule) String() string {
 func (*Transaction_PutRule) ProtoMessage() {}
 
 func (x *Transaction_PutRule) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[23]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1356,7 +1356,7 @@ func (x *Transaction_PutRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutRule.ProtoReflect.Descriptor instead.
 func (*Transaction_PutRule) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 13}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 13}
 }
 
 type Transaction_ConceptMethod struct {
@@ -1368,7 +1368,7 @@ type Transaction_ConceptMethod struct {
 func (x *Transaction_ConceptMethod) Reset() {
 	*x = Transaction_ConceptMethod{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[24]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1381,7 +1381,7 @@ func (x *Transaction_ConceptMethod) String() string {
 func (*Transaction_ConceptMethod) ProtoMessage() {}
 
 func (x *Transaction_ConceptMethod) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[24]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1394,7 +1394,7 @@ func (x *Transaction_ConceptMethod) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_ConceptMethod.ProtoReflect.Descriptor instead.
 func (*Transaction_ConceptMethod) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 14}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 14}
 }
 
 type Transaction_Iter_Req struct {
@@ -1414,7 +1414,7 @@ type Transaction_Iter_Req struct {
 func (x *Transaction_Iter_Req) Reset() {
 	*x = Transaction_Iter_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[26]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1427,7 +1427,7 @@ func (x *Transaction_Iter_Req) String() string {
 func (*Transaction_Iter_Req) ProtoMessage() {}
 
 func (x *Transaction_Iter_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[26]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1440,7 +1440,7 @@ func (x *Transaction_Iter_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Iter_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_Iter_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 2, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 2, 0}
 }
 
 func (x *Transaction_Iter_Req) GetOptions() *Transaction_Iter_Req_Options {
@@ -1530,7 +1530,7 @@ type Transaction_Iter_Res struct {
 func (x *Transaction_Iter_Res) Reset() {
 	*x = Transaction_Iter_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[27]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1543,7 +1543,7 @@ func (x *Transaction_Iter_Res) String() string {
 func (*Transaction_Iter_Res) ProtoMessage() {}
 
 func (x *Transaction_Iter_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[27]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1556,7 +1556,7 @@ func (x *Transaction_Iter_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Iter_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_Iter_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 2, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 2, 1}
 }
 
 func (m *Transaction_Iter_Res) GetRes() isTransaction_Iter_Res_Res {
@@ -1649,7 +1649,7 @@ type Transaction_Iter_Req_Options struct {
 func (x *Transaction_Iter_Req_Options) Reset() {
 	*x = Transaction_Iter_Req_Options{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[28]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1662,7 +1662,7 @@ func (x *Transaction_Iter_Req_Options) String() string {
 func (*Transaction_Iter_Req_Options) ProtoMessage() {}
 
 func (x *Transaction_Iter_Req_Options) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[28]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1675,7 +1675,7 @@ func (x *Transaction_Iter_Req_Options) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Iter_Req_Options.ProtoReflect.Descriptor instead.
 func (*Transaction_Iter_Req_Options) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 2, 0, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 2, 0, 0}
 }
 
 func (m *Transaction_Iter_Req_Options) GetBatchSize() isTransaction_Iter_Req_Options_BatchSize {
@@ -1727,7 +1727,7 @@ type Transaction_Open_Req struct {
 func (x *Transaction_Open_Req) Reset() {
 	*x = Transaction_Open_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[29]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1740,7 +1740,7 @@ func (x *Transaction_Open_Req) String() string {
 func (*Transaction_Open_Req) ProtoMessage() {}
 
 func (x *Transaction_Open_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[29]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1753,7 +1753,7 @@ func (x *Transaction_Open_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Open_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_Open_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 3, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 3, 0}
 }
 
 func (x *Transaction_Open_Req) GetSessionId() string {
@@ -1779,7 +1779,7 @@ type Transaction_Open_Res struct {
 func (x *Transaction_Open_Res) Reset() {
 	*x = Transaction_Open_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[30]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1792,7 +1792,7 @@ func (x *Transaction_Open_Res) String() string {
 func (*Transaction_Open_Res) ProtoMessage() {}
 
 func (x *Transaction_Open_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[30]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1805,7 +1805,7 @@ func (x *Transaction_Open_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Open_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_Open_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 3, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 3, 1}
 }
 
 type Transaction_Commit_Req struct {
@@ -1817,7 +1817,7 @@ type Transaction_Commit_Req struct {
 func (x *Transaction_Commit_Req) Reset() {
 	*x = Transaction_Commit_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[31]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1830,7 +1830,7 @@ func (x *Transaction_Commit_Req) String() string {
 func (*Transaction_Commit_Req) ProtoMessage() {}
 
 func (x *Transaction_Commit_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[31]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1843,7 +1843,7 @@ func (x *Transaction_Commit_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Commit_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_Commit_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 4, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 4, 0}
 }
 
 type Transaction_Commit_Res struct {
@@ -1855,7 +1855,7 @@ type Transaction_Commit_Res struct {
 func (x *Transaction_Commit_Res) Reset() {
 	*x = Transaction_Commit_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[32]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1868,7 +1868,7 @@ func (x *Transaction_Commit_Res) String() string {
 func (*Transaction_Commit_Res) ProtoMessage() {}
 
 func (x *Transaction_Commit_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[32]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1881,7 +1881,7 @@ func (x *Transaction_Commit_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Commit_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_Commit_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 4, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 4, 1}
 }
 
 type Transaction_Query_Iter struct {
@@ -1893,7 +1893,7 @@ type Transaction_Query_Iter struct {
 func (x *Transaction_Query_Iter) Reset() {
 	*x = Transaction_Query_Iter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[33]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1906,7 +1906,7 @@ func (x *Transaction_Query_Iter) String() string {
 func (*Transaction_Query_Iter) ProtoMessage() {}
 
 func (x *Transaction_Query_Iter) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[33]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1919,7 +1919,7 @@ func (x *Transaction_Query_Iter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Query_Iter.ProtoReflect.Descriptor instead.
 func (*Transaction_Query_Iter) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 5, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 5, 0}
 }
 
 type Transaction_Query_Options struct {
@@ -1942,7 +1942,7 @@ type Transaction_Query_Options struct {
 func (x *Transaction_Query_Options) Reset() {
 	*x = Transaction_Query_Options{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[34]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1955,7 +1955,7 @@ func (x *Transaction_Query_Options) String() string {
 func (*Transaction_Query_Options) ProtoMessage() {}
 
 func (x *Transaction_Query_Options) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[34]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1968,7 +1968,7 @@ func (x *Transaction_Query_Options) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Query_Options.ProtoReflect.Descriptor instead.
 func (*Transaction_Query_Options) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 5, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 5, 1}
 }
 
 func (m *Transaction_Query_Options) GetInfer() isTransaction_Query_Options_Infer {
@@ -2031,7 +2031,7 @@ type Transaction_Query_Iter_Req struct {
 func (x *Transaction_Query_Iter_Req) Reset() {
 	*x = Transaction_Query_Iter_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[35]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2044,7 +2044,7 @@ func (x *Transaction_Query_Iter_Req) String() string {
 func (*Transaction_Query_Iter_Req) ProtoMessage() {}
 
 func (x *Transaction_Query_Iter_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[35]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2057,7 +2057,7 @@ func (x *Transaction_Query_Iter_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Query_Iter_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_Query_Iter_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 5, 0, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 5, 0, 0}
 }
 
 func (x *Transaction_Query_Iter_Req) GetQuery() string {
@@ -2085,7 +2085,7 @@ type Transaction_Query_Iter_Res struct {
 func (x *Transaction_Query_Iter_Res) Reset() {
 	*x = Transaction_Query_Iter_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[36]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2098,7 +2098,7 @@ func (x *Transaction_Query_Iter_Res) String() string {
 func (*Transaction_Query_Iter_Res) ProtoMessage() {}
 
 func (x *Transaction_Query_Iter_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[36]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2111,7 +2111,7 @@ func (x *Transaction_Query_Iter_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_Query_Iter_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_Query_Iter_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 5, 0, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 5, 0, 1}
 }
 
 func (x *Transaction_Query_Iter_Res) GetAnswer() *Answer {
@@ -2132,7 +2132,7 @@ type Transaction_GetSchemaConcept_Req struct {
 func (x *Transaction_GetSchemaConcept_Req) Reset() {
 	*x = Transaction_GetSchemaConcept_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[37]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2145,7 +2145,7 @@ func (x *Transaction_GetSchemaConcept_Req) String() string {
 func (*Transaction_GetSchemaConcept_Req) ProtoMessage() {}
 
 func (x *Transaction_GetSchemaConcept_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[37]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2158,7 +2158,7 @@ func (x *Transaction_GetSchemaConcept_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_GetSchemaConcept_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_GetSchemaConcept_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 6, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 6, 0}
 }
 
 func (x *Transaction_GetSchemaConcept_Req) GetLabel() string {
@@ -2182,7 +2182,7 @@ type Transaction_GetSchemaConcept_Res struct {
 func (x *Transaction_GetSchemaConcept_Res) Reset() {
 	*x = Transaction_GetSchemaConcept_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[38]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2195,7 +2195,7 @@ func (x *Transaction_GetSchemaConcept_Res) String() string {
 func (*Transaction_GetSchemaConcept_Res) ProtoMessage() {}
 
 func (x *Transaction_GetSchemaConcept_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[38]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2208,7 +2208,7 @@ func (x *Transaction_GetSchemaConcept_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_GetSchemaConcept_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_GetSchemaConcept_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 6, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 6, 1}
 }
 
 func (m *Transaction_GetSchemaConcept_Res) GetRes() isTransaction_GetSchemaConcept_Res_Res {
@@ -2259,7 +2259,7 @@ type Transaction_GetConcept_Req struct {
 func (x *Transaction_GetConcept_Req) Reset() {
 	*x = Transaction_GetConcept_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[39]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2272,7 +2272,7 @@ func (x *Transaction_GetConcept_Req) String() string {
 func (*Transaction_GetConcept_Req) ProtoMessage() {}
 
 func (x *Transaction_GetConcept_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[39]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2285,7 +2285,7 @@ func (x *Transaction_GetConcept_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_GetConcept_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_GetConcept_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 7, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 7, 0}
 }
 
 func (x *Transaction_GetConcept_Req) GetId() string {
@@ -2309,7 +2309,7 @@ type Transaction_GetConcept_Res struct {
 func (x *Transaction_GetConcept_Res) Reset() {
 	*x = Transaction_GetConcept_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[40]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2322,7 +2322,7 @@ func (x *Transaction_GetConcept_Res) String() string {
 func (*Transaction_GetConcept_Res) ProtoMessage() {}
 
 func (x *Transaction_GetConcept_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[40]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2335,7 +2335,7 @@ func (x *Transaction_GetConcept_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_GetConcept_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_GetConcept_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 7, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 7, 1}
 }
 
 func (m *Transaction_GetConcept_Res) GetRes() isTransaction_GetConcept_Res_Res {
@@ -2384,7 +2384,7 @@ type Transaction_GetAttributes_Iter struct {
 func (x *Transaction_GetAttributes_Iter) Reset() {
 	*x = Transaction_GetAttributes_Iter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[41]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2397,7 +2397,7 @@ func (x *Transaction_GetAttributes_Iter) String() string {
 func (*Transaction_GetAttributes_Iter) ProtoMessage() {}
 
 func (x *Transaction_GetAttributes_Iter) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[41]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2410,7 +2410,7 @@ func (x *Transaction_GetAttributes_Iter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_GetAttributes_Iter.ProtoReflect.Descriptor instead.
 func (*Transaction_GetAttributes_Iter) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 8, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 8, 0}
 }
 
 type Transaction_GetAttributes_Iter_Req struct {
@@ -2424,7 +2424,7 @@ type Transaction_GetAttributes_Iter_Req struct {
 func (x *Transaction_GetAttributes_Iter_Req) Reset() {
 	*x = Transaction_GetAttributes_Iter_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[42]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2437,7 +2437,7 @@ func (x *Transaction_GetAttributes_Iter_Req) String() string {
 func (*Transaction_GetAttributes_Iter_Req) ProtoMessage() {}
 
 func (x *Transaction_GetAttributes_Iter_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[42]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2450,7 +2450,7 @@ func (x *Transaction_GetAttributes_Iter_Req) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use Transaction_GetAttributes_Iter_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_GetAttributes_Iter_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 8, 0, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 8, 0, 0}
 }
 
 func (x *Transaction_GetAttributes_Iter_Req) GetValue() *ValueObject {
@@ -2471,7 +2471,7 @@ type Transaction_GetAttributes_Iter_Res struct {
 func (x *Transaction_GetAttributes_Iter_Res) Reset() {
 	*x = Transaction_GetAttributes_Iter_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[43]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2484,7 +2484,7 @@ func (x *Transaction_GetAttributes_Iter_Res) String() string {
 func (*Transaction_GetAttributes_Iter_Res) ProtoMessage() {}
 
 func (x *Transaction_GetAttributes_Iter_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[43]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2497,7 +2497,7 @@ func (x *Transaction_GetAttributes_Iter_Res) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use Transaction_GetAttributes_Iter_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_GetAttributes_Iter_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 8, 0, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 8, 0, 1}
 }
 
 func (x *Transaction_GetAttributes_Iter_Res) GetAttribute() *Concept {
@@ -2518,7 +2518,7 @@ type Transaction_PutEntityType_Req struct {
 func (x *Transaction_PutEntityType_Req) Reset() {
 	*x = Transaction_PutEntityType_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[44]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[44]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2531,7 +2531,7 @@ func (x *Transaction_PutEntityType_Req) String() string {
 func (*Transaction_PutEntityType_Req) ProtoMessage() {}
 
 func (x *Transaction_PutEntityType_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[44]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2544,7 +2544,7 @@ func (x *Transaction_PutEntityType_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutEntityType_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_PutEntityType_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 9, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 9, 0}
 }
 
 func (x *Transaction_PutEntityType_Req) GetLabel() string {
@@ -2565,7 +2565,7 @@ type Transaction_PutEntityType_Res struct {
 func (x *Transaction_PutEntityType_Res) Reset() {
 	*x = Transaction_PutEntityType_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[45]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[45]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2578,7 +2578,7 @@ func (x *Transaction_PutEntityType_Res) String() string {
 func (*Transaction_PutEntityType_Res) ProtoMessage() {}
 
 func (x *Transaction_PutEntityType_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[45]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2591,7 +2591,7 @@ func (x *Transaction_PutEntityType_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutEntityType_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_PutEntityType_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 9, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 9, 1}
 }
 
 func (x *Transaction_PutEntityType_Res) GetEntityType() *Concept {
@@ -2613,7 +2613,7 @@ type Transaction_PutAttributeType_Req struct {
 func (x *Transaction_PutAttributeType_Req) Reset() {
 	*x = Transaction_PutAttributeType_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[46]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[46]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2626,7 +2626,7 @@ func (x *Transaction_PutAttributeType_Req) String() string {
 func (*Transaction_PutAttributeType_Req) ProtoMessage() {}
 
 func (x *Transaction_PutAttributeType_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[46]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2639,7 +2639,7 @@ func (x *Transaction_PutAttributeType_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutAttributeType_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_PutAttributeType_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 10, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 10, 0}
 }
 
 func (x *Transaction_PutAttributeType_Req) GetLabel() string {
@@ -2667,7 +2667,7 @@ type Transaction_PutAttributeType_Res struct {
 func (x *Transaction_PutAttributeType_Res) Reset() {
 	*x = Transaction_PutAttributeType_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[47]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[47]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2680,7 +2680,7 @@ func (x *Transaction_PutAttributeType_Res) String() string {
 func (*Transaction_PutAttributeType_Res) ProtoMessage() {}
 
 func (x *Transaction_PutAttributeType_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[47]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[47]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2693,7 +2693,7 @@ func (x *Transaction_PutAttributeType_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutAttributeType_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_PutAttributeType_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 10, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 10, 1}
 }
 
 func (x *Transaction_PutAttributeType_Res) GetAttributeType() *Concept {
@@ -2714,7 +2714,7 @@ type Transaction_PutRelationType_Req struct {
 func (x *Transaction_PutRelationType_Req) Reset() {
 	*x = Transaction_PutRelationType_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[48]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[48]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2727,7 +2727,7 @@ func (x *Transaction_PutRelationType_Req) String() string {
 func (*Transaction_PutRelationType_Req) ProtoMessage() {}
 
 func (x *Transaction_PutRelationType_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[48]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[48]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2740,7 +2740,7 @@ func (x *Transaction_PutRelationType_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutRelationType_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_PutRelationType_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 11, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 11, 0}
 }
 
 func (x *Transaction_PutRelationType_Req) GetLabel() string {
@@ -2761,7 +2761,7 @@ type Transaction_PutRelationType_Res struct {
 func (x *Transaction_PutRelationType_Res) Reset() {
 	*x = Transaction_PutRelationType_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[49]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[49]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2774,7 +2774,7 @@ func (x *Transaction_PutRelationType_Res) String() string {
 func (*Transaction_PutRelationType_Res) ProtoMessage() {}
 
 func (x *Transaction_PutRelationType_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[49]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[49]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2787,7 +2787,7 @@ func (x *Transaction_PutRelationType_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutRelationType_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_PutRelationType_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 11, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 11, 1}
 }
 
 func (x *Transaction_PutRelationType_Res) GetRelationType() *Concept {
@@ -2808,7 +2808,7 @@ type Transaction_PutRole_Req struct {
 func (x *Transaction_PutRole_Req) Reset() {
 	*x = Transaction_PutRole_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[50]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[50]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2821,7 +2821,7 @@ func (x *Transaction_PutRole_Req) String() string {
 func (*Transaction_PutRole_Req) ProtoMessage() {}
 
 func (x *Transaction_PutRole_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[50]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[50]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2834,7 +2834,7 @@ func (x *Transaction_PutRole_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutRole_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_PutRole_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 12, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 12, 0}
 }
 
 func (x *Transaction_PutRole_Req) GetLabel() string {
@@ -2855,7 +2855,7 @@ type Transaction_PutRole_Res struct {
 func (x *Transaction_PutRole_Res) Reset() {
 	*x = Transaction_PutRole_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[51]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[51]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2868,7 +2868,7 @@ func (x *Transaction_PutRole_Res) String() string {
 func (*Transaction_PutRole_Res) ProtoMessage() {}
 
 func (x *Transaction_PutRole_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[51]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2881,7 +2881,7 @@ func (x *Transaction_PutRole_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutRole_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_PutRole_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 12, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 12, 1}
 }
 
 func (x *Transaction_PutRole_Res) GetRole() *Concept {
@@ -2904,7 +2904,7 @@ type Transaction_PutRule_Req struct {
 func (x *Transaction_PutRule_Req) Reset() {
 	*x = Transaction_PutRule_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[52]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[52]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2917,7 +2917,7 @@ func (x *Transaction_PutRule_Req) String() string {
 func (*Transaction_PutRule_Req) ProtoMessage() {}
 
 func (x *Transaction_PutRule_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[52]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2930,7 +2930,7 @@ func (x *Transaction_PutRule_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutRule_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_PutRule_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 13, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 13, 0}
 }
 
 func (x *Transaction_PutRule_Req) GetLabel() string {
@@ -2965,7 +2965,7 @@ type Transaction_PutRule_Res struct {
 func (x *Transaction_PutRule_Res) Reset() {
 	*x = Transaction_PutRule_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[53]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[53]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2978,7 +2978,7 @@ func (x *Transaction_PutRule_Res) String() string {
 func (*Transaction_PutRule_Res) ProtoMessage() {}
 
 func (x *Transaction_PutRule_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[53]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[53]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2991,7 +2991,7 @@ func (x *Transaction_PutRule_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_PutRule_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_PutRule_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 13, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 13, 1}
 }
 
 func (x *Transaction_PutRule_Res) GetRule() *Concept {
@@ -3013,7 +3013,7 @@ type Transaction_ConceptMethod_Req struct {
 func (x *Transaction_ConceptMethod_Req) Reset() {
 	*x = Transaction_ConceptMethod_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[54]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[54]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3026,7 +3026,7 @@ func (x *Transaction_ConceptMethod_Req) String() string {
 func (*Transaction_ConceptMethod_Req) ProtoMessage() {}
 
 func (x *Transaction_ConceptMethod_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[54]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[54]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3039,7 +3039,7 @@ func (x *Transaction_ConceptMethod_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_ConceptMethod_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_ConceptMethod_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 14, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 14, 0}
 }
 
 func (x *Transaction_ConceptMethod_Req) GetId() string {
@@ -3067,7 +3067,7 @@ type Transaction_ConceptMethod_Res struct {
 func (x *Transaction_ConceptMethod_Res) Reset() {
 	*x = Transaction_ConceptMethod_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[55]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[55]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3080,7 +3080,7 @@ func (x *Transaction_ConceptMethod_Res) String() string {
 func (*Transaction_ConceptMethod_Res) ProtoMessage() {}
 
 func (x *Transaction_ConceptMethod_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[55]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[55]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3093,7 +3093,7 @@ func (x *Transaction_ConceptMethod_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_ConceptMethod_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_ConceptMethod_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 14, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 14, 1}
 }
 
 func (x *Transaction_ConceptMethod_Res) GetResponse() *Method_Res {
@@ -3112,7 +3112,7 @@ type Transaction_ConceptMethod_Iter struct {
 func (x *Transaction_ConceptMethod_Iter) Reset() {
 	*x = Transaction_ConceptMethod_Iter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[56]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[56]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3125,7 +3125,7 @@ func (x *Transaction_ConceptMethod_Iter) String() string {
 func (*Transaction_ConceptMethod_Iter) ProtoMessage() {}
 
 func (x *Transaction_ConceptMethod_Iter) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[56]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[56]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3138,7 +3138,7 @@ func (x *Transaction_ConceptMethod_Iter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction_ConceptMethod_Iter.ProtoReflect.Descriptor instead.
 func (*Transaction_ConceptMethod_Iter) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 14, 2}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 14, 2}
 }
 
 type Transaction_ConceptMethod_Iter_Req struct {
@@ -3153,7 +3153,7 @@ type Transaction_ConceptMethod_Iter_Req struct {
 func (x *Transaction_ConceptMethod_Iter_Req) Reset() {
 	*x = Transaction_ConceptMethod_Iter_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[57]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[57]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3166,7 +3166,7 @@ func (x *Transaction_ConceptMethod_Iter_Req) String() string {
 func (*Transaction_ConceptMethod_Iter_Req) ProtoMessage() {}
 
 func (x *Transaction_ConceptMethod_Iter_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[57]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[57]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3179,7 +3179,7 @@ func (x *Transaction_ConceptMethod_Iter_Req) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use Transaction_ConceptMethod_Iter_Req.ProtoReflect.Descriptor instead.
 func (*Transaction_ConceptMethod_Iter_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 14, 2, 0}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 14, 2, 0}
 }
 
 func (x *Transaction_ConceptMethod_Iter_Req) GetId() string {
@@ -3207,7 +3207,7 @@ type Transaction_ConceptMethod_Iter_Res struct {
 func (x *Transaction_ConceptMethod_Iter_Res) Reset() {
 	*x = Transaction_ConceptMethod_Iter_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Session_proto_msgTypes[58]
+		mi := &file_v1_protobuf_Session_proto_msgTypes[58]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3220,7 +3220,7 @@ func (x *Transaction_ConceptMethod_Iter_Res) String() string {
 func (*Transaction_ConceptMethod_Iter_Res) ProtoMessage() {}
 
 func (x *Transaction_ConceptMethod_Iter_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Session_proto_msgTypes[58]
+	mi := &file_v1_protobuf_Session_proto_msgTypes[58]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3233,7 +3233,7 @@ func (x *Transaction_ConceptMethod_Iter_Res) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use Transaction_ConceptMethod_Iter_Res.ProtoReflect.Descriptor instead.
 func (*Transaction_ConceptMethod_Iter_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Session_proto_rawDescGZIP(), []int{1, 14, 2, 1}
+	return file_v1_protobuf_Session_proto_rawDescGZIP(), []int{1, 14, 2, 1}
 }
 
 func (x *Transaction_ConceptMethod_Iter_Res) GetResponse() *Method_Iter_Res {
@@ -3243,14 +3243,14 @@ func (x *Transaction_ConceptMethod_Iter_Res) GetResponse() *Method_Iter_Res {
 	return nil
 }
 
-var File_protobuf_v1_Session_proto protoreflect.FileDescriptor
+var File_v1_protobuf_Session_proto protoreflect.FileDescriptor
 
-var file_protobuf_v1_Session_proto_rawDesc = []byte{
-	0x0a, 0x19, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x76, 0x31, 0x2f, 0x53, 0x65,
+var file_v1_protobuf_Session_proto_rawDesc = []byte{
+	0x0a, 0x19, 0x76, 0x31, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x53, 0x65,
 	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x07, 0x73, 0x65, 0x73,
-	0x73, 0x69, 0x6f, 0x6e, 0x1a, 0x19, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x76,
-	0x31, 0x2f, 0x43, 0x6f, 0x6e, 0x63, 0x65, 0x70, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
-	0x18, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x76, 0x31, 0x2f, 0x41, 0x6e, 0x73,
+	0x73, 0x69, 0x6f, 0x6e, 0x1a, 0x19, 0x76, 0x31, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2f, 0x43, 0x6f, 0x6e, 0x63, 0x65, 0x70, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
+	0x18, 0x76, 0x31, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x41, 0x6e, 0x73,
 	0x77, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xd1, 0x03, 0x0a, 0x07, 0x53, 0x65,
 	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x1a, 0x8a, 0x02, 0x0a, 0x04, 0x4f, 0x70, 0x65, 0x6e, 0x1a, 0xdc,
 	0x01, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x44, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61,
@@ -3581,29 +3581,29 @@ var file_protobuf_v1_Session_proto_rawDesc = []byte{
 	0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x2e, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69,
 	0x6f, 0x6e, 0x2e, 0x52, 0x65, 0x71, 0x1a, 0x18, 0x2e, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e,
 	0x2e, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x52, 0x65, 0x73,
-	0x28, 0x01, 0x30, 0x01, 0x42, 0x4d, 0x0a, 0x16, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72,
+	0x28, 0x01, 0x30, 0x01, 0x42, 0x4a, 0x0a, 0x16, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x42, 0x0c,
-	0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x25, 0x2e, 0x2f,
-	0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x5f, 0x76,
-	0x31, 0x3b, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c,
-	0x5f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x22, 0x2e, 0x2f,
+	0x76, 0x31, 0x2f, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f,
+	0x6c, 0x3b, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_protobuf_v1_Session_proto_rawDescOnce sync.Once
-	file_protobuf_v1_Session_proto_rawDescData = file_protobuf_v1_Session_proto_rawDesc
+	file_v1_protobuf_Session_proto_rawDescOnce sync.Once
+	file_v1_protobuf_Session_proto_rawDescData = file_v1_protobuf_Session_proto_rawDesc
 )
 
-func file_protobuf_v1_Session_proto_rawDescGZIP() []byte {
-	file_protobuf_v1_Session_proto_rawDescOnce.Do(func() {
-		file_protobuf_v1_Session_proto_rawDescData = protoimpl.X.CompressGZIP(file_protobuf_v1_Session_proto_rawDescData)
+func file_v1_protobuf_Session_proto_rawDescGZIP() []byte {
+	file_v1_protobuf_Session_proto_rawDescOnce.Do(func() {
+		file_v1_protobuf_Session_proto_rawDescData = protoimpl.X.CompressGZIP(file_v1_protobuf_Session_proto_rawDescData)
 	})
-	return file_protobuf_v1_Session_proto_rawDescData
+	return file_v1_protobuf_Session_proto_rawDescData
 }
 
-var file_protobuf_v1_Session_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_protobuf_v1_Session_proto_msgTypes = make([]protoimpl.MessageInfo, 59)
-var file_protobuf_v1_Session_proto_goTypes = []interface{}{
+var file_v1_protobuf_Session_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_v1_protobuf_Session_proto_msgTypes = make([]protoimpl.MessageInfo, 59)
+var file_v1_protobuf_Session_proto_goTypes = []interface{}{
 	(Transaction_Type)(0),                      // 0: session.Transaction.Type
 	(*Session)(nil),                            // 1: session.Session
 	(*Transaction)(nil),                        // 2: session.Transaction
@@ -3676,7 +3676,7 @@ var file_protobuf_v1_Session_proto_goTypes = []interface{}{
 	(*Method_Iter_Req)(nil),                    // 69: session.Method.Iter.Req
 	(*Method_Iter_Res)(nil),                    // 70: session.Method.Iter.Res
 }
-var file_protobuf_v1_Session_proto_depIdxs = []int32{
+var file_v1_protobuf_Session_proto_depIdxs = []int32{
 	7,  // 0: session.Session.Open.Req.metadata:type_name -> session.Session.Open.Req.MetadataEntry
 	10, // 1: session.Session.Close.Req.metadata:type_name -> session.Session.Close.Req.MetadataEntry
 	26, // 2: session.Transaction.Req.metadata:type_name -> session.Transaction.Req.MetadataEntry
@@ -3743,15 +3743,15 @@ var file_protobuf_v1_Session_proto_depIdxs = []int32{
 	0,  // [0:53] is the sub-list for field type_name
 }
 
-func init() { file_protobuf_v1_Session_proto_init() }
-func file_protobuf_v1_Session_proto_init() {
-	if File_protobuf_v1_Session_proto != nil {
+func init() { file_v1_protobuf_Session_proto_init() }
+func file_v1_protobuf_Session_proto_init() {
+	if File_v1_protobuf_Session_proto != nil {
 		return
 	}
-	file_protobuf_v1_Concept_proto_init()
-	file_protobuf_v1_Answer_proto_init()
+	file_v1_protobuf_Concept_proto_init()
+	file_v1_protobuf_Answer_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_protobuf_v1_Session_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session); i {
 			case 0:
 				return &v.state
@@ -3763,7 +3763,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction); i {
 			case 0:
 				return &v.state
@@ -3775,7 +3775,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Open); i {
 			case 0:
 				return &v.state
@@ -3787,7 +3787,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Close); i {
 			case 0:
 				return &v.state
@@ -3799,7 +3799,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Open_Req); i {
 			case 0:
 				return &v.state
@@ -3811,7 +3811,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Open_Res); i {
 			case 0:
 				return &v.state
@@ -3823,7 +3823,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Close_Req); i {
 			case 0:
 				return &v.state
@@ -3835,7 +3835,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Session_Close_Res); i {
 			case 0:
 				return &v.state
@@ -3847,7 +3847,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Req); i {
 			case 0:
 				return &v.state
@@ -3859,7 +3859,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Res); i {
 			case 0:
 				return &v.state
@@ -3871,7 +3871,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Iter); i {
 			case 0:
 				return &v.state
@@ -3883,7 +3883,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Open); i {
 			case 0:
 				return &v.state
@@ -3895,7 +3895,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Commit); i {
 			case 0:
 				return &v.state
@@ -3907,7 +3907,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Query); i {
 			case 0:
 				return &v.state
@@ -3919,7 +3919,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_GetSchemaConcept); i {
 			case 0:
 				return &v.state
@@ -3931,7 +3931,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_GetConcept); i {
 			case 0:
 				return &v.state
@@ -3943,7 +3943,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_GetAttributes); i {
 			case 0:
 				return &v.state
@@ -3955,7 +3955,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutEntityType); i {
 			case 0:
 				return &v.state
@@ -3967,7 +3967,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutAttributeType); i {
 			case 0:
 				return &v.state
@@ -3979,7 +3979,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutRelationType); i {
 			case 0:
 				return &v.state
@@ -3991,7 +3991,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutRole); i {
 			case 0:
 				return &v.state
@@ -4003,7 +4003,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutRule); i {
 			case 0:
 				return &v.state
@@ -4015,7 +4015,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_ConceptMethod); i {
 			case 0:
 				return &v.state
@@ -4027,7 +4027,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Iter_Req); i {
 			case 0:
 				return &v.state
@@ -4039,7 +4039,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Iter_Res); i {
 			case 0:
 				return &v.state
@@ -4051,7 +4051,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Iter_Req_Options); i {
 			case 0:
 				return &v.state
@@ -4063,7 +4063,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Open_Req); i {
 			case 0:
 				return &v.state
@@ -4075,7 +4075,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Open_Res); i {
 			case 0:
 				return &v.state
@@ -4087,7 +4087,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Commit_Req); i {
 			case 0:
 				return &v.state
@@ -4099,7 +4099,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Commit_Res); i {
 			case 0:
 				return &v.state
@@ -4111,7 +4111,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Query_Iter); i {
 			case 0:
 				return &v.state
@@ -4123,7 +4123,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Query_Options); i {
 			case 0:
 				return &v.state
@@ -4135,7 +4135,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Query_Iter_Req); i {
 			case 0:
 				return &v.state
@@ -4147,7 +4147,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_Query_Iter_Res); i {
 			case 0:
 				return &v.state
@@ -4159,7 +4159,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_GetSchemaConcept_Req); i {
 			case 0:
 				return &v.state
@@ -4171,7 +4171,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_GetSchemaConcept_Res); i {
 			case 0:
 				return &v.state
@@ -4183,7 +4183,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_GetConcept_Req); i {
 			case 0:
 				return &v.state
@@ -4195,7 +4195,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_GetConcept_Res); i {
 			case 0:
 				return &v.state
@@ -4207,7 +4207,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_GetAttributes_Iter); i {
 			case 0:
 				return &v.state
@@ -4219,7 +4219,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_GetAttributes_Iter_Req); i {
 			case 0:
 				return &v.state
@@ -4231,7 +4231,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_GetAttributes_Iter_Res); i {
 			case 0:
 				return &v.state
@@ -4243,7 +4243,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutEntityType_Req); i {
 			case 0:
 				return &v.state
@@ -4255,7 +4255,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutEntityType_Res); i {
 			case 0:
 				return &v.state
@@ -4267,7 +4267,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutAttributeType_Req); i {
 			case 0:
 				return &v.state
@@ -4279,7 +4279,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutAttributeType_Res); i {
 			case 0:
 				return &v.state
@@ -4291,7 +4291,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutRelationType_Req); i {
 			case 0:
 				return &v.state
@@ -4303,7 +4303,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutRelationType_Res); i {
 			case 0:
 				return &v.state
@@ -4315,7 +4315,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutRole_Req); i {
 			case 0:
 				return &v.state
@@ -4327,7 +4327,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutRole_Res); i {
 			case 0:
 				return &v.state
@@ -4339,7 +4339,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutRule_Req); i {
 			case 0:
 				return &v.state
@@ -4351,7 +4351,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_PutRule_Res); i {
 			case 0:
 				return &v.state
@@ -4363,7 +4363,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_ConceptMethod_Req); i {
 			case 0:
 				return &v.state
@@ -4375,7 +4375,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_ConceptMethod_Res); i {
 			case 0:
 				return &v.state
@@ -4387,7 +4387,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_ConceptMethod_Iter); i {
 			case 0:
 				return &v.state
@@ -4399,7 +4399,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_ConceptMethod_Iter_Req); i {
 			case 0:
 				return &v.state
@@ -4411,7 +4411,7 @@ func file_protobuf_v1_Session_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Session_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Session_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Transaction_ConceptMethod_Iter_Res); i {
 			case 0:
 				return &v.state
@@ -4424,7 +4424,7 @@ func file_protobuf_v1_Session_proto_init() {
 			}
 		}
 	}
-	file_protobuf_v1_Session_proto_msgTypes[10].OneofWrappers = []interface{}{
+	file_v1_protobuf_Session_proto_msgTypes[10].OneofWrappers = []interface{}{
 		(*Transaction_Req_OpenReq)(nil),
 		(*Transaction_Req_CommitReq)(nil),
 		(*Transaction_Req_IterReq)(nil),
@@ -4438,7 +4438,7 @@ func file_protobuf_v1_Session_proto_init() {
 		(*Transaction_Req_ConceptMethodReq)(nil),
 		(*Transaction_Req_ExplanationReq)(nil),
 	}
-	file_protobuf_v1_Session_proto_msgTypes[11].OneofWrappers = []interface{}{
+	file_v1_protobuf_Session_proto_msgTypes[11].OneofWrappers = []interface{}{
 		(*Transaction_Res_OpenRes)(nil),
 		(*Transaction_Res_CommitRes)(nil),
 		(*Transaction_Res_IterRes)(nil),
@@ -4452,32 +4452,32 @@ func file_protobuf_v1_Session_proto_init() {
 		(*Transaction_Res_ConceptMethodRes)(nil),
 		(*Transaction_Res_ExplanationRes)(nil),
 	}
-	file_protobuf_v1_Session_proto_msgTypes[26].OneofWrappers = []interface{}{
+	file_v1_protobuf_Session_proto_msgTypes[26].OneofWrappers = []interface{}{
 		(*Transaction_Iter_Req_IteratorId)(nil),
 		(*Transaction_Iter_Req_QueryIterReq)(nil),
 		(*Transaction_Iter_Req_GetAttributesIterReq)(nil),
 		(*Transaction_Iter_Req_ConceptMethodIterReq)(nil),
 	}
-	file_protobuf_v1_Session_proto_msgTypes[27].OneofWrappers = []interface{}{
+	file_v1_protobuf_Session_proto_msgTypes[27].OneofWrappers = []interface{}{
 		(*Transaction_Iter_Res_Done)(nil),
 		(*Transaction_Iter_Res_IteratorId)(nil),
 		(*Transaction_Iter_Res_QueryIterRes)(nil),
 		(*Transaction_Iter_Res_GetAttributesIterRes)(nil),
 		(*Transaction_Iter_Res_ConceptMethodIterRes)(nil),
 	}
-	file_protobuf_v1_Session_proto_msgTypes[28].OneofWrappers = []interface{}{
+	file_v1_protobuf_Session_proto_msgTypes[28].OneofWrappers = []interface{}{
 		(*Transaction_Iter_Req_Options_Number)(nil),
 		(*Transaction_Iter_Req_Options_All)(nil),
 	}
-	file_protobuf_v1_Session_proto_msgTypes[34].OneofWrappers = []interface{}{
+	file_v1_protobuf_Session_proto_msgTypes[34].OneofWrappers = []interface{}{
 		(*Transaction_Query_Options_InferFlag)(nil),
 		(*Transaction_Query_Options_ExplainFlag)(nil),
 	}
-	file_protobuf_v1_Session_proto_msgTypes[38].OneofWrappers = []interface{}{
+	file_v1_protobuf_Session_proto_msgTypes[38].OneofWrappers = []interface{}{
 		(*Transaction_GetSchemaConcept_Res_SchemaConcept)(nil),
 		(*Transaction_GetSchemaConcept_Res_Null)(nil),
 	}
-	file_protobuf_v1_Session_proto_msgTypes[40].OneofWrappers = []interface{}{
+	file_v1_protobuf_Session_proto_msgTypes[40].OneofWrappers = []interface{}{
 		(*Transaction_GetConcept_Res_Concept)(nil),
 		(*Transaction_GetConcept_Res_Null)(nil),
 	}
@@ -4485,19 +4485,19 @@ func file_protobuf_v1_Session_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_protobuf_v1_Session_proto_rawDesc,
+			RawDescriptor: file_v1_protobuf_Session_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   59,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_protobuf_v1_Session_proto_goTypes,
-		DependencyIndexes: file_protobuf_v1_Session_proto_depIdxs,
-		EnumInfos:         file_protobuf_v1_Session_proto_enumTypes,
-		MessageInfos:      file_protobuf_v1_Session_proto_msgTypes,
+		GoTypes:           file_v1_protobuf_Session_proto_goTypes,
+		DependencyIndexes: file_v1_protobuf_Session_proto_depIdxs,
+		EnumInfos:         file_v1_protobuf_Session_proto_enumTypes,
+		MessageInfos:      file_v1_protobuf_Session_proto_msgTypes,
 	}.Build()
-	File_protobuf_v1_Session_proto = out.File
-	file_protobuf_v1_Session_proto_rawDesc = nil
-	file_protobuf_v1_Session_proto_goTypes = nil
-	file_protobuf_v1_Session_proto_depIdxs = nil
+	File_v1_protobuf_Session_proto = out.File
+	file_v1_protobuf_Session_proto_rawDesc = nil
+	file_v1_protobuf_Session_proto_goTypes = nil
+	file_v1_protobuf_Session_proto_depIdxs = nil
 }

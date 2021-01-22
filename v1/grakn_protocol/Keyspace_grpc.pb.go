@@ -129,5 +129,5 @@ var _KeyspaceService_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "protobuf/Keyspace.proto",
+	Metadata: "v1/protobuf/Keyspace.proto",
 }

@@ -19,7 +19,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0
 // 	protoc        v3.14.0
-// source: protobuf/Keyspace.proto
+// source: v1/protobuf/Keyspace.proto
 
 package grakn_protocol
 
@@ -51,7 +51,7 @@ type Keyspace struct {
 func (x *Keyspace) Reset() {
 	*x = Keyspace{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Keyspace_proto_msgTypes[0]
+		mi := &file_v1_protobuf_Keyspace_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -64,7 +64,7 @@ func (x *Keyspace) String() string {
 func (*Keyspace) ProtoMessage() {}
 
 func (x *Keyspace) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Keyspace_proto_msgTypes[0]
+	mi := &file_v1_protobuf_Keyspace_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -77,7 +77,7 @@ func (x *Keyspace) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Keyspace.ProtoReflect.Descriptor instead.
 func (*Keyspace) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Keyspace_proto_rawDescGZIP(), []int{0}
+	return file_v1_protobuf_Keyspace_proto_rawDescGZIP(), []int{0}
 }
 
 type Keyspace_Retrieve struct {
@@ -89,7 +89,7 @@ type Keyspace_Retrieve struct {
 func (x *Keyspace_Retrieve) Reset() {
 	*x = Keyspace_Retrieve{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Keyspace_proto_msgTypes[1]
+		mi := &file_v1_protobuf_Keyspace_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -102,7 +102,7 @@ func (x *Keyspace_Retrieve) String() string {
 func (*Keyspace_Retrieve) ProtoMessage() {}
 
 func (x *Keyspace_Retrieve) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Keyspace_proto_msgTypes[1]
+	mi := &file_v1_protobuf_Keyspace_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115,7 +115,7 @@ func (x *Keyspace_Retrieve) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Keyspace_Retrieve.ProtoReflect.Descriptor instead.
 func (*Keyspace_Retrieve) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Keyspace_proto_rawDescGZIP(), []int{0, 0}
+	return file_v1_protobuf_Keyspace_proto_rawDescGZIP(), []int{0, 0}
 }
 
 type Keyspace_Delete struct {
@@ -127,7 +127,7 @@ type Keyspace_Delete struct {
 func (x *Keyspace_Delete) Reset() {
 	*x = Keyspace_Delete{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Keyspace_proto_msgTypes[2]
+		mi := &file_v1_protobuf_Keyspace_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -140,7 +140,7 @@ func (x *Keyspace_Delete) String() string {
 func (*Keyspace_Delete) ProtoMessage() {}
 
 func (x *Keyspace_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Keyspace_proto_msgTypes[2]
+	mi := &file_v1_protobuf_Keyspace_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -153,7 +153,7 @@ func (x *Keyspace_Delete) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Keyspace_Delete.ProtoReflect.Descriptor instead.
 func (*Keyspace_Delete) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Keyspace_proto_rawDescGZIP(), []int{0, 1}
+	return file_v1_protobuf_Keyspace_proto_rawDescGZIP(), []int{0, 1}
 }
 
 type Keyspace_Retrieve_Req struct {
@@ -169,7 +169,7 @@ type Keyspace_Retrieve_Req struct {
 func (x *Keyspace_Retrieve_Req) Reset() {
 	*x = Keyspace_Retrieve_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Keyspace_proto_msgTypes[3]
+		mi := &file_v1_protobuf_Keyspace_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -182,7 +182,7 @@ func (x *Keyspace_Retrieve_Req) String() string {
 func (*Keyspace_Retrieve_Req) ProtoMessage() {}
 
 func (x *Keyspace_Retrieve_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Keyspace_proto_msgTypes[3]
+	mi := &file_v1_protobuf_Keyspace_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -195,7 +195,7 @@ func (x *Keyspace_Retrieve_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Keyspace_Retrieve_Req.ProtoReflect.Descriptor instead.
 func (*Keyspace_Retrieve_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Keyspace_proto_rawDescGZIP(), []int{0, 0, 0}
+	return file_v1_protobuf_Keyspace_proto_rawDescGZIP(), []int{0, 0, 0}
 }
 
 func (x *Keyspace_Retrieve_Req) GetUsername() string {
@@ -223,7 +223,7 @@ type Keyspace_Retrieve_Res struct {
 func (x *Keyspace_Retrieve_Res) Reset() {
 	*x = Keyspace_Retrieve_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Keyspace_proto_msgTypes[4]
+		mi := &file_v1_protobuf_Keyspace_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -236,7 +236,7 @@ func (x *Keyspace_Retrieve_Res) String() string {
 func (*Keyspace_Retrieve_Res) ProtoMessage() {}
 
 func (x *Keyspace_Retrieve_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Keyspace_proto_msgTypes[4]
+	mi := &file_v1_protobuf_Keyspace_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -249,7 +249,7 @@ func (x *Keyspace_Retrieve_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Keyspace_Retrieve_Res.ProtoReflect.Descriptor instead.
 func (*Keyspace_Retrieve_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Keyspace_proto_rawDescGZIP(), []int{0, 0, 1}
+	return file_v1_protobuf_Keyspace_proto_rawDescGZIP(), []int{0, 0, 1}
 }
 
 func (x *Keyspace_Retrieve_Res) GetNames() []string {
@@ -273,7 +273,7 @@ type Keyspace_Delete_Req struct {
 func (x *Keyspace_Delete_Req) Reset() {
 	*x = Keyspace_Delete_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Keyspace_proto_msgTypes[5]
+		mi := &file_v1_protobuf_Keyspace_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -286,7 +286,7 @@ func (x *Keyspace_Delete_Req) String() string {
 func (*Keyspace_Delete_Req) ProtoMessage() {}
 
 func (x *Keyspace_Delete_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Keyspace_proto_msgTypes[5]
+	mi := &file_v1_protobuf_Keyspace_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -299,7 +299,7 @@ func (x *Keyspace_Delete_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Keyspace_Delete_Req.ProtoReflect.Descriptor instead.
 func (*Keyspace_Delete_Req) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Keyspace_proto_rawDescGZIP(), []int{0, 1, 0}
+	return file_v1_protobuf_Keyspace_proto_rawDescGZIP(), []int{0, 1, 0}
 }
 
 func (x *Keyspace_Delete_Req) GetName() string {
@@ -332,7 +332,7 @@ type Keyspace_Delete_Res struct {
 func (x *Keyspace_Delete_Res) Reset() {
 	*x = Keyspace_Delete_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_v1_Keyspace_proto_msgTypes[6]
+		mi := &file_v1_protobuf_Keyspace_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -345,7 +345,7 @@ func (x *Keyspace_Delete_Res) String() string {
 func (*Keyspace_Delete_Res) ProtoMessage() {}
 
 func (x *Keyspace_Delete_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_v1_Keyspace_proto_msgTypes[6]
+	mi := &file_v1_protobuf_Keyspace_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -358,13 +358,13 @@ func (x *Keyspace_Delete_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Keyspace_Delete_Res.ProtoReflect.Descriptor instead.
 func (*Keyspace_Delete_Res) Descriptor() ([]byte, []int) {
-	return file_protobuf_v1_Keyspace_proto_rawDescGZIP(), []int{0, 1, 1}
+	return file_v1_protobuf_Keyspace_proto_rawDescGZIP(), []int{0, 1, 1}
 }
 
-var File_protobuf_v1_Keyspace_proto protoreflect.FileDescriptor
+var File_v1_protobuf_Keyspace_proto protoreflect.FileDescriptor
 
-var file_protobuf_v1_Keyspace_proto_rawDesc = []byte{
-	0x0a, 0x1a, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x5f, 0x76, 0x31, 0x2f, 0x4b, 0x65,
+var file_v1_protobuf_Keyspace_proto_rawDesc = []byte{
+	0x0a, 0x1a, 0x76, 0x31, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x4b, 0x65,
 	0x79, 0x73, 0x70, 0x61, 0x63, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x08, 0x6b, 0x65,
 	0x79, 0x73, 0x70, 0x61, 0x63, 0x65, 0x22, 0xd6, 0x01, 0x0a, 0x08, 0x4b, 0x65, 0x79, 0x73, 0x70,
 	0x61, 0x63, 0x65, 0x1a, 0x66, 0x0a, 0x08, 0x52, 0x65, 0x74, 0x72, 0x69, 0x65, 0x76, 0x65, 0x1a,
@@ -390,29 +390,28 @@ var file_protobuf_v1_Keyspace_proto_rawDesc = []byte{
 	0x79, 0x73, 0x70, 0x61, 0x63, 0x65, 0x2e, 0x4b, 0x65, 0x79, 0x73, 0x70, 0x61, 0x63, 0x65, 0x2e,
 	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x71, 0x1a, 0x1d, 0x2e, 0x6b, 0x65, 0x79,
 	0x73, 0x70, 0x61, 0x63, 0x65, 0x2e, 0x4b, 0x65, 0x79, 0x73, 0x70, 0x61, 0x63, 0x65, 0x2e, 0x44,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x42, 0x4f, 0x0a, 0x17, 0x67, 0x72, 0x61,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x42, 0x4c, 0x0a, 0x17, 0x67, 0x72, 0x61,
 	0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x6b, 0x65, 0x79, 0x73,
 	0x70, 0x61, 0x63, 0x65, 0x42, 0x0d, 0x4b, 0x65, 0x79, 0x73, 0x70, 0x61, 0x63, 0x65, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x5a, 0x25, 0x2e, 0x2f, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x5f, 0x76, 0x31, 0x3b, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x5f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x6f, 0x74, 0x6f, 0x5a, 0x22, 0x2e, 0x2f, 0x76, 0x31, 0x2f, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x3b, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_protobuf_v1_Keyspace_proto_rawDescOnce sync.Once
-	file_protobuf_v1_Keyspace_proto_rawDescData = file_protobuf_v1_Keyspace_proto_rawDesc
+	file_v1_protobuf_Keyspace_proto_rawDescOnce sync.Once
+	file_v1_protobuf_Keyspace_proto_rawDescData = file_v1_protobuf_Keyspace_proto_rawDesc
 )
 
-func file_protobuf_v1_Keyspace_proto_rawDescGZIP() []byte {
-	file_protobuf_v1_Keyspace_proto_rawDescOnce.Do(func() {
-		file_protobuf_v1_Keyspace_proto_rawDescData = protoimpl.X.CompressGZIP(file_protobuf_v1_Keyspace_proto_rawDescData)
+func file_v1_protobuf_Keyspace_proto_rawDescGZIP() []byte {
+	file_v1_protobuf_Keyspace_proto_rawDescOnce.Do(func() {
+		file_v1_protobuf_Keyspace_proto_rawDescData = protoimpl.X.CompressGZIP(file_v1_protobuf_Keyspace_proto_rawDescData)
 	})
-	return file_protobuf_v1_Keyspace_proto_rawDescData
+	return file_v1_protobuf_Keyspace_proto_rawDescData
 }
 
-var file_protobuf_v1_Keyspace_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
-var file_protobuf_v1_Keyspace_proto_goTypes = []interface{}{
+var file_v1_protobuf_Keyspace_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_v1_protobuf_Keyspace_proto_goTypes = []interface{}{
 	(*Keyspace)(nil),              // 0: keyspace.Keyspace
 	(*Keyspace_Retrieve)(nil),     // 1: keyspace.Keyspace.Retrieve
 	(*Keyspace_Delete)(nil),       // 2: keyspace.Keyspace.Delete
@@ -421,7 +420,7 @@ var file_protobuf_v1_Keyspace_proto_goTypes = []interface{}{
 	(*Keyspace_Delete_Req)(nil),   // 5: keyspace.Keyspace.Delete.Req
 	(*Keyspace_Delete_Res)(nil),   // 6: keyspace.Keyspace.Delete.Res
 }
-var file_protobuf_v1_Keyspace_proto_depIdxs = []int32{
+var file_v1_protobuf_Keyspace_proto_depIdxs = []int32{
 	3, // 0: keyspace.KeyspaceService.retrieve:input_type -> keyspace.Keyspace.Retrieve.Req
 	5, // 1: keyspace.KeyspaceService.delete:input_type -> keyspace.Keyspace.Delete.Req
 	4, // 2: keyspace.KeyspaceService.retrieve:output_type -> keyspace.Keyspace.Retrieve.Res
@@ -433,13 +432,13 @@ var file_protobuf_v1_Keyspace_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_protobuf_v1_Keyspace_proto_init() }
-func file_protobuf_v1_Keyspace_proto_init() {
-	if File_protobuf_v1_Keyspace_proto != nil {
+func init() { file_v1_protobuf_Keyspace_proto_init() }
+func file_v1_protobuf_Keyspace_proto_init() {
+	if File_v1_protobuf_Keyspace_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_protobuf_v1_Keyspace_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Keyspace_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Keyspace); i {
 			case 0:
 				return &v.state
@@ -451,7 +450,7 @@ func file_protobuf_v1_Keyspace_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Keyspace_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Keyspace_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Keyspace_Retrieve); i {
 			case 0:
 				return &v.state
@@ -463,7 +462,7 @@ func file_protobuf_v1_Keyspace_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Keyspace_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Keyspace_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Keyspace_Delete); i {
 			case 0:
 				return &v.state
@@ -475,7 +474,7 @@ func file_protobuf_v1_Keyspace_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Keyspace_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Keyspace_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Keyspace_Retrieve_Req); i {
 			case 0:
 				return &v.state
@@ -487,7 +486,7 @@ func file_protobuf_v1_Keyspace_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Keyspace_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Keyspace_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Keyspace_Retrieve_Res); i {
 			case 0:
 				return &v.state
@@ -499,7 +498,7 @@ func file_protobuf_v1_Keyspace_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Keyspace_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Keyspace_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Keyspace_Delete_Req); i {
 			case 0:
 				return &v.state
@@ -511,7 +510,7 @@ func file_protobuf_v1_Keyspace_proto_init() {
 				return nil
 			}
 		}
-		file_protobuf_v1_Keyspace_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_v1_protobuf_Keyspace_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Keyspace_Delete_Res); i {
 			case 0:
 				return &v.state
@@ -528,18 +527,18 @@ func file_protobuf_v1_Keyspace_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_protobuf_v1_Keyspace_proto_rawDesc,
+			RawDescriptor: file_v1_protobuf_Keyspace_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_protobuf_v1_Keyspace_proto_goTypes,
-		DependencyIndexes: file_protobuf_v1_Keyspace_proto_depIdxs,
-		MessageInfos:      file_protobuf_v1_Keyspace_proto_msgTypes,
+		GoTypes:           file_v1_protobuf_Keyspace_proto_goTypes,
+		DependencyIndexes: file_v1_protobuf_Keyspace_proto_depIdxs,
+		MessageInfos:      file_v1_protobuf_Keyspace_proto_msgTypes,
 	}.Build()
-	File_protobuf_v1_Keyspace_proto = out.File
-	file_protobuf_v1_Keyspace_proto_rawDesc = nil
-	file_protobuf_v1_Keyspace_proto_goTypes = nil
-	file_protobuf_v1_Keyspace_proto_depIdxs = nil
+	File_v1_protobuf_Keyspace_proto = out.File
+	file_v1_protobuf_Keyspace_proto_rawDesc = nil
+	file_v1_protobuf_Keyspace_proto_goTypes = nil
+	file_v1_protobuf_Keyspace_proto_depIdxs = nil
 }

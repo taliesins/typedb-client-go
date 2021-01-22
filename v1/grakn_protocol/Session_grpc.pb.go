@@ -202,5 +202,5 @@ var _SessionService_serviceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "protobuf/Session.proto",
+	Metadata: "v1/protobuf/Session.proto",
 }

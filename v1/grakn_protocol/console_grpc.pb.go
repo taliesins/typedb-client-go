@@ -125,5 +125,5 @@ var _KGMSConsole_serviceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "protobuf/console.proto",
+	Metadata: "v1/protobuf/console.proto",
 }

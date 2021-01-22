@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2020 Grakn Labs
+// Copyright (C) 2021 Grakn Labs
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -22,6 +22,7 @@ option java_package = "grakn.protocol";
 option java_outer_classname = "TransactionProto";
 
 import "v2/protobuf/concept.proto";
+import "v2/protobuf/logic.proto";
 import "v2/protobuf/options.proto";
 import "v2/protobuf/query.proto";
 
@@ -42,7 +43,8 @@ message Transaction {
             ConceptManager.Req concept_manager_req = 9;
             Thing.Req thing_req = 10;
             grakn.protocol.Type.Req type_req = 11;
-            Rule.Req rule_req = 12;
+            LogicManager.Req logic_manager_req = 12;
+            Rule.Req rule_req = 13;
         }
     }
 
@@ -58,7 +60,8 @@ message Transaction {
             ConceptManager.Res concept_manager_res = 9;
             Thing.Res thing_res = 10;
             grakn.protocol.Type.Res type_res = 11;
-            Rule.Res rule_res = 12;
+            LogicManager.Res logic_manager_res = 12;
+            Rule.Res rule_res = 13;
         }
     }
 

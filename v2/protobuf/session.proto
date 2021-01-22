@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2020 Grakn Labs
+// Copyright (C) 2021 Grakn Labs
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -48,5 +48,14 @@ message Session {
             bytes session_id = 1;
         }
         message Res {}
+    }
+
+    message Pulse {
+        message Req {
+            bytes session_id = 1;
+        }
+        message Res {
+            bool alive = 1;
+        }
     }
 }

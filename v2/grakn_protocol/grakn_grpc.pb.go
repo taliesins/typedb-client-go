@@ -23,6 +23,8 @@ type GraknClient interface {
 	DatabaseDelete(ctx context.Context, in *Database_Delete_Req, opts ...grpc.CallOption) (*Database_Delete_Res, error)
 	SessionOpen(ctx context.Context, in *Session_Open_Req, opts ...grpc.CallOption) (*Session_Open_Res, error)
 	SessionClose(ctx context.Context, in *Session_Close_Req, opts ...grpc.CallOption) (*Session_Close_Res, error)
+	// Checks with the server that the session is still alive, and informs it that it should be kept alive.
+	SessionPulse(ctx context.Context, in *Session_Pulse_Req, opts ...grpc.CallOption) (*Session_Pulse_Res, error)
 	// Opens a bi-directional stream representing a stateful transaction, streaming
 	// requests and responses back-and-forth. The first request message must
 	// be {Transaction.Open.Req}. Closing the stream closes the transaction.
@@ -91,6 +93,15 @@ func (c *graknClient) SessionClose(ctx context.Context, in *Session_Close_Req, o
 	return out, nil
 }
 
+func (c *graknClient) SessionPulse(ctx context.Context, in *Session_Pulse_Req, opts ...grpc.CallOption) (*Session_Pulse_Res, error) {
+	out := new(Session_Pulse_Res)
+	err := c.cc.Invoke(ctx, "/grakn.protocol.Grakn/session_pulse", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *graknClient) Transaction(ctx context.Context, opts ...grpc.CallOption) (Grakn_TransactionClient, error) {
 	stream, err := c.cc.NewStream(ctx, &_Grakn_serviceDesc.Streams[0], "/grakn.protocol.Grakn/transaction", opts...)
 	if err != nil {
@@ -132,6 +143,8 @@ type GraknServer interface {
 	DatabaseDelete(context.Context, *Database_Delete_Req) (*Database_Delete_Res, error)
 	SessionOpen(context.Context, *Session_Open_Req) (*Session_Open_Res, error)
 	SessionClose(context.Context, *Session_Close_Req) (*Session_Close_Res, error)
+	// Checks with the server that the session is still alive, and informs it that it should be kept alive.
+	SessionPulse(context.Context, *Session_Pulse_Req) (*Session_Pulse_Res, error)
 	// Opens a bi-directional stream representing a stateful transaction, streaming
 	// requests and responses back-and-forth. The first request message must
 	// be {Transaction.Open.Req}. Closing the stream closes the transaction.
@@ -160,6 +173,9 @@ func (UnimplementedGraknServer) SessionOpen(context.Context, *Session_Open_Req) 
 }
 func (UnimplementedGraknServer) SessionClose(context.Context, *Session_Close_Req) (*Session_Close_Res, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SessionClose not implemented")
+}
+func (UnimplementedGraknServer) SessionPulse(context.Context, *Session_Pulse_Req) (*Session_Pulse_Res, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SessionPulse not implemented")
 }
 func (UnimplementedGraknServer) Transaction(Grakn_TransactionServer) error {
 	return status.Errorf(codes.Unimplemented, "method Transaction not implemented")
@@ -285,6 +301,24 @@ func _Grakn_SessionClose_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Grakn_SessionPulse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Session_Pulse_Req)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GraknServer).SessionPulse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grakn.protocol.Grakn/session_pulse",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GraknServer).SessionPulse(ctx, req.(*Session_Pulse_Req))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Grakn_Transaction_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(GraknServer).Transaction(&graknTransactionServer{stream})
 }
@@ -339,6 +373,10 @@ var _Grakn_serviceDesc = grpc.ServiceDesc{
 			MethodName: "session_close",
 			Handler:    _Grakn_SessionClose_Handler,
 		},
+		{
+			MethodName: "session_pulse",
+			Handler:    _Grakn_SessionPulse_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -348,5 +386,5 @@ var _Grakn_serviceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "protobuf/grakn.proto",
+	Metadata: "v2/protobuf/grakn.proto",
 }
