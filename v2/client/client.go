@@ -5,7 +5,7 @@ import (
 	grakn "github.com/taliesins/client-go/v2/grakn_protocol"
 )
 
-func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, query string, infer bool, explain bool, batchSize int32, latencyMillis int32) (insertResponses []*grakn.Graql_Insert_Res, err error){
+func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, query string, infer bool, explain bool, batchSize int32, latencyMillis int32) (insertResponses []*grakn.Query_Insert_Res, err error){
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -14,7 +14,7 @@ func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, transaction
 		Req: &grakn.Transaction_Req_QueryReq{
 			QueryReq: &grakn.Query_Req{
 				Req: &grakn.Query_Req_InsertReq {
-					InsertReq: &grakn.Graql_Insert_Req{
+					InsertReq: &grakn.Query_Insert_Req{
 						Query: query,
 					},
 				},
@@ -77,7 +77,7 @@ func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, transaction
 		Req: &grakn.Transaction_Req_QueryReq{
 			QueryReq: &grakn.Query_Req{
 				Req: &grakn.Query_Req_DefineReq {
-					DefineReq: &grakn.Graql_Define_Req {
+					DefineReq: &grakn.Query_Define_Req {
 						Query: query,
 					},
 				},
@@ -107,7 +107,7 @@ func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, transaction
 	return err
 }
 
-func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, query string, infer bool, explain bool, batchSize int32, latencyMillis int32) (matchResponses []*grakn.Graql_Match_Res, err error) {
+func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, query string, infer bool, explain bool, batchSize int32, latencyMillis int32) (matchResponses []*grakn.Query_Match_Res, err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -116,7 +116,7 @@ func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, transactionI
 		Req: &grakn.Transaction_Req_QueryReq{
 			QueryReq: &grakn.Query_Req {
 				Req: &grakn.Query_Req_MatchReq{
-					MatchReq: &grakn.Graql_Match_Req{
+					MatchReq: &grakn.Query_Match_Req{
 						Query: query,
 					},
 				},
@@ -172,6 +172,55 @@ func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, transactionI
 	}
 
 	return matchResponses, err
+}
+
+func RunMatchAggregateQuery(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, query string, infer bool, explain bool, batchSize int32, latencyMillis int32) (matchAggregateResponses []*grakn.Query_MatchAggregate_Res, err error) {
+	if batchSize == 0 {
+		batchSize = 2147483647
+	}
+
+	err = transactionClient.Send(&grakn.Transaction_Req{
+		Req: &grakn.Transaction_Req_QueryReq{
+			QueryReq: &grakn.Query_Req{
+				Req: &grakn.Query_Req_MatchAggregateReq{
+					MatchAggregateReq: &grakn.Query_MatchAggregate_Req{
+						Query: query,
+					},
+				},
+				Options: &grakn.Options{
+					InferOpt: &grakn.Options_Infer{
+						Infer: infer,
+					},
+					BatchSizeOpt: &grakn.Options_BatchSize{
+						BatchSize: batchSize,
+					},
+					ExplainOpt: &grakn.Options_Explain{
+						Explain: explain,
+					},
+				},
+			},
+		},
+		Metadata:      metadata,
+		Id:            transactionId,
+		LatencyMillis: latencyMillis,
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("could not send query request: %w", err)
+	}
+
+	transactionResponse, err := transactionClient.Recv()
+	if err != nil {
+		return nil, fmt.Errorf("could not receive query response: %w", err)
+	}
+
+	queryResponse := transactionResponse.GetQueryRes()
+	if queryResponse != nil {
+		matchAggregateResponse := queryResponse.GetMatchAggregateRes()
+		matchAggregateResponses = append(matchAggregateResponses, matchAggregateResponse)
+	}
+
+	return matchAggregateResponses, err
 }
 
 

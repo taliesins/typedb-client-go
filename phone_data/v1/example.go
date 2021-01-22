@@ -20,11 +20,12 @@ func Run() {
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
+		panic(err)
 	}
 	defer conn.Close()
 
 	// Set up context
-	ctx, cancel := context.WithTimeout(context.Background(), time.Minute*10)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 
 	databaseName := "test"
@@ -33,6 +34,7 @@ func Run() {
 	err = SetupDatabase(keyspaceServiceClient, ctx, username, password, databaseName)
 	if err != nil {
 		log.Fatalf("Can't setup database: %v", err)
+		panic(err)
 	}
 
 	metadata := map[string]string{}
@@ -47,6 +49,7 @@ func Run() {
 	})
 	if err != nil {
 		log.Fatalf("could not open session: %v", err)
+		panic(err)
 	}
 
 	sessionId := sessionOpenResult.SessionId
@@ -64,108 +67,41 @@ func Run() {
 	err = ExecuteSchema(sessionClient, ctx, sessionId, metadata)
 	if err != nil {
 		log.Fatalf("Can't setup schema: %v", err)
+		panic(err)
 	}
 
 	err = ExecuteData(sessionClient, ctx, sessionId, metadata)
 	if err != nil {
 		log.Fatalf("Can't setup data: %v", err)
+		panic(err)
 	}
 }
 
 func ExecuteSchema(sessionClient grakn.SessionServiceClient, ctx context.Context, sessionId string, metadata map[string]string) (err error) {
-	transactionClient, err := sessionClient.Transaction(ctx)
+	err = CreateTestDatabaseSchema(sessionClient, ctx, sessionId, metadata)
 	if err != nil {
-		return fmt.Errorf("could not create transaction client: %w", err)
+		return fmt.Errorf("could not create schema: %w", err)
 	}
 
-	err = client.OpenTransaction(transactionClient, sessionId, grakn.Transaction_WRITE, metadata)
+	err = GetTestDatabaseSchema(sessionClient, ctx, sessionId, metadata)
 	if err != nil {
-		return fmt.Errorf("could not open transaction: %w", err)
-	}
-
-	err = CreateTestDatabaseSchema(transactionClient, metadata)
-	if err != nil {
-		return fmt.Errorf("could not create database schema: %w", err)
-	}
-
-	err = client.CommitTransaction(transactionClient, metadata)
-	if err != nil {
-		return fmt.Errorf("could not commit transaction: %w", err)
-	}
-
-	err = client.CloseTransaction(transactionClient)
-	if err != nil {
-		return fmt.Errorf("could not create database schema: %w", err)
-	}
-
-	transactionClient, err = sessionClient.Transaction(ctx)
-	if err != nil {
-		return fmt.Errorf("could not create transaction client: %w", err)
-	}
-
-	err = client.OpenTransaction(transactionClient, sessionId, grakn.Transaction_READ, metadata)
-	if err != nil {
-		return fmt.Errorf("could not open transaction: %w", err)
-	}
-
-	err = GetTestDatabaseSchema(transactionClient, metadata)
-	if err != nil {
-		return fmt.Errorf("could not get database schema: %w", err)
-	}
-
-	err = client.CloseTransaction(transactionClient)
-	if err != nil {
-		return fmt.Errorf("could not create database schema: %w", err)
+		return fmt.Errorf("could not get schema: %w", err)
 	}
 
 	return nil
 }
 
 func ExecuteData(sessionClient grakn.SessionServiceClient, ctx context.Context, sessionId string, metadata map[string]string) (err error) {
-	transactionClient, err := sessionClient.Transaction(ctx)
+	err = CreateTestDatabaseData(sessionClient, ctx, sessionId, metadata)
 	if err != nil {
-		return fmt.Errorf("could not create transaction client: %w", err)
+		return fmt.Errorf("could not create data: %w", err)
 	}
 
-	err = client.OpenTransaction(transactionClient, sessionId, grakn.Transaction_WRITE, metadata)
+	err = GetTestDatabaseData(sessionClient, ctx, sessionId, metadata)
 	if err != nil {
-		return fmt.Errorf("could not open transaction: %w", err)
+		return fmt.Errorf("could not get data: %w", err)
 	}
 
-	err = CreateTestDatabaseData(transactionClient, metadata)
-	if err != nil {
-		return fmt.Errorf("could not create database data: %w", err)
-	}
-
-	err = client.CommitTransaction(transactionClient, metadata)
-	if err != nil {
-		return fmt.Errorf("could not commit transaction: %w", err)
-	}
-
-	err = client.CloseTransaction(transactionClient)
-	if err != nil {
-		return fmt.Errorf("could not create database schema: %w", err)
-	}
-
-	transactionClient, err = sessionClient.Transaction(ctx)
-	if err != nil {
-		return fmt.Errorf("could not create transaction client: %w", err)
-	}
-
-	err = client.OpenTransaction(transactionClient, sessionId, grakn.Transaction_READ, metadata)
-	if err != nil {
-		return fmt.Errorf("could not open transaction: %w", err)
-	}
-
-	err = GetTestDatabaseData(transactionClient, metadata)
-	if err != nil {
-		return fmt.Errorf("could not get database data: %w", err)
-	}
-
-	err = client.CloseTransaction(transactionClient)
-	if err != nil {
-		return fmt.Errorf("could not create database schema: %w", err)
-	}
 	return nil
 }
 
@@ -195,7 +131,7 @@ func SetupDatabase(keyspaceServiceClient grakn.KeyspaceServiceClient, ctx contex
 	return nil
 }
 
-func CreateTestDatabaseSchema(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string) (err error) {
+func CreateTestDatabaseSchema(sessionClient grakn.SessionServiceClient, ctx context.Context, sessionId string, metadata map[string]string) (err error) {
 	query, err := phone_data.GetPhoneCallsSchemaV1Gql()
 	if err != nil {
 		return fmt.Errorf("could not get phone calls gsql: %w", err)
@@ -205,16 +141,35 @@ func CreateTestDatabaseSchema(transactionClient grakn.SessionService_Transaction
 	explain := true
 	batchSize := int32(0)
 
+	transactionClient, err := sessionClient.Transaction(ctx)
+	if err != nil {
+		return fmt.Errorf("could not create transaction client: %w", err)
+	}
+
+	err = client.OpenTransaction(transactionClient, sessionId, grakn.Transaction_WRITE, metadata)
+	if err != nil {
+		return fmt.Errorf("could not open transaction: %w", err)
+	}
+
 	_, err =  client.RunQuery(transactionClient, metadata, query, infer, explain, batchSize)
 	if err != nil {
 		return fmt.Errorf("could not get phone calls gsql: %w", err)
 	}
 
+	err = client.CommitTransaction(transactionClient, metadata)
+	if err != nil {
+		return fmt.Errorf("could not commit transaction: %w", err)
+	}
+
+	err = client.CloseTransaction(transactionClient)
+	if err != nil {
+		return fmt.Errorf("could not create database schema: %w", err)
+	}
+
 	return err
 }
 
-
-func GetTestDatabaseSchema(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string) (err error) {
+func GetTestDatabaseSchema(sessionClient grakn.SessionServiceClient, ctx context.Context, sessionId string, metadata map[string]string) (err error) {
 	query := `
 match 
 	$x sub thing; 
@@ -226,9 +181,24 @@ get
 	explain := true
 	batchSize := int32(0)
 
+	transactionClient, err := sessionClient.Transaction(ctx)
+	if err != nil {
+		return fmt.Errorf("could not create transaction client: %w", err)
+	}
+
+	err = client.OpenTransaction(transactionClient, sessionId, grakn.Transaction_READ, metadata)
+	if err != nil {
+		return fmt.Errorf("could not open transaction: %w", err)
+	}
+
 	answers, err := client.RunQuery(transactionClient, metadata, query, infer, explain, batchSize)
 	if err != nil {
 		return fmt.Errorf("could not get database schema: %w", err)
+	}
+
+	err = client.CloseTransaction(transactionClient)
+	if err != nil {
+		return fmt.Errorf("could not create database schema: %w", err)
 	}
 
 	for _, answer := range answers {
@@ -238,8 +208,7 @@ get
 	return err
 }
 
-
-func CreateTestDatabaseData(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string) (err error) {
+func CreateTestDatabaseData(sessionClient grakn.SessionServiceClient, ctx context.Context, sessionId string, metadata map[string]string) (err error) {
 	infer := true
 	explain := true
 	batchSize := int32(0)
@@ -247,6 +216,16 @@ func CreateTestDatabaseData(transactionClient grakn.SessionService_TransactionCl
 	gql, err := phone_data.GetPhoneCallsDataGql()
 	if err != nil {
 		return fmt.Errorf("could not get phone calls data gql: %w", err)
+	}
+
+	transactionClient, err := sessionClient.Transaction(ctx)
+	if err != nil {
+		return fmt.Errorf("could not create transaction client: %w", err)
+	}
+
+	err = client.OpenTransaction(transactionClient, sessionId, grakn.Transaction_WRITE, metadata)
+	if err != nil {
+		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
 	for _, query := range gql {
@@ -260,13 +239,33 @@ func CreateTestDatabaseData(transactionClient grakn.SessionService_TransactionCl
 		}
 	}
 
+	err = client.CommitTransaction(transactionClient, metadata)
+	if err != nil {
+		return fmt.Errorf("could not commit transaction: %w", err)
+	}
+
+	err = client.CloseTransaction(transactionClient)
+	if err != nil {
+		return fmt.Errorf("could not create database schema: %w", err)
+	}
+
 	return err
 }
 
-func GetTestDatabaseData(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string) (err error) {
+func GetTestDatabaseData(sessionClient grakn.SessionServiceClient, ctx context.Context, sessionId string, metadata map[string]string) (err error) {
 	infer := true
 	explain := true
 	batchSize := int32(0)
+
+	transactionClient, err := sessionClient.Transaction(ctx)
+	if err != nil {
+		return fmt.Errorf("could not create transaction client: %w", err)
+	}
+
+	err = client.OpenTransaction(transactionClient, sessionId, grakn.Transaction_READ, metadata)
+	if err != nil {
+		return fmt.Errorf("could not open transaction: %w", err)
+	}
 
 	query := `
 match
@@ -330,6 +329,11 @@ count;
 
 	for _, answer := range answers {
 		log.Printf("Number of calls: %v", answer.String())
+	}
+
+	err = client.CloseTransaction(transactionClient)
+	if err != nil {
+		return fmt.Errorf("could not create database schema: %w", err)
 	}
 
 	return err
