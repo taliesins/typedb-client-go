@@ -5,7 +5,7 @@ import (
 	grakn "github.com/taliesins/client-go/v2/grakn_protocol"
 )
 
-func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, query string, infer bool, explain bool, batchSize int32, latencyMillis int32) (insertResponses []*grakn.Query_Insert_Res, err error){
+func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (insertResponses []*grakn.Query_Insert_Res, err error){
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -19,9 +19,6 @@ func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, transaction
 					},
 				},
 				Options: &grakn.Options{
-					InferOpt: &grakn.Options_Infer{
-						Infer: infer,
-					},
 					BatchSizeOpt: &grakn.Options_BatchSize{
 						BatchSize: batchSize,
 					},
@@ -32,7 +29,7 @@ func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, transaction
 			},
 		},
 		Metadata:      metadata,
-		Id:            transactionId,
+		Id:            requestId,
 		LatencyMillis: latencyMillis,
 	})
 
@@ -48,7 +45,7 @@ func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, transaction
 					Continue: true,
 				},
 				Metadata:      metadata,
-				Id:            transactionId,
+				Id:            requestId,
 				LatencyMillis: latencyMillis,
 			})
 			if err != nil {
@@ -68,7 +65,7 @@ func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, transaction
 	return insertResponses, err
 }
 
-func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, query string, infer bool, explain bool, batchSize int32, latencyMillis int32) (err error){
+func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (err error){
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -82,9 +79,6 @@ func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, transaction
 					},
 				},
 				Options: &grakn.Options{
-					InferOpt: &grakn.Options_Infer{
-						Infer: infer,
-					},
 					BatchSizeOpt: &grakn.Options_BatchSize{
 						BatchSize: batchSize,
 					},
@@ -95,7 +89,7 @@ func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, transaction
 			},
 		},
 		Metadata:      metadata,
-		Id:            transactionId,
+		Id:            requestId,
 		LatencyMillis: latencyMillis,
 	})
 
@@ -107,7 +101,7 @@ func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, transaction
 	return err
 }
 
-func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, query string, infer bool, explain bool, batchSize int32, latencyMillis int32) (matchResponses []*grakn.Query_Match_Res, err error) {
+func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchResponses []*grakn.Query_Match_Res, err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -121,9 +115,6 @@ func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, transactionI
 					},
 				},
 				Options: &grakn.Options{
-					InferOpt: &grakn.Options_Infer{
-						Infer: infer,
-					},
 					BatchSizeOpt: &grakn.Options_BatchSize{
 						BatchSize: batchSize,
 					},
@@ -134,7 +125,7 @@ func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, transactionI
 			},
 		},
 		Metadata:      metadata,
-		Id:            transactionId,
+		Id:            requestId,
 		LatencyMillis: latencyMillis,
 	})
 
@@ -154,7 +145,7 @@ func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, transactionI
 					Continue: true,
 				},
 				Metadata:      metadata,
-				Id:            transactionId,
+				Id:            requestId,
 				LatencyMillis: latencyMillis,
 			})
 			if err != nil {
@@ -174,7 +165,7 @@ func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, transactionI
 	return matchResponses, err
 }
 
-func RunMatchAggregateQuery(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, query string, infer bool, explain bool, batchSize int32, latencyMillis int32) (matchAggregateResponses []*grakn.Query_MatchAggregate_Res, err error) {
+func RunMatchAggregateQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchAggregateResponses []*grakn.Query_MatchAggregate_Res, err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -188,9 +179,6 @@ func RunMatchAggregateQuery(transactionClient grakn.Grakn_TransactionClient, tra
 					},
 				},
 				Options: &grakn.Options{
-					InferOpt: &grakn.Options_Infer{
-						Infer: infer,
-					},
 					BatchSizeOpt: &grakn.Options_BatchSize{
 						BatchSize: batchSize,
 					},
@@ -201,7 +189,7 @@ func RunMatchAggregateQuery(transactionClient grakn.Grakn_TransactionClient, tra
 			},
 		},
 		Metadata:      metadata,
-		Id:            transactionId,
+		Id:            requestId,
 		LatencyMillis: latencyMillis,
 	})
 
@@ -223,13 +211,17 @@ func RunMatchAggregateQuery(transactionClient grakn.Grakn_TransactionClient, tra
 	return matchAggregateResponses, err
 }
 
-
-func OpenTransaction(transactionClient grakn.Grakn_TransactionClient, sessionId []byte, transactionId string, transactionType grakn.Transaction_Type, metadata map[string]string, latencyMillis int32) (err error) {
+func OpenTransaction(transactionClient grakn.Grakn_TransactionClient, sessionId []byte, transactionId string, transactionType grakn.Transaction_Type, metadata map[string]string, infer bool, latencyMillis int32) (err error) {
 	err = transactionClient.Send(&grakn.Transaction_Req{
 		Req: &grakn.Transaction_Req_OpenReq{
 			OpenReq: &grakn.Transaction_Open_Req{
 				SessionId: sessionId,
 				Type:      transactionType,
+				Options: &grakn.Options{
+					InferOpt:&grakn.Options_Infer{
+						Infer: infer,
+					},
+				},
 			},
 		},
 		Metadata:      metadata,

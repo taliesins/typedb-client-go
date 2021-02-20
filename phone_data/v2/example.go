@@ -184,19 +184,19 @@ func CreateTestDatabaseSchema(graknClient grakn.GraknClient, ctx context.Context
 	explain := true
 	batchSize := int32(0)
 
-	transactionId := ksuid.New().String()
-
 	schemaTransactionClient, err := graknClient.Transaction(ctx)
 	if err != nil {
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	err = client.OpenTransaction(schemaTransactionClient, sessionId, transactionId, grakn.Transaction_WRITE, metadata, latencyMillis)
+	transactionId := ksuid.New().String()
+	err = client.OpenTransaction(schemaTransactionClient, sessionId, transactionId, grakn.Transaction_WRITE, metadata, infer, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
-	err = client.RunDefineQuery(schemaTransactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
+	requestId := ksuid.New().String()
+	err = client.RunDefineQuery(schemaTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not run define query: %w", err)
 	}
@@ -226,19 +226,19 @@ get
 	explain := true
 	batchSize := int32(0)
 
-	transactionId := ksuid.New().String()
-
 	schemaTransactionClient, err := graknClient.Transaction(ctx)
 	if err != nil {
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	err = client.OpenTransaction(schemaTransactionClient, sessionId, transactionId, grakn.Transaction_READ, metadata, latencyMillis)
+	transactionId := ksuid.New().String()
+	err = client.OpenTransaction(schemaTransactionClient, sessionId, transactionId, grakn.Transaction_READ, metadata, infer, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
-	matchResponses, err := client.RunMatchQuery(schemaTransactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
+	requestId := ksuid.New().String()
+	matchResponses, err := client.RunMatchQuery(schemaTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not get database schema: %w", err)
 	}
@@ -266,38 +266,38 @@ func CreateTestDatabaseData(graknClient grakn.GraknClient, ctx context.Context, 
 		return fmt.Errorf("could not get phone calls data gql: %w", err)
 	}
 
+	transactionClient, err := graknClient.Transaction(ctx)
+	if err != nil {
+		return fmt.Errorf("could not create transaction client: %w", err)
+	}
+
+	transactionId := ksuid.New().String()
+	err = client.OpenTransaction(transactionClient, sessionId, transactionId, grakn.Transaction_WRITE, metadata, infer, latencyMillis)
+	if err != nil {
+		return fmt.Errorf("could not open transaction: %w", err)
+	}
+
 	for _, query := range gql {
-		transactionId := ksuid.New().String()
-
-		transactionClient, err := graknClient.Transaction(ctx)
-		if err != nil {
-			return fmt.Errorf("could not create transaction client: %w", err)
-		}
-
-		err = client.OpenTransaction(transactionClient, sessionId, transactionId, grakn.Transaction_WRITE, metadata, latencyMillis)
-		if err != nil {
-			return fmt.Errorf("could not open transaction: %w", err)
-		}
-
-		insertResponses, err := client.RunInsertQuery(transactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
+		requestId := ksuid.New().String()
+		insertResponses, err := client.RunInsertQuery(transactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
 		if err != nil {
 			return fmt.Errorf("could not insert phone calls data: %w", err)
-		}
-
-		err = client.CommitTransaction(transactionClient, transactionId, metadata, latencyMillis)
-		if err != nil {
-			return fmt.Errorf("could not commit transaction: %w", err)
-		}
-
-		err = client.CloseTransaction(transactionClient)
-		if err != nil {
-			return fmt.Errorf("could not close transaction: %w", err)
 		}
 
 		for _, insertResponse := range insertResponses {
 			answers := insertResponse.GetAnswers()
 			log.Printf("inserted: %v", answers)
 		}
+	}
+
+	err = client.CommitTransaction(transactionClient, transactionId, metadata, latencyMillis)
+	if err != nil {
+		return fmt.Errorf("could not commit transaction: %w", err)
+	}
+
+	err = client.CloseTransaction(transactionClient)
+	if err != nil {
+		return fmt.Errorf("could not close transaction: %w", err)
 	}
 
 	return err
@@ -308,14 +308,13 @@ func GetTestDatabaseData(graknClient grakn.GraknClient, ctx context.Context, ses
 	explain := false
 	batchSize := int32(0)
 
-	transactionId := ksuid.New().String()
-
 	dataTransactionClient, err := graknClient.Transaction(ctx)
 	if err != nil {
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	err = client.OpenTransaction(dataTransactionClient, sessionId, transactionId, grakn.Transaction_READ, metadata, latencyMillis)
+	transactionId := ksuid.New().String()
+	err = client.OpenTransaction(dataTransactionClient, sessionId, transactionId, grakn.Transaction_READ, metadata, infer, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
@@ -327,7 +326,8 @@ get $person;
 count;
 `
 
-	matchAggregateResponses, err := client.RunMatchAggregateQuery(dataTransactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
+	requestId := ksuid.New().String()
+	matchAggregateResponses, err := client.RunMatchAggregateQuery(dataTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not get database data: %v \r\n %w", query, err)
 	}
@@ -344,7 +344,8 @@ get $company;
 count;
 `
 
-	matchAggregateResponses, err = client.RunMatchAggregateQuery(dataTransactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
+	requestId = ksuid.New().String()
+	matchAggregateResponses, err = client.RunMatchAggregateQuery(dataTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not get database data: %w", err)
 	}
@@ -361,7 +362,8 @@ get $contract;
 count;
 `
 
-	matchAggregateResponses, err = client.RunMatchAggregateQuery(dataTransactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
+	requestId = ksuid.New().String()
+	matchAggregateResponses, err = client.RunMatchAggregateQuery(dataTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not get database data: %w", err)
 	}
@@ -378,7 +380,8 @@ get $call;
 count;
 `
 
-	matchAggregateResponses, err = client.RunMatchAggregateQuery(dataTransactionClient, transactionId, metadata, query, infer, explain, batchSize, latencyMillis)
+	requestId = ksuid.New().String()
+	matchAggregateResponses, err = client.RunMatchAggregateQuery(dataTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not get database data: %w", err)
 	}
