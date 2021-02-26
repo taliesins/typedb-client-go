@@ -165,6 +165,132 @@ func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, requestId st
 	return matchResponses, err
 }
 
+func RunMatchGroupQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchGroupResponses []*grakn.Query_MatchGroup_Res, err error) {
+	if batchSize == 0 {
+		batchSize = 2147483647
+	}
+
+	err = transactionClient.Send(&grakn.Transaction_Req{
+		Req: &grakn.Transaction_Req_QueryReq{
+			QueryReq: &grakn.Query_Req{
+				Req: &grakn.Query_Req_MatchGroupReq{
+					MatchGroupReq: &grakn.Query_MatchGroup_Req{
+						Query: query,
+					},
+				},
+				Options: &grakn.Options{
+					BatchSizeOpt: &grakn.Options_BatchSize{
+						BatchSize: batchSize,
+					},
+					ExplainOpt: &grakn.Options_Explain{
+						Explain: explain,
+					},
+				},
+			},
+		},
+		Metadata:      metadata,
+		Id:            requestId,
+		LatencyMillis: latencyMillis,
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("could not send query request: %w", err)
+	}
+
+	for {
+		transactionResponse, err := transactionClient.Recv()
+		if err != nil {
+			return nil, fmt.Errorf("could not receive query response: %w", err)
+		}
+
+		if transactionResponse.GetContinue() {
+			err = transactionClient.Send(&grakn.Transaction_Req{
+				Req: &grakn.Transaction_Req_Continue{
+					Continue: true,
+				},
+				Metadata:      metadata,
+				Id:            requestId,
+				LatencyMillis: latencyMillis,
+			})
+			if err != nil {
+				return nil, fmt.Errorf("could not send query request iterator: %w", err)
+			}
+		} else if transactionResponse.GetDone() {
+			break
+		} else {
+			queryResponse := transactionResponse.GetQueryRes()
+			if queryResponse != nil {
+				matchGroupResponse := queryResponse.GetMatchGroupRes()
+				matchGroupResponses = append(matchGroupResponses, matchGroupResponse)
+			}
+		}
+	}
+	return matchGroupResponses, err
+}
+
+func RunMatchGroupAggregateQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchGroupAggregateResponses []*grakn.Query_MatchGroupAggregate_Res, err error) {
+	if batchSize == 0 {
+		batchSize = 2147483647
+	}
+
+	err = transactionClient.Send(&grakn.Transaction_Req{
+		Req: &grakn.Transaction_Req_QueryReq{
+			QueryReq: &grakn.Query_Req{
+				Req: &grakn.Query_Req_MatchGroupAggregateReq{
+					MatchGroupAggregateReq: &grakn.Query_MatchGroupAggregate_Req{
+						Query: query,
+					},
+				},
+				Options: &grakn.Options{
+					BatchSizeOpt: &grakn.Options_BatchSize{
+						BatchSize: batchSize,
+					},
+					ExplainOpt: &grakn.Options_Explain{
+						Explain: explain,
+					},
+				},
+			},
+		},
+		Metadata:      metadata,
+		Id:            requestId,
+		LatencyMillis: latencyMillis,
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("could not send query request: %w", err)
+	}
+
+	for {
+		transactionResponse, err := transactionClient.Recv()
+		if err != nil {
+			return nil, fmt.Errorf("could not receive query response: %w", err)
+		}
+
+		if transactionResponse.GetContinue() {
+			err = transactionClient.Send(&grakn.Transaction_Req{
+				Req: &grakn.Transaction_Req_Continue{
+					Continue: true,
+				},
+				Metadata:      metadata,
+				Id:            requestId,
+				LatencyMillis: latencyMillis,
+			})
+			if err != nil {
+				return nil, fmt.Errorf("could not send query request iterator: %w", err)
+			}
+		} else if transactionResponse.GetDone() {
+			break
+		} else {
+			queryResponse := transactionResponse.GetQueryRes()
+			if queryResponse != nil {
+				matchGroupAggregateResponse := queryResponse.GetMatchGroupAggregateRes()
+				matchGroupAggregateResponses = append(matchGroupAggregateResponses, matchGroupAggregateResponse)
+			}
+		}
+	}
+	return matchGroupAggregateResponses, err
+}
+
 func RunMatchAggregateQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchAggregateResponses []*grakn.Query_MatchAggregate_Res, err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
