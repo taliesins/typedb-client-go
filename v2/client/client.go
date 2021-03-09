@@ -101,6 +101,42 @@ func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, requestId s
 	return err
 }
 
+func RunDeleteQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (err error) {
+	if batchSize == 0 {
+		batchSize = 2147483647
+	}
+
+	err = transactionClient.Send(&grakn.Transaction_Req{
+		Req: &grakn.Transaction_Req_QueryReq{
+			QueryReq: &grakn.Query_Req{
+				Req: &grakn.Query_Req_DeleteReq{
+					DeleteReq: &grakn.Query_Delete_Req{
+						Query: query,
+					},
+				},
+				Options: &grakn.Options{
+					BatchSizeOpt: &grakn.Options_BatchSize{
+						BatchSize: batchSize,
+					},
+					ExplainOpt: &grakn.Options_Explain{
+						Explain: explain,
+					},
+				},
+			},
+		},
+		Metadata:      metadata,
+		Id:            requestId,
+		LatencyMillis: latencyMillis,
+	})
+
+	_, err = transactionClient.Recv()
+	if err != nil {
+		return fmt.Errorf("could not receive query response: %w", err)
+	}
+
+	return err
+}
+
 func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchResponses []*grakn.Query_Match_Res, err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
