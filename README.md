@@ -35,5 +35,7 @@ protoc --go_out=. v1/protobuf/*.proto
 protoc --go_grpc_out=. v1/protobuf/*.proto
 
 protoc --go_out=. v2/protobuf/*.proto
+protoc --go_out=. v2/protobuf/cluster/*.proto
 protoc --go_grpc_out=. v2/protobuf/*.proto
+protoc --go_grpc_out=. v2/protobuf/cluster/*.proto
 ```
