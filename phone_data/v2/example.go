@@ -3,13 +3,14 @@ package v2
 import (
 	"context"
 	"fmt"
-	"github.com/segmentio/ksuid"
-	"github.com/taliesins/client-go/phone_data"
-	"github.com/taliesins/client-go/v2/client"
-	grakn "github.com/taliesins/client-go/v2/grakn_protocol"
-	"google.golang.org/grpc"
 	"log"
 	"time"
+
+	"github.com/segmentio/ksuid"
+	"github.com/taliesins/typedb-client-go/phone_data"
+	"github.com/taliesins/typedb-client-go/v2/client"
+	grakn "github.com/taliesins/typedb-client-go/v2/grakn_protocol"
+	"google.golang.org/grpc"
 )
 
 func Run() {
@@ -56,8 +57,7 @@ func Run() {
 }
 
 func SetupDatabase(ctx context.Context, graknClient grakn.GraknClient, databaseName string) (err error) {
-	databaseAllResult, err := graknClient.DatabaseAll(ctx, &grakn.Database_All_Req{
-	})
+	databaseAllResult, err := graknClient.DatabaseAll(ctx, &grakn.Database_All_Req{})
 
 	if err != nil {
 		return fmt.Errorf("could not list databases: %w", err)
@@ -95,8 +95,7 @@ func SetupDatabase(ctx context.Context, graknClient grakn.GraknClient, databaseN
 	}
 	log.Printf("database %s created", databaseName)
 
-	databaseAllResult, err = graknClient.DatabaseAll(ctx, &grakn.Database_All_Req{
-	})
+	databaseAllResult, err = graknClient.DatabaseAll(ctx, &grakn.Database_All_Req{})
 
 	if err != nil {
 		return fmt.Errorf("could not list databases: %v", err)
@@ -140,7 +139,7 @@ func ExecuteSchema(graknClient grakn.GraknClient, ctx context.Context, databaseN
 	return err
 }
 
-func ExecuteData(graknClient grakn.GraknClient, ctx context.Context, databaseName string, metadata map[string]string) (err error){
+func ExecuteData(graknClient grakn.GraknClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
 	latencyMillis := int32(100)
 
 	dataSessionOpenResult, err := graknClient.SessionOpen(ctx, &grakn.Session_Open_Req{
@@ -154,7 +153,7 @@ func ExecuteData(graknClient grakn.GraknClient, ctx context.Context, databaseNam
 		log.Printf("Opened session: %v", dataSessionOpenResult.SessionId)
 	}
 
-	err = CreateTestDatabaseData(graknClient, ctx, 	dataSessionOpenResult.SessionId, metadata, latencyMillis)
+	err = CreateTestDatabaseData(graknClient, ctx, dataSessionOpenResult.SessionId, metadata, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not create data: %w", err)
 	}

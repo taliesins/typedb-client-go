@@ -17,38 +17,40 @@
 
 syntax = "proto3";
 
-option go_package = "./v2/grakn_protocol_cluster;grakn_protocol_cluster";
-option java_package = "grakn.protocol.cluster";
-option java_outer_classname = "DatabaseProto";
+option go_package = "./v2/grakn_protocol;grakn_protocol";
+option java_package = "grakn.protocol";
+option java_outer_classname = "ClusterDatabaseProto";
 
-package grakn.protocol.cluster;
+package grakn.protocol;
 
-message Database {
+message ClusterDatabaseManager {
+
+    message Get {
+        message Req {
+            string name = 1;
+        }
+        message Res {
+            ClusterDatabase database = 1;
+        }
+    }
+
+    message All {
+        message Req {}
+        message Res {
+            repeated ClusterDatabase databases = 1;
+        }
+    }
+}
+
+message ClusterDatabase {
+
     string name = 1;
     repeated Replica replicas = 2;
 
     message Replica {
         string address = 1;
         bool primary = 2;
-        bool preferred_secondary = 3;
+        bool preferred = 3;
         int64 term = 4;
-    }
-
-    message Get {
-        message Req {
-            string name = 1;
-        }
-
-        message Res {
-            Database database = 1;
-        }
-    }
-
-    message All {
-        message Req {}
-
-        message Res {
-            repeated Database databases = 1;
-        }
     }
 }

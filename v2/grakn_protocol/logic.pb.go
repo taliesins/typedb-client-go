@@ -19,7 +19,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0
 // 	protoc        v3.14.0
-// source: v2/protobuf/logic.proto
+// source: v2/protobuf/common/logic.proto
 
 package grakn_protocol
 
@@ -51,7 +51,7 @@ type LogicManager struct {
 func (x *LogicManager) Reset() {
 	*x = LogicManager{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[0]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -64,7 +64,7 @@ func (x *LogicManager) String() string {
 func (*LogicManager) ProtoMessage() {}
 
 func (x *LogicManager) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[0]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -77,7 +77,7 @@ func (x *LogicManager) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager.ProtoReflect.Descriptor instead.
 func (*LogicManager) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0}
 }
 
 type Rule struct {
@@ -93,7 +93,7 @@ type Rule struct {
 func (x *Rule) Reset() {
 	*x = Rule{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[1]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -106,7 +106,7 @@ func (x *Rule) String() string {
 func (*Rule) ProtoMessage() {}
 
 func (x *Rule) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[1]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119,7 +119,7 @@ func (x *Rule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule.ProtoReflect.Descriptor instead.
 func (*Rule) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{1}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Rule) GetLabel() string {
@@ -143,6 +143,77 @@ func (x *Rule) GetThen() string {
 	return ""
 }
 
+type Explanation struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Rule       *Rule                           `protobuf:"bytes,1,opt,name=rule,proto3" json:"rule,omitempty"`
+	VarMapping map[string]*Explanation_VarList `protobuf:"bytes,2,rep,name=var_mapping,json=varMapping,proto3" json:"var_mapping,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Condition  *ConceptMap                     `protobuf:"bytes,3,opt,name=condition,proto3" json:"condition,omitempty"`
+	Conclusion *ConceptMap                     `protobuf:"bytes,4,opt,name=conclusion,proto3" json:"conclusion,omitempty"`
+}
+
+func (x *Explanation) Reset() {
+	*x = Explanation{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Explanation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Explanation) ProtoMessage() {}
+
+func (x *Explanation) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Explanation.ProtoReflect.Descriptor instead.
+func (*Explanation) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Explanation) GetRule() *Rule {
+	if x != nil {
+		return x.Rule
+	}
+	return nil
+}
+
+func (x *Explanation) GetVarMapping() map[string]*Explanation_VarList {
+	if x != nil {
+		return x.VarMapping
+	}
+	return nil
+}
+
+func (x *Explanation) GetCondition() *ConceptMap {
+	if x != nil {
+		return x.Condition
+	}
+	return nil
+}
+
+func (x *Explanation) GetConclusion() *ConceptMap {
+	if x != nil {
+		return x.Conclusion
+	}
+	return nil
+}
+
 type LogicManager_Req struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -158,7 +229,7 @@ type LogicManager_Req struct {
 func (x *LogicManager_Req) Reset() {
 	*x = LogicManager_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[2]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -171,7 +242,7 @@ func (x *LogicManager_Req) String() string {
 func (*LogicManager_Req) ProtoMessage() {}
 
 func (x *LogicManager_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[2]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -184,7 +255,7 @@ func (x *LogicManager_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager_Req.ProtoReflect.Descriptor instead.
 func (*LogicManager_Req) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 0}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 0}
 }
 
 func (m *LogicManager_Req) GetReq() isLogicManager_Req_Req {
@@ -245,14 +316,13 @@ type LogicManager_Res struct {
 	// Types that are assignable to Res:
 	//	*LogicManager_Res_GetRuleRes
 	//	*LogicManager_Res_PutRuleRes
-	//	*LogicManager_Res_GetRulesRes
 	Res isLogicManager_Res_Res `protobuf_oneof:"res"`
 }
 
 func (x *LogicManager_Res) Reset() {
 	*x = LogicManager_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[3]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -265,7 +335,7 @@ func (x *LogicManager_Res) String() string {
 func (*LogicManager_Res) ProtoMessage() {}
 
 func (x *LogicManager_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[3]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -278,7 +348,7 @@ func (x *LogicManager_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager_Res.ProtoReflect.Descriptor instead.
 func (*LogicManager_Res) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 1}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 1}
 }
 
 func (m *LogicManager_Res) GetRes() isLogicManager_Res_Res {
@@ -302,13 +372,6 @@ func (x *LogicManager_Res) GetPutRuleRes() *LogicManager_PutRule_Res {
 	return nil
 }
 
-func (x *LogicManager_Res) GetGetRulesRes() *LogicManager_GetRules_Res {
-	if x, ok := x.GetRes().(*LogicManager_Res_GetRulesRes); ok {
-		return x.GetRulesRes
-	}
-	return nil
-}
-
 type isLogicManager_Res_Res interface {
 	isLogicManager_Res_Res()
 }
@@ -321,15 +384,56 @@ type LogicManager_Res_PutRuleRes struct {
 	PutRuleRes *LogicManager_PutRule_Res `protobuf:"bytes,2,opt,name=put_rule_res,json=putRuleRes,proto3,oneof"`
 }
 
-type LogicManager_Res_GetRulesRes struct {
-	GetRulesRes *LogicManager_GetRules_Res `protobuf:"bytes,3,opt,name=get_rules_res,json=getRulesRes,proto3,oneof"`
-}
-
 func (*LogicManager_Res_GetRuleRes) isLogicManager_Res_Res() {}
 
 func (*LogicManager_Res_PutRuleRes) isLogicManager_Res_Res() {}
 
-func (*LogicManager_Res_GetRulesRes) isLogicManager_Res_Res() {}
+type LogicManager_ResPart struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	GetRulesResPart *LogicManager_GetRules_ResPart `protobuf:"bytes,1,opt,name=get_rules_res_part,json=getRulesResPart,proto3" json:"get_rules_res_part,omitempty"`
+}
+
+func (x *LogicManager_ResPart) Reset() {
+	*x = LogicManager_ResPart{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LogicManager_ResPart) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LogicManager_ResPart) ProtoMessage() {}
+
+func (x *LogicManager_ResPart) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LogicManager_ResPart.ProtoReflect.Descriptor instead.
+func (*LogicManager_ResPart) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 2}
+}
+
+func (x *LogicManager_ResPart) GetGetRulesResPart() *LogicManager_GetRules_ResPart {
+	if x != nil {
+		return x.GetRulesResPart
+	}
+	return nil
+}
 
 type LogicManager_GetRule struct {
 	state         protoimpl.MessageState
@@ -340,7 +444,7 @@ type LogicManager_GetRule struct {
 func (x *LogicManager_GetRule) Reset() {
 	*x = LogicManager_GetRule{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[4]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -353,7 +457,7 @@ func (x *LogicManager_GetRule) String() string {
 func (*LogicManager_GetRule) ProtoMessage() {}
 
 func (x *LogicManager_GetRule) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[4]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -366,7 +470,7 @@ func (x *LogicManager_GetRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager_GetRule.ProtoReflect.Descriptor instead.
 func (*LogicManager_GetRule) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 2}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 3}
 }
 
 type LogicManager_PutRule struct {
@@ -378,7 +482,7 @@ type LogicManager_PutRule struct {
 func (x *LogicManager_PutRule) Reset() {
 	*x = LogicManager_PutRule{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[5]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -391,7 +495,7 @@ func (x *LogicManager_PutRule) String() string {
 func (*LogicManager_PutRule) ProtoMessage() {}
 
 func (x *LogicManager_PutRule) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[5]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -404,7 +508,7 @@ func (x *LogicManager_PutRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager_PutRule.ProtoReflect.Descriptor instead.
 func (*LogicManager_PutRule) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 3}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 4}
 }
 
 type LogicManager_GetRules struct {
@@ -416,7 +520,7 @@ type LogicManager_GetRules struct {
 func (x *LogicManager_GetRules) Reset() {
 	*x = LogicManager_GetRules{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[6]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -429,7 +533,7 @@ func (x *LogicManager_GetRules) String() string {
 func (*LogicManager_GetRules) ProtoMessage() {}
 
 func (x *LogicManager_GetRules) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[6]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -442,7 +546,7 @@ func (x *LogicManager_GetRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager_GetRules.ProtoReflect.Descriptor instead.
 func (*LogicManager_GetRules) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 4}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 5}
 }
 
 type LogicManager_GetRule_Req struct {
@@ -456,7 +560,7 @@ type LogicManager_GetRule_Req struct {
 func (x *LogicManager_GetRule_Req) Reset() {
 	*x = LogicManager_GetRule_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[7]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -469,7 +573,7 @@ func (x *LogicManager_GetRule_Req) String() string {
 func (*LogicManager_GetRule_Req) ProtoMessage() {}
 
 func (x *LogicManager_GetRule_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[7]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -482,7 +586,7 @@ func (x *LogicManager_GetRule_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager_GetRule_Req.ProtoReflect.Descriptor instead.
 func (*LogicManager_GetRule_Req) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 2, 0}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 3, 0}
 }
 
 func (x *LogicManager_GetRule_Req) GetLabel() string {
@@ -505,7 +609,7 @@ type LogicManager_GetRule_Res struct {
 func (x *LogicManager_GetRule_Res) Reset() {
 	*x = LogicManager_GetRule_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[8]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -518,7 +622,7 @@ func (x *LogicManager_GetRule_Res) String() string {
 func (*LogicManager_GetRule_Res) ProtoMessage() {}
 
 func (x *LogicManager_GetRule_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[8]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -531,7 +635,7 @@ func (x *LogicManager_GetRule_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager_GetRule_Res.ProtoReflect.Descriptor instead.
 func (*LogicManager_GetRule_Res) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 2, 1}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 3, 1}
 }
 
 func (m *LogicManager_GetRule_Res) GetRes() isLogicManager_GetRule_Res_Res {
@@ -571,7 +675,7 @@ type LogicManager_PutRule_Req struct {
 func (x *LogicManager_PutRule_Req) Reset() {
 	*x = LogicManager_PutRule_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[9]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -584,7 +688,7 @@ func (x *LogicManager_PutRule_Req) String() string {
 func (*LogicManager_PutRule_Req) ProtoMessage() {}
 
 func (x *LogicManager_PutRule_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[9]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -597,7 +701,7 @@ func (x *LogicManager_PutRule_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager_PutRule_Req.ProtoReflect.Descriptor instead.
 func (*LogicManager_PutRule_Req) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 3, 0}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 4, 0}
 }
 
 func (x *LogicManager_PutRule_Req) GetLabel() string {
@@ -632,7 +736,7 @@ type LogicManager_PutRule_Res struct {
 func (x *LogicManager_PutRule_Res) Reset() {
 	*x = LogicManager_PutRule_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[10]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -645,7 +749,7 @@ func (x *LogicManager_PutRule_Res) String() string {
 func (*LogicManager_PutRule_Res) ProtoMessage() {}
 
 func (x *LogicManager_PutRule_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[10]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -658,7 +762,7 @@ func (x *LogicManager_PutRule_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager_PutRule_Res.ProtoReflect.Descriptor instead.
 func (*LogicManager_PutRule_Res) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 3, 1}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 4, 1}
 }
 
 func (x *LogicManager_PutRule_Res) GetRule() *Rule {
@@ -677,7 +781,7 @@ type LogicManager_GetRules_Req struct {
 func (x *LogicManager_GetRules_Req) Reset() {
 	*x = LogicManager_GetRules_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[11]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -690,7 +794,7 @@ func (x *LogicManager_GetRules_Req) String() string {
 func (*LogicManager_GetRules_Req) ProtoMessage() {}
 
 func (x *LogicManager_GetRules_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[11]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -703,10 +807,10 @@ func (x *LogicManager_GetRules_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogicManager_GetRules_Req.ProtoReflect.Descriptor instead.
 func (*LogicManager_GetRules_Req) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 4, 0}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 5, 0}
 }
 
-type LogicManager_GetRules_Res struct {
+type LogicManager_GetRules_ResPart struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -714,23 +818,23 @@ type LogicManager_GetRules_Res struct {
 	Rules []*Rule `protobuf:"bytes,1,rep,name=rules,proto3" json:"rules,omitempty"`
 }
 
-func (x *LogicManager_GetRules_Res) Reset() {
-	*x = LogicManager_GetRules_Res{}
+func (x *LogicManager_GetRules_ResPart) Reset() {
+	*x = LogicManager_GetRules_ResPart{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[12]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *LogicManager_GetRules_Res) String() string {
+func (x *LogicManager_GetRules_ResPart) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LogicManager_GetRules_Res) ProtoMessage() {}
+func (*LogicManager_GetRules_ResPart) ProtoMessage() {}
 
-func (x *LogicManager_GetRules_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[12]
+func (x *LogicManager_GetRules_ResPart) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -741,12 +845,12 @@ func (x *LogicManager_GetRules_Res) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LogicManager_GetRules_Res.ProtoReflect.Descriptor instead.
-func (*LogicManager_GetRules_Res) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{0, 4, 1}
+// Deprecated: Use LogicManager_GetRules_ResPart.ProtoReflect.Descriptor instead.
+func (*LogicManager_GetRules_ResPart) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{0, 5, 1}
 }
 
-func (x *LogicManager_GetRules_Res) GetRules() []*Rule {
+func (x *LogicManager_GetRules_ResPart) GetRules() []*Rule {
 	if x != nil {
 		return x.Rules
 	}
@@ -768,7 +872,7 @@ type Rule_Req struct {
 func (x *Rule_Req) Reset() {
 	*x = Rule_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[13]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -781,7 +885,7 @@ func (x *Rule_Req) String() string {
 func (*Rule_Req) ProtoMessage() {}
 
 func (x *Rule_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[13]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -794,7 +898,7 @@ func (x *Rule_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule_Req.ProtoReflect.Descriptor instead.
 func (*Rule_Req) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{1, 0}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{1, 0}
 }
 
 func (x *Rule_Req) GetLabel() string {
@@ -855,7 +959,7 @@ type Rule_Res struct {
 func (x *Rule_Res) Reset() {
 	*x = Rule_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[14]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -868,7 +972,7 @@ func (x *Rule_Res) String() string {
 func (*Rule_Res) ProtoMessage() {}
 
 func (x *Rule_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[14]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -881,7 +985,7 @@ func (x *Rule_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule_Res.ProtoReflect.Descriptor instead.
 func (*Rule_Res) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{1, 1}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{1, 1}
 }
 
 func (m *Rule_Res) GetRes() isRule_Res_Res {
@@ -930,7 +1034,7 @@ type Rule_Delete struct {
 func (x *Rule_Delete) Reset() {
 	*x = Rule_Delete{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[15]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -943,7 +1047,7 @@ func (x *Rule_Delete) String() string {
 func (*Rule_Delete) ProtoMessage() {}
 
 func (x *Rule_Delete) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[15]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -956,7 +1060,7 @@ func (x *Rule_Delete) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule_Delete.ProtoReflect.Descriptor instead.
 func (*Rule_Delete) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{1, 2}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{1, 2}
 }
 
 type Rule_SetLabel struct {
@@ -968,7 +1072,7 @@ type Rule_SetLabel struct {
 func (x *Rule_SetLabel) Reset() {
 	*x = Rule_SetLabel{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[16]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -981,7 +1085,7 @@ func (x *Rule_SetLabel) String() string {
 func (*Rule_SetLabel) ProtoMessage() {}
 
 func (x *Rule_SetLabel) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[16]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -994,7 +1098,7 @@ func (x *Rule_SetLabel) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule_SetLabel.ProtoReflect.Descriptor instead.
 func (*Rule_SetLabel) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{1, 3}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{1, 3}
 }
 
 type Rule_Delete_Req struct {
@@ -1006,7 +1110,7 @@ type Rule_Delete_Req struct {
 func (x *Rule_Delete_Req) Reset() {
 	*x = Rule_Delete_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[17]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1019,7 +1123,7 @@ func (x *Rule_Delete_Req) String() string {
 func (*Rule_Delete_Req) ProtoMessage() {}
 
 func (x *Rule_Delete_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[17]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1032,7 +1136,7 @@ func (x *Rule_Delete_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule_Delete_Req.ProtoReflect.Descriptor instead.
 func (*Rule_Delete_Req) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{1, 2, 0}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{1, 2, 0}
 }
 
 type Rule_Delete_Res struct {
@@ -1044,7 +1148,7 @@ type Rule_Delete_Res struct {
 func (x *Rule_Delete_Res) Reset() {
 	*x = Rule_Delete_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[18]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1057,7 +1161,7 @@ func (x *Rule_Delete_Res) String() string {
 func (*Rule_Delete_Res) ProtoMessage() {}
 
 func (x *Rule_Delete_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[18]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1070,7 +1174,7 @@ func (x *Rule_Delete_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule_Delete_Res.ProtoReflect.Descriptor instead.
 func (*Rule_Delete_Res) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{1, 2, 1}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{1, 2, 1}
 }
 
 type Rule_SetLabel_Req struct {
@@ -1084,7 +1188,7 @@ type Rule_SetLabel_Req struct {
 func (x *Rule_SetLabel_Req) Reset() {
 	*x = Rule_SetLabel_Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[19]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1097,7 +1201,7 @@ func (x *Rule_SetLabel_Req) String() string {
 func (*Rule_SetLabel_Req) ProtoMessage() {}
 
 func (x *Rule_SetLabel_Req) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[19]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1110,7 +1214,7 @@ func (x *Rule_SetLabel_Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule_SetLabel_Req.ProtoReflect.Descriptor instead.
 func (*Rule_SetLabel_Req) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{1, 3, 0}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{1, 3, 0}
 }
 
 func (x *Rule_SetLabel_Req) GetLabel() string {
@@ -1129,7 +1233,7 @@ type Rule_SetLabel_Res struct {
 func (x *Rule_SetLabel_Res) Reset() {
 	*x = Rule_SetLabel_Res{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_v2_protobuf_logic_proto_msgTypes[20]
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1142,7 +1246,7 @@ func (x *Rule_SetLabel_Res) String() string {
 func (*Rule_SetLabel_Res) ProtoMessage() {}
 
 func (x *Rule_SetLabel_Res) ProtoReflect() protoreflect.Message {
-	mi := &file_v2_protobuf_logic_proto_msgTypes[20]
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1155,169 +1259,255 @@ func (x *Rule_SetLabel_Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule_SetLabel_Res.ProtoReflect.Descriptor instead.
 func (*Rule_SetLabel_Res) Descriptor() ([]byte, []int) {
-	return file_v2_protobuf_logic_proto_rawDescGZIP(), []int{1, 3, 1}
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{1, 3, 1}
 }
 
-var File_v2_protobuf_logic_proto protoreflect.FileDescriptor
+type Explanation_VarList struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
 
-var file_v2_protobuf_logic_proto_rawDesc = []byte{
-	0x0a, 0x17, 0x76, 0x32, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x6c, 0x6f,
-	0x67, 0x69, 0x63, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67, 0x72, 0x61, 0x6b, 0x6e,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x22, 0xaf, 0x06, 0x0a, 0x0c, 0x4c, 0x6f,
-	0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x1a, 0xf9, 0x01, 0x0a, 0x03, 0x52,
-	0x65, 0x71, 0x12, 0x4c, 0x0a, 0x0c, 0x67, 0x65, 0x74, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x72,
-	0x65, 0x71, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x4d,
-	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x2e, 0x52,
-	0x65, 0x71, 0x48, 0x00, 0x52, 0x0a, 0x67, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x71,
-	0x12, 0x4c, 0x0a, 0x0c, 0x70, 0x75, 0x74, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x72, 0x65, 0x71,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e,
-	0x61, 0x67, 0x65, 0x72, 0x2e, 0x50, 0x75, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x2e, 0x52, 0x65, 0x71,
-	0x48, 0x00, 0x52, 0x0a, 0x70, 0x75, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x12, 0x4f,
-	0x0a, 0x0d, 0x67, 0x65, 0x74, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x73, 0x5f, 0x72, 0x65, 0x71, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x29, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61,
-	0x67, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x2e, 0x52, 0x65, 0x71,
-	0x48, 0x00, 0x52, 0x0b, 0x67, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x71, 0x42,
-	0x05, 0x0a, 0x03, 0x72, 0x65, 0x71, 0x1a, 0xf9, 0x01, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x4c,
-	0x0a, 0x0c, 0x67, 0x65, 0x74, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67,
-	0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00,
-	0x52, 0x0a, 0x67, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x12, 0x4c, 0x0a, 0x0c,
-	0x70, 0x75, 0x74, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x28, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x63, 0x6f, 0x6c, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
-	0x2e, 0x50, 0x75, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0a,
-	0x70, 0x75, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x12, 0x4f, 0x0a, 0x0d, 0x67, 0x65,
-	0x74, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x73, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x29, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63,
-	0x6f, 0x6c, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e,
-	0x47, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0b,
-	0x67, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x73, 0x42, 0x05, 0x0a, 0x03, 0x72,
-	0x65, 0x73, 0x1a, 0x60, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x1a, 0x1b, 0x0a,
-	0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x1a, 0x38, 0x0a, 0x03, 0x52, 0x65,
-	0x73, 0x12, 0x2a, 0x0a, 0x04, 0x72, 0x75, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x14, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c,
-	0x2e, 0x52, 0x75, 0x6c, 0x65, 0x48, 0x00, 0x52, 0x04, 0x72, 0x75, 0x6c, 0x65, 0x42, 0x05, 0x0a,
-	0x03, 0x72, 0x65, 0x73, 0x1a, 0x7f, 0x0a, 0x07, 0x50, 0x75, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x1a,
-	0x43, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x12, 0x12, 0x0a, 0x04,
-	0x77, 0x68, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x77, 0x68, 0x65, 0x6e,
-	0x12, 0x12, 0x0a, 0x04, 0x74, 0x68, 0x65, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
-	0x74, 0x68, 0x65, 0x6e, 0x1a, 0x2f, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x28, 0x0a, 0x04, 0x72,
-	0x75, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x72, 0x61, 0x6b,
-	0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x52,
-	0x04, 0x72, 0x75, 0x6c, 0x65, 0x1a, 0x44, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65,
-	0x73, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x1a, 0x31, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12,
-	0x2a, 0x0a, 0x05, 0x72, 0x75, 0x6c, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14,
+	Vars []string `protobuf:"bytes,1,rep,name=vars,proto3" json:"vars,omitempty"`
+}
+
+func (x *Explanation_VarList) Reset() {
+	*x = Explanation_VarList{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_v2_protobuf_common_logic_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Explanation_VarList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Explanation_VarList) ProtoMessage() {}
+
+func (x *Explanation_VarList) ProtoReflect() protoreflect.Message {
+	mi := &file_v2_protobuf_common_logic_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Explanation_VarList.ProtoReflect.Descriptor instead.
+func (*Explanation_VarList) Descriptor() ([]byte, []int) {
+	return file_v2_protobuf_common_logic_proto_rawDescGZIP(), []int{2, 1}
+}
+
+func (x *Explanation_VarList) GetVars() []string {
+	if x != nil {
+		return x.Vars
+	}
+	return nil
+}
+
+var File_v2_protobuf_common_logic_proto protoreflect.FileDescriptor
+
+var file_v2_protobuf_common_logic_proto_rawDesc = []byte{
+	0x0a, 0x1e, 0x76, 0x32, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x63, 0x6f,
+	0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x6c, 0x6f, 0x67, 0x69, 0x63, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x12, 0x0e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c,
+	0x1a, 0x1f, 0x76, 0x32, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x63, 0x6f,
+	0x6d, 0x6d, 0x6f, 0x6e, 0x2f, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x22, 0xc9, 0x06, 0x0a, 0x0c, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x72, 0x1a, 0xf9, 0x01, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x4c, 0x0a, 0x0c, 0x67, 0x65,
+	0x74, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x72, 0x65, 0x71, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x28, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f,
+	0x6c, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x47,
+	0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x0a, 0x67, 0x65,
+	0x74, 0x52, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x12, 0x4c, 0x0a, 0x0c, 0x70, 0x75, 0x74, 0x5f,
+	0x72, 0x75, 0x6c, 0x65, 0x5f, 0x72, 0x65, 0x71, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28,
 	0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e,
-	0x52, 0x75, 0x6c, 0x65, 0x52, 0x05, 0x72, 0x75, 0x6c, 0x65, 0x73, 0x22, 0xfa, 0x03, 0x0a, 0x04,
-	0x52, 0x75, 0x6c, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x18, 0x01, 0x20,
+	0x4c, 0x6f, 0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x50, 0x75, 0x74,
+	0x52, 0x75, 0x6c, 0x65, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x0a, 0x70, 0x75, 0x74, 0x52,
+	0x75, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x12, 0x4f, 0x0a, 0x0d, 0x67, 0x65, 0x74, 0x5f, 0x72, 0x75,
+	0x6c, 0x65, 0x73, 0x5f, 0x72, 0x65, 0x71, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x29, 0x2e,
+	0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x4c,
+	0x6f, 0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52,
+	0x75, 0x6c, 0x65, 0x73, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x0b, 0x67, 0x65, 0x74, 0x52,
+	0x75, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x71, 0x42, 0x05, 0x0a, 0x03, 0x72, 0x65, 0x71, 0x1a, 0xa8,
+	0x01, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x4c, 0x0a, 0x0c, 0x67, 0x65, 0x74, 0x5f, 0x72, 0x75,
+	0x6c, 0x65, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x67,
+	0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x4c, 0x6f,
+	0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x75,
+	0x6c, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0a, 0x67, 0x65, 0x74, 0x52, 0x75, 0x6c,
+	0x65, 0x52, 0x65, 0x73, 0x12, 0x4c, 0x0a, 0x0c, 0x70, 0x75, 0x74, 0x5f, 0x72, 0x75, 0x6c, 0x65,
+	0x5f, 0x72, 0x65, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x67, 0x72, 0x61,
+	0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x4c, 0x6f, 0x67, 0x69,
+	0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x50, 0x75, 0x74, 0x52, 0x75, 0x6c, 0x65,
+	0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0a, 0x70, 0x75, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x52,
+	0x65, 0x73, 0x42, 0x05, 0x0a, 0x03, 0x72, 0x65, 0x73, 0x1a, 0x65, 0x0a, 0x07, 0x52, 0x65, 0x73,
+	0x50, 0x61, 0x72, 0x74, 0x12, 0x5a, 0x0a, 0x12, 0x67, 0x65, 0x74, 0x5f, 0x72, 0x75, 0x6c, 0x65,
+	0x73, 0x5f, 0x72, 0x65, 0x73, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x2d, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f,
+	0x6c, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x63, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x2e, 0x47,
+	0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x50, 0x61, 0x72, 0x74, 0x52,
+	0x0f, 0x67, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x73, 0x50, 0x61, 0x72, 0x74,
+	0x1a, 0x60, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x1a, 0x1b, 0x0a, 0x03, 0x52,
+	0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x1a, 0x38, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12,
+	0x2a, 0x0a, 0x04, 0x72, 0x75, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e,
+	0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52,
+	0x75, 0x6c, 0x65, 0x48, 0x00, 0x52, 0x04, 0x72, 0x75, 0x6c, 0x65, 0x42, 0x05, 0x0a, 0x03, 0x72,
+	0x65, 0x73, 0x1a, 0x7f, 0x0a, 0x07, 0x50, 0x75, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x1a, 0x43, 0x0a,
+	0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x77, 0x68,
 	0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x77, 0x68, 0x65, 0x6e, 0x12, 0x12,
 	0x0a, 0x04, 0x74, 0x68, 0x65, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x68,
-	0x65, 0x6e, 0x1a, 0xbf, 0x01, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x61,
-	0x62, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c,
-	0x12, 0x49, 0x0a, 0x0f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x5f,
-	0x72, 0x65, 0x71, 0x18, 0x64, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x67, 0x72, 0x61, 0x6b,
+	0x65, 0x6e, 0x1a, 0x2f, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x28, 0x0a, 0x04, 0x72, 0x75, 0x6c,
+	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x52, 0x04, 0x72,
+	0x75, 0x6c, 0x65, 0x1a, 0x48, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x1a,
+	0x05, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x1a, 0x35, 0x0a, 0x07, 0x52, 0x65, 0x73, 0x50, 0x61, 0x72,
+	0x74, 0x12, 0x2a, 0x0a, 0x05, 0x72, 0x75, 0x6c, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x14, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f,
+	0x6c, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x52, 0x05, 0x72, 0x75, 0x6c, 0x65, 0x73, 0x22, 0xfa, 0x03,
+	0x0a, 0x04, 0x52, 0x75, 0x6c, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x12, 0x12, 0x0a, 0x04,
+	0x77, 0x68, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x77, 0x68, 0x65, 0x6e,
+	0x12, 0x12, 0x0a, 0x04, 0x74, 0x68, 0x65, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
+	0x74, 0x68, 0x65, 0x6e, 0x1a, 0xbf, 0x01, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05,
+	0x6c, 0x61, 0x62, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x61, 0x62,
+	0x65, 0x6c, 0x12, 0x49, 0x0a, 0x0f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x64, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x5f, 0x72, 0x65, 0x71, 0x18, 0x64, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x67, 0x72,
+	0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52, 0x75, 0x6c,
+	0x65, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x0d,
+	0x72, 0x75, 0x6c, 0x65, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x12, 0x50, 0x0a,
+	0x12, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x73, 0x65, 0x74, 0x5f, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x5f,
+	0x72, 0x65, 0x71, 0x18, 0x65, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x67, 0x72, 0x61, 0x6b,
 	0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x2e,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x0d, 0x72, 0x75,
-	0x6c, 0x65, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x12, 0x50, 0x0a, 0x12, 0x72,
-	0x75, 0x6c, 0x65, 0x5f, 0x73, 0x65, 0x74, 0x5f, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x5f, 0x72, 0x65,
-	0x71, 0x18, 0x65, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x2e, 0x53, 0x65,
-	0x74, 0x4c, 0x61, 0x62, 0x65, 0x6c, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x0f, 0x72, 0x75,
-	0x6c, 0x65, 0x53, 0x65, 0x74, 0x4c, 0x61, 0x62, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x42, 0x05, 0x0a,
-	0x03, 0x72, 0x65, 0x71, 0x1a, 0xa9, 0x01, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x49, 0x0a, 0x0f,
-	0x72, 0x75, 0x6c, 0x65, 0x5f, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x72, 0x65, 0x73, 0x18,
-	0x64, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x2e, 0x44, 0x65, 0x6c, 0x65,
-	0x74, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0d, 0x72, 0x75, 0x6c, 0x65, 0x44, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x12, 0x50, 0x0a, 0x12, 0x72, 0x75, 0x6c, 0x65, 0x5f,
-	0x73, 0x65, 0x74, 0x5f, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x5f, 0x72, 0x65, 0x73, 0x18, 0x65, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x2e, 0x53, 0x65, 0x74, 0x4c, 0x61, 0x62,
-	0x65, 0x6c, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0f, 0x72, 0x75, 0x6c, 0x65, 0x53, 0x65,
-	0x74, 0x4c, 0x61, 0x62, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x42, 0x05, 0x0a, 0x03, 0x72, 0x65, 0x73,
-	0x1a, 0x16, 0x0a, 0x06, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65,
-	0x71, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x1a, 0x2e, 0x0a, 0x08, 0x53, 0x65, 0x74, 0x4c,
-	0x61, 0x62, 0x65, 0x6c, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x6c,
-	0x61, 0x62, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x61, 0x62, 0x65,
-	0x6c, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x42, 0x40, 0x0a, 0x0e, 0x67, 0x72, 0x61, 0x6b,
-	0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x42, 0x0a, 0x4c, 0x6f, 0x67, 0x69,
-	0x63, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x22, 0x2e, 0x2f, 0x76, 0x32, 0x2f, 0x67, 0x72, 0x61,
-	0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x3b, 0x67, 0x72, 0x61, 0x6b,
-	0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x53, 0x65, 0x74, 0x4c, 0x61, 0x62, 0x65, 0x6c, 0x2e, 0x52, 0x65, 0x71, 0x48, 0x00, 0x52, 0x0f,
+	0x72, 0x75, 0x6c, 0x65, 0x53, 0x65, 0x74, 0x4c, 0x61, 0x62, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x42,
+	0x05, 0x0a, 0x03, 0x72, 0x65, 0x71, 0x1a, 0xa9, 0x01, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x12, 0x49,
+	0x0a, 0x0f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x72, 0x65,
+	0x73, 0x18, 0x64, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x2e, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0d, 0x72, 0x75, 0x6c, 0x65,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x12, 0x50, 0x0a, 0x12, 0x72, 0x75, 0x6c,
+	0x65, 0x5f, 0x73, 0x65, 0x74, 0x5f, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x5f, 0x72, 0x65, 0x73, 0x18,
+	0x65, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x2e, 0x53, 0x65, 0x74, 0x4c,
+	0x61, 0x62, 0x65, 0x6c, 0x2e, 0x52, 0x65, 0x73, 0x48, 0x00, 0x52, 0x0f, 0x72, 0x75, 0x6c, 0x65,
+	0x53, 0x65, 0x74, 0x4c, 0x61, 0x62, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x42, 0x05, 0x0a, 0x03, 0x72,
+	0x65, 0x73, 0x1a, 0x16, 0x0a, 0x06, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x1a, 0x05, 0x0a, 0x03,
+	0x52, 0x65, 0x71, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x1a, 0x2e, 0x0a, 0x08, 0x53, 0x65,
+	0x74, 0x4c, 0x61, 0x62, 0x65, 0x6c, 0x1a, 0x1b, 0x0a, 0x03, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a,
+	0x05, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x61,
+	0x62, 0x65, 0x6c, 0x1a, 0x05, 0x0a, 0x03, 0x52, 0x65, 0x73, 0x22, 0xfe, 0x02, 0x0a, 0x0b, 0x45,
+	0x78, 0x70, 0x6c, 0x61, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x28, 0x0a, 0x04, 0x72, 0x75,
+	0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x52, 0x04,
+	0x72, 0x75, 0x6c, 0x65, 0x12, 0x4c, 0x0a, 0x0b, 0x76, 0x61, 0x72, 0x5f, 0x6d, 0x61, 0x70, 0x70,
+	0x69, 0x6e, 0x67, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2b, 0x2e, 0x67, 0x72, 0x61, 0x6b,
+	0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x45, 0x78, 0x70, 0x6c, 0x61,
+	0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x56, 0x61, 0x72, 0x4d, 0x61, 0x70, 0x70, 0x69, 0x6e,
+	0x67, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x0a, 0x76, 0x61, 0x72, 0x4d, 0x61, 0x70, 0x70, 0x69,
+	0x6e, 0x67, 0x12, 0x38, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x43, 0x6f, 0x6e, 0x63, 0x65, 0x70, 0x74, 0x4d, 0x61,
+	0x70, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x3a, 0x0a, 0x0a,
+	0x63, 0x6f, 0x6e, 0x63, 0x6c, 0x75, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1a, 0x2e, 0x67, 0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f,
+	0x6c, 0x2e, 0x43, 0x6f, 0x6e, 0x63, 0x65, 0x70, 0x74, 0x4d, 0x61, 0x70, 0x52, 0x0a, 0x63, 0x6f,
+	0x6e, 0x63, 0x6c, 0x75, 0x73, 0x69, 0x6f, 0x6e, 0x1a, 0x62, 0x0a, 0x0f, 0x56, 0x61, 0x72, 0x4d,
+	0x61, 0x70, 0x70, 0x69, 0x6e, 0x67, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b,
+	0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x39, 0x0a,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x23, 0x2e, 0x67,
+	0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x2e, 0x45, 0x78,
+	0x70, 0x6c, 0x61, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x56, 0x61, 0x72, 0x4c, 0x69, 0x73,
+	0x74, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x1d, 0x0a, 0x07,
+	0x56, 0x61, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x76, 0x61, 0x72, 0x73, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x76, 0x61, 0x72, 0x73, 0x42, 0x40, 0x0a, 0x0e, 0x67,
+	0x72, 0x61, 0x6b, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x42, 0x0a, 0x4c,
+	0x6f, 0x67, 0x69, 0x63, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x22, 0x2e, 0x2f, 0x76, 0x32, 0x2f,
+	0x67, 0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x3b, 0x67,
+	0x72, 0x61, 0x6b, 0x6e, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_v2_protobuf_logic_proto_rawDescOnce sync.Once
-	file_v2_protobuf_logic_proto_rawDescData = file_v2_protobuf_logic_proto_rawDesc
+	file_v2_protobuf_common_logic_proto_rawDescOnce sync.Once
+	file_v2_protobuf_common_logic_proto_rawDescData = file_v2_protobuf_common_logic_proto_rawDesc
 )
 
-func file_v2_protobuf_logic_proto_rawDescGZIP() []byte {
-	file_v2_protobuf_logic_proto_rawDescOnce.Do(func() {
-		file_v2_protobuf_logic_proto_rawDescData = protoimpl.X.CompressGZIP(file_v2_protobuf_logic_proto_rawDescData)
+func file_v2_protobuf_common_logic_proto_rawDescGZIP() []byte {
+	file_v2_protobuf_common_logic_proto_rawDescOnce.Do(func() {
+		file_v2_protobuf_common_logic_proto_rawDescData = protoimpl.X.CompressGZIP(file_v2_protobuf_common_logic_proto_rawDescData)
 	})
-	return file_v2_protobuf_logic_proto_rawDescData
+	return file_v2_protobuf_common_logic_proto_rawDescData
 }
 
-var file_v2_protobuf_logic_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
-var file_v2_protobuf_logic_proto_goTypes = []interface{}{
-	(*LogicManager)(nil),              // 0: grakn.protocol.LogicManager
-	(*Rule)(nil),                      // 1: grakn.protocol.Rule
-	(*LogicManager_Req)(nil),          // 2: grakn.protocol.LogicManager.Req
-	(*LogicManager_Res)(nil),          // 3: grakn.protocol.LogicManager.Res
-	(*LogicManager_GetRule)(nil),      // 4: grakn.protocol.LogicManager.GetRule
-	(*LogicManager_PutRule)(nil),      // 5: grakn.protocol.LogicManager.PutRule
-	(*LogicManager_GetRules)(nil),     // 6: grakn.protocol.LogicManager.GetRules
-	(*LogicManager_GetRule_Req)(nil),  // 7: grakn.protocol.LogicManager.GetRule.Req
-	(*LogicManager_GetRule_Res)(nil),  // 8: grakn.protocol.LogicManager.GetRule.Res
-	(*LogicManager_PutRule_Req)(nil),  // 9: grakn.protocol.LogicManager.PutRule.Req
-	(*LogicManager_PutRule_Res)(nil),  // 10: grakn.protocol.LogicManager.PutRule.Res
-	(*LogicManager_GetRules_Req)(nil), // 11: grakn.protocol.LogicManager.GetRules.Req
-	(*LogicManager_GetRules_Res)(nil), // 12: grakn.protocol.LogicManager.GetRules.Res
-	(*Rule_Req)(nil),                  // 13: grakn.protocol.Rule.Req
-	(*Rule_Res)(nil),                  // 14: grakn.protocol.Rule.Res
-	(*Rule_Delete)(nil),               // 15: grakn.protocol.Rule.Delete
-	(*Rule_SetLabel)(nil),             // 16: grakn.protocol.Rule.SetLabel
-	(*Rule_Delete_Req)(nil),           // 17: grakn.protocol.Rule.Delete.Req
-	(*Rule_Delete_Res)(nil),           // 18: grakn.protocol.Rule.Delete.Res
-	(*Rule_SetLabel_Req)(nil),         // 19: grakn.protocol.Rule.SetLabel.Req
-	(*Rule_SetLabel_Res)(nil),         // 20: grakn.protocol.Rule.SetLabel.Res
+var file_v2_protobuf_common_logic_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_v2_protobuf_common_logic_proto_goTypes = []interface{}{
+	(*LogicManager)(nil),                  // 0: grakn.protocol.LogicManager
+	(*Rule)(nil),                          // 1: grakn.protocol.Rule
+	(*Explanation)(nil),                   // 2: grakn.protocol.Explanation
+	(*LogicManager_Req)(nil),              // 3: grakn.protocol.LogicManager.Req
+	(*LogicManager_Res)(nil),              // 4: grakn.protocol.LogicManager.Res
+	(*LogicManager_ResPart)(nil),          // 5: grakn.protocol.LogicManager.ResPart
+	(*LogicManager_GetRule)(nil),          // 6: grakn.protocol.LogicManager.GetRule
+	(*LogicManager_PutRule)(nil),          // 7: grakn.protocol.LogicManager.PutRule
+	(*LogicManager_GetRules)(nil),         // 8: grakn.protocol.LogicManager.GetRules
+	(*LogicManager_GetRule_Req)(nil),      // 9: grakn.protocol.LogicManager.GetRule.Req
+	(*LogicManager_GetRule_Res)(nil),      // 10: grakn.protocol.LogicManager.GetRule.Res
+	(*LogicManager_PutRule_Req)(nil),      // 11: grakn.protocol.LogicManager.PutRule.Req
+	(*LogicManager_PutRule_Res)(nil),      // 12: grakn.protocol.LogicManager.PutRule.Res
+	(*LogicManager_GetRules_Req)(nil),     // 13: grakn.protocol.LogicManager.GetRules.Req
+	(*LogicManager_GetRules_ResPart)(nil), // 14: grakn.protocol.LogicManager.GetRules.ResPart
+	(*Rule_Req)(nil),                      // 15: grakn.protocol.Rule.Req
+	(*Rule_Res)(nil),                      // 16: grakn.protocol.Rule.Res
+	(*Rule_Delete)(nil),                   // 17: grakn.protocol.Rule.Delete
+	(*Rule_SetLabel)(nil),                 // 18: grakn.protocol.Rule.SetLabel
+	(*Rule_Delete_Req)(nil),               // 19: grakn.protocol.Rule.Delete.Req
+	(*Rule_Delete_Res)(nil),               // 20: grakn.protocol.Rule.Delete.Res
+	(*Rule_SetLabel_Req)(nil),             // 21: grakn.protocol.Rule.SetLabel.Req
+	(*Rule_SetLabel_Res)(nil),             // 22: grakn.protocol.Rule.SetLabel.Res
+	nil,                                   // 23: grakn.protocol.Explanation.VarMappingEntry
+	(*Explanation_VarList)(nil),           // 24: grakn.protocol.Explanation.VarList
+	(*ConceptMap)(nil),                    // 25: grakn.protocol.ConceptMap
 }
-var file_v2_protobuf_logic_proto_depIdxs = []int32{
-	7,  // 0: grakn.protocol.LogicManager.Req.get_rule_req:type_name -> grakn.protocol.LogicManager.GetRule.Req
-	9,  // 1: grakn.protocol.LogicManager.Req.put_rule_req:type_name -> grakn.protocol.LogicManager.PutRule.Req
-	11, // 2: grakn.protocol.LogicManager.Req.get_rules_req:type_name -> grakn.protocol.LogicManager.GetRules.Req
-	8,  // 3: grakn.protocol.LogicManager.Res.get_rule_res:type_name -> grakn.protocol.LogicManager.GetRule.Res
-	10, // 4: grakn.protocol.LogicManager.Res.put_rule_res:type_name -> grakn.protocol.LogicManager.PutRule.Res
-	12, // 5: grakn.protocol.LogicManager.Res.get_rules_res:type_name -> grakn.protocol.LogicManager.GetRules.Res
-	1,  // 6: grakn.protocol.LogicManager.GetRule.Res.rule:type_name -> grakn.protocol.Rule
-	1,  // 7: grakn.protocol.LogicManager.PutRule.Res.rule:type_name -> grakn.protocol.Rule
-	1,  // 8: grakn.protocol.LogicManager.GetRules.Res.rules:type_name -> grakn.protocol.Rule
-	17, // 9: grakn.protocol.Rule.Req.rule_delete_req:type_name -> grakn.protocol.Rule.Delete.Req
-	19, // 10: grakn.protocol.Rule.Req.rule_set_label_req:type_name -> grakn.protocol.Rule.SetLabel.Req
-	18, // 11: grakn.protocol.Rule.Res.rule_delete_res:type_name -> grakn.protocol.Rule.Delete.Res
-	20, // 12: grakn.protocol.Rule.Res.rule_set_label_res:type_name -> grakn.protocol.Rule.SetLabel.Res
-	13, // [13:13] is the sub-list for method output_type
-	13, // [13:13] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+var file_v2_protobuf_common_logic_proto_depIdxs = []int32{
+	1,  // 0: grakn.protocol.Explanation.rule:type_name -> grakn.protocol.Rule
+	23, // 1: grakn.protocol.Explanation.var_mapping:type_name -> grakn.protocol.Explanation.VarMappingEntry
+	25, // 2: grakn.protocol.Explanation.condition:type_name -> grakn.protocol.ConceptMap
+	25, // 3: grakn.protocol.Explanation.conclusion:type_name -> grakn.protocol.ConceptMap
+	9,  // 4: grakn.protocol.LogicManager.Req.get_rule_req:type_name -> grakn.protocol.LogicManager.GetRule.Req
+	11, // 5: grakn.protocol.LogicManager.Req.put_rule_req:type_name -> grakn.protocol.LogicManager.PutRule.Req
+	13, // 6: grakn.protocol.LogicManager.Req.get_rules_req:type_name -> grakn.protocol.LogicManager.GetRules.Req
+	10, // 7: grakn.protocol.LogicManager.Res.get_rule_res:type_name -> grakn.protocol.LogicManager.GetRule.Res
+	12, // 8: grakn.protocol.LogicManager.Res.put_rule_res:type_name -> grakn.protocol.LogicManager.PutRule.Res
+	14, // 9: grakn.protocol.LogicManager.ResPart.get_rules_res_part:type_name -> grakn.protocol.LogicManager.GetRules.ResPart
+	1,  // 10: grakn.protocol.LogicManager.GetRule.Res.rule:type_name -> grakn.protocol.Rule
+	1,  // 11: grakn.protocol.LogicManager.PutRule.Res.rule:type_name -> grakn.protocol.Rule
+	1,  // 12: grakn.protocol.LogicManager.GetRules.ResPart.rules:type_name -> grakn.protocol.Rule
+	19, // 13: grakn.protocol.Rule.Req.rule_delete_req:type_name -> grakn.protocol.Rule.Delete.Req
+	21, // 14: grakn.protocol.Rule.Req.rule_set_label_req:type_name -> grakn.protocol.Rule.SetLabel.Req
+	20, // 15: grakn.protocol.Rule.Res.rule_delete_res:type_name -> grakn.protocol.Rule.Delete.Res
+	22, // 16: grakn.protocol.Rule.Res.rule_set_label_res:type_name -> grakn.protocol.Rule.SetLabel.Res
+	24, // 17: grakn.protocol.Explanation.VarMappingEntry.value:type_name -> grakn.protocol.Explanation.VarList
+	18, // [18:18] is the sub-list for method output_type
+	18, // [18:18] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
-func init() { file_v2_protobuf_logic_proto_init() }
-func file_v2_protobuf_logic_proto_init() {
-	if File_v2_protobuf_logic_proto != nil {
+func init() { file_v2_protobuf_common_logic_proto_init() }
+func file_v2_protobuf_common_logic_proto_init() {
+	if File_v2_protobuf_common_logic_proto != nil {
 		return
 	}
+	file_v2_protobuf_common_answer_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_v2_protobuf_logic_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager); i {
 			case 0:
 				return &v.state
@@ -1329,7 +1519,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Rule); i {
 			case 0:
 				return &v.state
@@ -1341,7 +1531,19 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Explanation); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_common_logic_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager_Req); i {
 			case 0:
 				return &v.state
@@ -1353,7 +1555,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager_Res); i {
 			case 0:
 				return &v.state
@@ -1365,7 +1567,19 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LogicManager_ResPart); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_v2_protobuf_common_logic_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager_GetRule); i {
 			case 0:
 				return &v.state
@@ -1377,7 +1591,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager_PutRule); i {
 			case 0:
 				return &v.state
@@ -1389,7 +1603,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager_GetRules); i {
 			case 0:
 				return &v.state
@@ -1401,7 +1615,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager_GetRule_Req); i {
 			case 0:
 				return &v.state
@@ -1413,7 +1627,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager_GetRule_Res); i {
 			case 0:
 				return &v.state
@@ -1425,7 +1639,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager_PutRule_Req); i {
 			case 0:
 				return &v.state
@@ -1437,7 +1651,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager_PutRule_Res); i {
 			case 0:
 				return &v.state
@@ -1449,7 +1663,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogicManager_GetRules_Req); i {
 			case 0:
 				return &v.state
@@ -1461,8 +1675,8 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*LogicManager_GetRules_Res); i {
+		file_v2_protobuf_common_logic_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LogicManager_GetRules_ResPart); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1473,7 +1687,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Rule_Req); i {
 			case 0:
 				return &v.state
@@ -1485,7 +1699,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Rule_Res); i {
 			case 0:
 				return &v.state
@@ -1497,7 +1711,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Rule_Delete); i {
 			case 0:
 				return &v.state
@@ -1509,7 +1723,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Rule_SetLabel); i {
 			case 0:
 				return &v.state
@@ -1521,7 +1735,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Rule_Delete_Req); i {
 			case 0:
 				return &v.state
@@ -1533,7 +1747,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Rule_Delete_Res); i {
 			case 0:
 				return &v.state
@@ -1545,7 +1759,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Rule_SetLabel_Req); i {
 			case 0:
 				return &v.state
@@ -1557,7 +1771,7 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
-		file_v2_protobuf_logic_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_v2_protobuf_common_logic_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Rule_SetLabel_Res); i {
 			case 0:
 				return &v.state
@@ -1569,25 +1783,36 @@ func file_v2_protobuf_logic_proto_init() {
 				return nil
 			}
 		}
+		file_v2_protobuf_common_logic_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Explanation_VarList); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
-	file_v2_protobuf_logic_proto_msgTypes[2].OneofWrappers = []interface{}{
+	file_v2_protobuf_common_logic_proto_msgTypes[3].OneofWrappers = []interface{}{
 		(*LogicManager_Req_GetRuleReq)(nil),
 		(*LogicManager_Req_PutRuleReq)(nil),
 		(*LogicManager_Req_GetRulesReq)(nil),
 	}
-	file_v2_protobuf_logic_proto_msgTypes[3].OneofWrappers = []interface{}{
+	file_v2_protobuf_common_logic_proto_msgTypes[4].OneofWrappers = []interface{}{
 		(*LogicManager_Res_GetRuleRes)(nil),
 		(*LogicManager_Res_PutRuleRes)(nil),
-		(*LogicManager_Res_GetRulesRes)(nil),
 	}
-	file_v2_protobuf_logic_proto_msgTypes[8].OneofWrappers = []interface{}{
+	file_v2_protobuf_common_logic_proto_msgTypes[10].OneofWrappers = []interface{}{
 		(*LogicManager_GetRule_Res_Rule)(nil),
 	}
-	file_v2_protobuf_logic_proto_msgTypes[13].OneofWrappers = []interface{}{
+	file_v2_protobuf_common_logic_proto_msgTypes[15].OneofWrappers = []interface{}{
 		(*Rule_Req_RuleDeleteReq)(nil),
 		(*Rule_Req_RuleSetLabelReq)(nil),
 	}
-	file_v2_protobuf_logic_proto_msgTypes[14].OneofWrappers = []interface{}{
+	file_v2_protobuf_common_logic_proto_msgTypes[16].OneofWrappers = []interface{}{
 		(*Rule_Res_RuleDeleteRes)(nil),
 		(*Rule_Res_RuleSetLabelRes)(nil),
 	}
@@ -1595,18 +1820,18 @@ func file_v2_protobuf_logic_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_v2_protobuf_logic_proto_rawDesc,
+			RawDescriptor: file_v2_protobuf_common_logic_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_v2_protobuf_logic_proto_goTypes,
-		DependencyIndexes: file_v2_protobuf_logic_proto_depIdxs,
-		MessageInfos:      file_v2_protobuf_logic_proto_msgTypes,
+		GoTypes:           file_v2_protobuf_common_logic_proto_goTypes,
+		DependencyIndexes: file_v2_protobuf_common_logic_proto_depIdxs,
+		MessageInfos:      file_v2_protobuf_common_logic_proto_msgTypes,
 	}.Build()
-	File_v2_protobuf_logic_proto = out.File
-	file_v2_protobuf_logic_proto_rawDesc = nil
-	file_v2_protobuf_logic_proto_goTypes = nil
-	file_v2_protobuf_logic_proto_depIdxs = nil
+	File_v2_protobuf_common_logic_proto = out.File
+	file_v2_protobuf_common_logic_proto_rawDesc = nil
+	file_v2_protobuf_common_logic_proto_goTypes = nil
+	file_v2_protobuf_common_logic_proto_depIdxs = nil
 }

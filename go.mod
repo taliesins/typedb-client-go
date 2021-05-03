@@ -1,4 +1,4 @@
-module github.com/taliesins/client-go
+module github.com/taliesins/typedb-client-go
 
 go 1.15
 

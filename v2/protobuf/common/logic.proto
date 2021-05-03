@@ -21,6 +21,9 @@ option go_package = "./v2/grakn_protocol;grakn_protocol";
 option java_package = "grakn.protocol";
 option java_outer_classname = "LogicProto";
 
+import "v2/protobuf/common/answer.proto";
+
+
 package grakn.protocol;
 
 message LogicManager {
@@ -37,8 +40,11 @@ message LogicManager {
         oneof res {
             GetRule.Res get_rule_res = 1;
             PutRule.Res put_rule_res = 2;
-            GetRules.Res get_rules_res = 3;
         }
+    }
+
+    message ResPart {
+        GetRules.ResPart get_rules_res_part = 1;
     }
 
     message GetRule {
@@ -65,7 +71,7 @@ message LogicManager {
 
     message GetRules {
         message Req {}
-        message Res {
+        message ResPart {
             repeated Rule rules = 1;
         }
     }
@@ -102,5 +108,16 @@ message Rule {
             string label = 1;
         }
         message Res {}
+    }
+}
+
+message Explanation {
+    Rule rule = 1;
+    map<string, VarList> var_mapping = 2;
+    ConceptMap condition = 3;
+    ConceptMap conclusion = 4;
+
+    message VarList {
+        repeated string vars = 1;
     }
 }

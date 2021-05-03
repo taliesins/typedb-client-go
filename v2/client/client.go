@@ -2,10 +2,11 @@ package client
 
 import (
 	"fmt"
-	grakn "github.com/taliesins/client-go/v2/grakn_protocol"
+
+	grakn "github.com/taliesins/typedb-client-go/v2/grakn_protocol"
 )
 
-func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (insertResponses []*grakn.Query_Insert_Res, err error){
+func RunInsertQuery(transactionClient grakn.GraknCore_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (insertResponses []*grakn.Query_Insert_Res, err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -13,7 +14,7 @@ func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, requestId s
 	err = transactionClient.Send(&grakn.Transaction_Req{
 		Req: &grakn.Transaction_Req_QueryReq{
 			QueryReq: &grakn.Query_Req{
-				Req: &grakn.Query_Req_InsertReq {
+				Req: &grakn.Query_Req_InsertReq{
 					InsertReq: &grakn.Query_Insert_Req{
 						Query: query,
 					},
@@ -51,7 +52,7 @@ func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, requestId s
 			if err != nil {
 				return nil, fmt.Errorf("could not send query request iterator: %w", err)
 			}
-		}  else if transactionResponse.GetDone()  {
+		} else if transactionResponse.GetDone() {
 			break
 		} else {
 			queryResponse := transactionResponse.GetQueryRes()
@@ -65,7 +66,7 @@ func RunInsertQuery(transactionClient grakn.Grakn_TransactionClient, requestId s
 	return insertResponses, err
 }
 
-func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (err error){
+func RunDefineQuery(transactionClient grakn.GraknCore_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -73,8 +74,8 @@ func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, requestId s
 	err = transactionClient.Send(&grakn.Transaction_Req{
 		Req: &grakn.Transaction_Req_QueryReq{
 			QueryReq: &grakn.Query_Req{
-				Req: &grakn.Query_Req_DefineReq {
-					DefineReq: &grakn.Query_Define_Req {
+				Req: &grakn.Query_Req_DefineReq{
+					DefineReq: &grakn.Query_Define_Req{
 						Query: query,
 					},
 				},
@@ -101,7 +102,7 @@ func RunDefineQuery(transactionClient grakn.Grakn_TransactionClient, requestId s
 	return err
 }
 
-func RunDeleteQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (err error) {
+func RunDeleteQuery(transactionClient grakn.GraknCore_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -137,14 +138,14 @@ func RunDeleteQuery(transactionClient grakn.Grakn_TransactionClient, requestId s
 	return err
 }
 
-func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchResponses []*grakn.Query_Match_Res, err error) {
+func RunMatchQuery(transactionClient grakn.GraknCore_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchResponses []*grakn.Query_Match_Res, err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
 
 	err = transactionClient.Send(&grakn.Transaction_Req{
 		Req: &grakn.Transaction_Req_QueryReq{
-			QueryReq: &grakn.Query_Req {
+			QueryReq: &grakn.Query_Req{
 				Req: &grakn.Query_Req_MatchReq{
 					MatchReq: &grakn.Query_Match_Req{
 						Query: query,
@@ -187,7 +188,7 @@ func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, requestId st
 			if err != nil {
 				return nil, fmt.Errorf("could not send query request iterator: %w", err)
 			}
-		}  else if transactionResponse.GetDone()  {
+		} else if transactionResponse.GetDone() {
 			break
 		} else {
 			queryResponse := transactionResponse.GetQueryRes()
@@ -201,7 +202,7 @@ func RunMatchQuery(transactionClient grakn.Grakn_TransactionClient, requestId st
 	return matchResponses, err
 }
 
-func RunMatchGroupQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchGroupResponses []*grakn.Query_MatchGroup_Res, err error) {
+func RunMatchGroupQuery(transactionClient grakn.GraknCore_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchGroupResponses []*grakn.Query_MatchGroup_Res, err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -264,7 +265,7 @@ func RunMatchGroupQuery(transactionClient grakn.Grakn_TransactionClient, request
 	return matchGroupResponses, err
 }
 
-func RunMatchGroupAggregateQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchGroupAggregateResponses []*grakn.Query_MatchGroupAggregate_Res, err error) {
+func RunMatchGroupAggregateQuery(transactionClient grakn.GraknCore_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchGroupAggregateResponses []*grakn.Query_MatchGroupAggregate_Res, err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -327,7 +328,7 @@ func RunMatchGroupAggregateQuery(transactionClient grakn.Grakn_TransactionClient
 	return matchGroupAggregateResponses, err
 }
 
-func RunMatchAggregateQuery(transactionClient grakn.Grakn_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchAggregateResponses []*grakn.Query_MatchAggregate_Res, err error) {
+func RunMatchAggregateQuery(transactionClient grakn.GraknCore_TransactionClient, requestId string, metadata map[string]string, query string, explain bool, batchSize int32, latencyMillis int32) (matchAggregateResponses []*grakn.Query_MatchAggregate_Res, err error) {
 	if batchSize == 0 {
 		batchSize = 2147483647
 	}
@@ -373,14 +374,14 @@ func RunMatchAggregateQuery(transactionClient grakn.Grakn_TransactionClient, req
 	return matchAggregateResponses, err
 }
 
-func OpenTransaction(transactionClient grakn.Grakn_TransactionClient, sessionId []byte, transactionId string, transactionType grakn.Transaction_Type, metadata map[string]string, infer bool, latencyMillis int32) (err error) {
+func OpenTransaction(transactionClient grakn.GraknCore_TransactionClient, sessionId []byte, transactionId string, transactionType grakn.Transaction_Type, metadata map[string]string, infer bool, latencyMillis int32) (err error) {
 	err = transactionClient.Send(&grakn.Transaction_Req{
 		Req: &grakn.Transaction_Req_OpenReq{
 			OpenReq: &grakn.Transaction_Open_Req{
 				SessionId: sessionId,
 				Type:      transactionType,
 				Options: &grakn.Options{
-					InferOpt:&grakn.Options_Infer{
+					InferOpt: &grakn.Options_Infer{
 						Infer: infer,
 					},
 				},
@@ -401,11 +402,10 @@ func OpenTransaction(transactionClient grakn.Grakn_TransactionClient, sessionId 
 	return err
 }
 
-func CommitTransaction(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, latencyMillis int32) (err error) {
+func CommitTransaction(transactionClient grakn.GraknCore_TransactionClient, transactionId string, metadata map[string]string, latencyMillis int32) (err error) {
 	err = transactionClient.Send(&grakn.Transaction_Req{
 		Req: &grakn.Transaction_Req_CommitReq{
-			CommitReq: &grakn.Transaction_Commit_Req{
-			},
+			CommitReq: &grakn.Transaction_Commit_Req{},
 		},
 		Metadata:      metadata,
 		Id:            transactionId,
@@ -422,11 +422,10 @@ func CommitTransaction(transactionClient grakn.Grakn_TransactionClient, transact
 	return err
 }
 
-func RollbackTransaction(transactionClient grakn.Grakn_TransactionClient, transactionId string, metadata map[string]string, latencyMillis int32) (err error) {
+func RollbackTransaction(transactionClient grakn.GraknCore_TransactionClient, transactionId string, metadata map[string]string, latencyMillis int32) (err error) {
 	err = transactionClient.Send(&grakn.Transaction_Req{
 		Req: &grakn.Transaction_Req_RollbackReq{
-			RollbackReq: &grakn.Transaction_Rollback_Req{
-			},
+			RollbackReq: &grakn.Transaction_Rollback_Req{},
 		},
 		Metadata:      metadata,
 		Id:            transactionId,
@@ -443,7 +442,7 @@ func RollbackTransaction(transactionClient grakn.Grakn_TransactionClient, transa
 	return err
 }
 
-func CloseTransaction(transactionClient grakn.Grakn_TransactionClient) (err error) {
+func CloseTransaction(transactionClient grakn.GraknCore_TransactionClient) (err error) {
 	err = transactionClient.CloseSend()
 	if err != nil {
 		return fmt.Errorf("could not close send: %w", err)

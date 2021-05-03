@@ -3,12 +3,13 @@ package v1
 import (
 	"context"
 	"fmt"
-	"github.com/taliesins/client-go/phone_data"
-	"github.com/taliesins/client-go/v1/client"
-	grakn "github.com/taliesins/client-go/v1/grakn_protocol"
-	"google.golang.org/grpc"
 	"log"
 	"time"
+
+	"github.com/taliesins/typedb-client-go/phone_data"
+	"github.com/taliesins/typedb-client-go/v1/client"
+	grakn "github.com/taliesins/typedb-client-go/v1/grakn_protocol"
+	"google.golang.org/grpc"
 )
 
 func Run() {
@@ -121,7 +122,7 @@ func SetupDatabase(keyspaceServiceClient grakn.KeyspaceServiceClient, ctx contex
 		_, err = keyspaceServiceClient.Delete(ctx, &grakn.Keyspace_Delete_Req{
 			Username: username,
 			Password: password,
-			Name: databaseName,
+			Name:     databaseName,
 		})
 
 		if err != nil {
@@ -151,7 +152,7 @@ func CreateTestDatabaseSchema(sessionClient grakn.SessionServiceClient, ctx cont
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
-	_, err =  client.RunQuery(transactionClient, metadata, query, infer, explain, batchSize)
+	_, err = client.RunQuery(transactionClient, metadata, query, infer, explain, batchSize)
 	if err != nil {
 		return fmt.Errorf("could not get phone calls gsql: %w", err)
 	}
