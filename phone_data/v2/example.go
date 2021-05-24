@@ -3,14 +3,13 @@ package v2
 import (
 	"context"
 	"fmt"
-	"log"
-	"time"
-
-	"github.com/segmentio/ksuid"
 	"github.com/taliesins/typedb-client-go/phone_data"
-	"github.com/taliesins/typedb-client-go/v2/client"
+	"github.com/taliesins/typedb-client-go/v2/client/query"
+	"github.com/taliesins/typedb-client-go/v2/client/transaction"
 	grakn "github.com/taliesins/typedb-client-go/v2/grakn_protocol"
 	"google.golang.org/grpc"
+	"log"
+	"time"
 )
 
 func Run() {
@@ -28,7 +27,7 @@ func Run() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 
-	graknClient := grakn.NewGraknClient(conn)
+	graknClient := grakn.NewGraknCoreClient(conn)
 
 	databaseName := "test"
 	err = SetupDatabase(ctx, graknClient, databaseName)
@@ -56,15 +55,15 @@ func Run() {
 	}
 }
 
-func SetupDatabase(ctx context.Context, graknClient grakn.GraknClient, databaseName string) (err error) {
-	databaseAllResult, err := graknClient.DatabaseAll(ctx, &grakn.Database_All_Req{})
+func SetupDatabase(ctx context.Context, graknClient grakn.GraknCoreClient, databaseName string) (err error) {
+	databaseAllResult, err := graknClient.DatabasesAll(ctx, &grakn.CoreDatabaseManager_All_Req{})
 
 	if err != nil {
 		return fmt.Errorf("could not list databases: %w", err)
 	}
 	log.Printf("databases: %v", databaseAllResult.Names)
 
-	databaseContainsResult, err := graknClient.DatabaseContains(ctx, &grakn.Database_Contains_Req{
+	databaseContainsResult, err := graknClient.DatabasesContains(ctx, &grakn.CoreDatabaseManager_Contains_Req{
 		Name: databaseName,
 	})
 	if err != nil {
@@ -74,7 +73,7 @@ func SetupDatabase(ctx context.Context, graknClient grakn.GraknClient, databaseN
 	if databaseContainsResult.Contains {
 		log.Printf("database %v exists", databaseName)
 
-		_, err = graknClient.DatabaseDelete(ctx, &grakn.Database_Delete_Req{
+		_, err = graknClient.DatabaseDelete(ctx, &grakn.CoreDatabase_Delete_Req{
 			Name: databaseName,
 		})
 
@@ -86,7 +85,7 @@ func SetupDatabase(ctx context.Context, graknClient grakn.GraknClient, databaseN
 		log.Printf("database %v does not exist", databaseName)
 	}
 
-	_, err = graknClient.DatabaseCreate(ctx, &grakn.Database_Create_Req{
+	_, err = graknClient.DatabasesCreate(ctx, &grakn.CoreDatabaseManager_Create_Req{
 		Name: databaseName,
 	})
 
@@ -95,7 +94,7 @@ func SetupDatabase(ctx context.Context, graknClient grakn.GraknClient, databaseN
 	}
 	log.Printf("database %s created", databaseName)
 
-	databaseAllResult, err = graknClient.DatabaseAll(ctx, &grakn.Database_All_Req{})
+	databaseAllResult, err = graknClient.DatabasesAll(ctx, &grakn.CoreDatabaseManager_All_Req{})
 
 	if err != nil {
 		return fmt.Errorf("could not list databases: %v", err)
@@ -105,7 +104,7 @@ func SetupDatabase(ctx context.Context, graknClient grakn.GraknClient, databaseN
 	return err
 }
 
-func ExecuteSchema(graknClient grakn.GraknClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
+func ExecuteSchema(graknClient grakn.GraknCoreClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
 	latencyMillis := int32(100)
 
 	schemaSessionOpenResult, err := graknClient.SessionOpen(ctx, &grakn.Session_Open_Req{
@@ -139,7 +138,7 @@ func ExecuteSchema(graknClient grakn.GraknClient, ctx context.Context, databaseN
 	return err
 }
 
-func ExecuteData(graknClient grakn.GraknClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
+func ExecuteData(graknClient grakn.GraknCoreClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
 	latencyMillis := int32(100)
 
 	dataSessionOpenResult, err := graknClient.SessionOpen(ctx, &grakn.Session_Open_Req{
@@ -173,39 +172,48 @@ func ExecuteData(graknClient grakn.GraknClient, ctx context.Context, databaseNam
 	return err
 }
 
-func CreateTestDatabaseSchema(graknClient grakn.GraknClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
-	query, err := phone_data.GetPhoneCallsSchemaV2Gql()
+func CreateTestDatabaseSchema(graknClient grakn.GraknCoreClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+	gqlQuery, err := phone_data.GetPhoneCallsSchemaV2Gql()
 	if err != nil {
 		return fmt.Errorf("could not get phone calls gsql: %w", err)
 	}
 
-	infer := true
-	explain := true
-	batchSize := int32(0)
-
-	schemaTransactionClient, err := graknClient.Transaction(ctx)
+	transactionClient, err := graknClient.Transaction(ctx)
 	if err != nil {
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	transactionId := ksuid.New().String()
-	err = client.OpenTransaction(schemaTransactionClient, sessionId, transactionId, grakn.Transaction_WRITE, metadata, infer, latencyMillis)
+	options := &grakn.Options{
+		InferOpt: &grakn.Options_Infer{
+			Infer: true,
+		},
+		ExplainOpt: &grakn.Options_Explain{
+			Explain: true,
+		},
+		BatchSizeOpt: &grakn.Options_BatchSize{
+			BatchSize: int32(0),
+		},
+	}
+	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
+
+	err = transactionManager.OpenTransaction(sessionId, grakn.Transaction_WRITE, options, latencyMillis, metadata)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
-	requestId := ksuid.New().String()
-	err = client.RunDefineQuery(schemaTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
+	queryManager := query.NewQueryManager(transactionClient, ctx)
+
+	err = queryManager.Define(gqlQuery, options, metadata)
 	if err != nil {
 		return fmt.Errorf("could not run define query: %w", err)
 	}
 
-	err = client.CommitTransaction(schemaTransactionClient, transactionId, metadata, latencyMillis)
+	err = transactionManager.CommitTransaction(metadata)
 	if err != nil {
 		return fmt.Errorf("could not commit transaction: %w", err)
 	}
 
-	err = client.CloseTransaction(schemaTransactionClient)
+	err = transactionManager.CloseTransaction()
 	if err != nil {
 		return fmt.Errorf("could not close transaction: %w", err)
 	}
@@ -213,41 +221,49 @@ func CreateTestDatabaseSchema(graknClient grakn.GraknClient, ctx context.Context
 	return err
 }
 
-func GetTestDatabaseSchema(graknClient grakn.GraknClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
-	query := `
+func GetTestDatabaseSchema(graknClient grakn.GraknCoreClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+	gqlQuery := `
 match 
 	$x sub thing; 
 get 
 	$x;
 `
 
-	infer := true
-	explain := true
-	batchSize := int32(0)
-
-	schemaTransactionClient, err := graknClient.Transaction(ctx)
+	transactionClient, err := graknClient.Transaction(ctx)
 	if err != nil {
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	transactionId := ksuid.New().String()
-	err = client.OpenTransaction(schemaTransactionClient, sessionId, transactionId, grakn.Transaction_READ, metadata, infer, latencyMillis)
+	options := &grakn.Options{
+		InferOpt: &grakn.Options_Infer{
+			Infer: true,
+		},
+		ExplainOpt: &grakn.Options_Explain{
+			Explain: true,
+		},
+		BatchSizeOpt: &grakn.Options_BatchSize{
+			BatchSize: int32(0),
+		},
+	}
+	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
+
+	err = transactionManager.OpenTransaction(sessionId, grakn.Transaction_READ, options, latencyMillis, metadata)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
-	requestId := ksuid.New().String()
-	matchResponses, err := client.RunMatchQuery(schemaTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
+	queryManager := query.NewQueryManager(transactionClient, ctx)
+
+	matchResponses, err := queryManager.Match(gqlQuery, options, metadata)
 	if err != nil {
-		return fmt.Errorf("could not get database schema: %w", err)
+		return fmt.Errorf("could not run match query: %w", err)
 	}
 
 	for _, matchResponse := range matchResponses {
-		answers := matchResponse.GetAnswers()
-		log.Printf("database schema: %v", answers)
+		log.Printf("database schema: %v", matchResponse)
 	}
 
-	err = client.CloseTransaction(schemaTransactionClient)
+	err = transactionManager.CloseTransaction()
 	if err != nil {
 		return fmt.Errorf("could not close transaction: %w", err)
 	}
@@ -255,12 +271,8 @@ get
 	return err
 }
 
-func CreateTestDatabaseData(graknClient grakn.GraknClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
-	infer := true
-	explain := true
-	batchSize := int32(0)
-
-	gql, err := phone_data.GetPhoneCallsDataGql()
+func CreateTestDatabaseData(graknClient grakn.GraknCoreClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+	gqlQueries, err := phone_data.GetPhoneCallsDataGql()
 	if err != nil {
 		return fmt.Errorf("could not get phone calls data gql: %w", err)
 	}
@@ -270,31 +282,43 @@ func CreateTestDatabaseData(graknClient grakn.GraknClient, ctx context.Context, 
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	transactionId := ksuid.New().String()
-	err = client.OpenTransaction(transactionClient, sessionId, transactionId, grakn.Transaction_WRITE, metadata, infer, latencyMillis)
+	options := &grakn.Options{
+		InferOpt: &grakn.Options_Infer{
+			Infer: true,
+		},
+		ExplainOpt: &grakn.Options_Explain{
+			Explain: true,
+		},
+		BatchSizeOpt: &grakn.Options_BatchSize{
+			BatchSize: int32(0),
+		},
+	}
+	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
+
+	err = transactionManager.OpenTransaction(sessionId, grakn.Transaction_WRITE, options, latencyMillis, metadata)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
-	for _, query := range gql {
-		requestId := ksuid.New().String()
-		insertResponses, err := client.RunInsertQuery(transactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
+	queryManager := query.NewQueryManager(transactionClient, ctx)
+
+	for _, gqlQuery := range gqlQueries {
+		insertResponses, err := queryManager.Insert(gqlQuery, options, metadata)
 		if err != nil {
 			return fmt.Errorf("could not insert phone calls data: %w", err)
 		}
 
 		for _, insertResponse := range insertResponses {
-			answers := insertResponse.GetAnswers()
-			log.Printf("inserted: %v", answers)
+			log.Printf("inserted: %v", insertResponse)
 		}
 	}
 
-	err = client.CommitTransaction(transactionClient, transactionId, metadata, latencyMillis)
+	err = transactionManager.CommitTransaction(metadata)
 	if err != nil {
 		return fmt.Errorf("could not commit transaction: %w", err)
 	}
 
-	err = client.CloseTransaction(transactionClient)
+	err = transactionManager.CloseTransaction()
 	if err != nil {
 		return fmt.Errorf("could not close transaction: %w", err)
 	}
@@ -302,95 +326,85 @@ func CreateTestDatabaseData(graknClient grakn.GraknClient, ctx context.Context, 
 	return err
 }
 
-func GetTestDatabaseData(graknClient grakn.GraknClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
-	infer := false
-	explain := false
-	batchSize := int32(0)
-
-	dataTransactionClient, err := graknClient.Transaction(ctx)
-	if err != nil {
-		return fmt.Errorf("could not create transaction client: %w", err)
-	}
-
-	transactionId := ksuid.New().String()
-	err = client.OpenTransaction(dataTransactionClient, sessionId, transactionId, grakn.Transaction_READ, metadata, infer, latencyMillis)
-	if err != nil {
-		return fmt.Errorf("could not open transaction: %w", err)
-	}
-
-	query := `
+func GetTestDatabaseData(graknClient grakn.GraknCoreClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+	gqlQuery := `
 match
 	$person isa person;
 get $person; 
 count;
 `
 
-	requestId := ksuid.New().String()
-	matchAggregateResponses, err := client.RunMatchAggregateQuery(dataTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
+	transactionClient, err := graknClient.Transaction(ctx)
 	if err != nil {
-		return fmt.Errorf("could not get database data: %v \r\n %w", query, err)
+		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	for _, matchResponse := range matchAggregateResponses {
-		answer := matchResponse.GetAnswer()
-		log.Printf("Number of people: %v", answer.GetLongValue())
+	options := &grakn.Options{
+		InferOpt: &grakn.Options_Infer{
+			Infer: true,
+		},
+		ExplainOpt: &grakn.Options_Explain{
+			Explain: true,
+		},
+		BatchSizeOpt: &grakn.Options_BatchSize{
+			BatchSize: int32(0),
+		},
+	}
+	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
+
+	err = transactionManager.OpenTransaction(sessionId, grakn.Transaction_READ, options, latencyMillis, metadata)
+	if err != nil {
+		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
-	query = `
+	queryManager := query.NewQueryManager(transactionClient, ctx)
+
+	matchAggregateResponses, err := queryManager.MatchAggregate(gqlQuery, options, metadata)
+	if err != nil {
+		return fmt.Errorf("could not get database data: %v \r\n %w", gqlQuery, err)
+	}
+	log.Printf("Number of people: %v", matchAggregateResponses.GetLongValue())
+
+
+	gqlQuery = `
 match
 	$company isa company;
 get $company; 
 count;
 `
-
-	requestId = ksuid.New().String()
-	matchAggregateResponses, err = client.RunMatchAggregateQuery(dataTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
+	matchAggregateResponses, err = queryManager.MatchAggregate(gqlQuery, options, metadata)
 	if err != nil {
-		return fmt.Errorf("could not get database data: %w", err)
+		return fmt.Errorf("could not get database data: %v \r\n %w", gqlQuery, err)
 	}
+	log.Printf("Number of companies: %v", matchAggregateResponses.GetLongValue())
 
-	for _, matchResponse := range matchAggregateResponses {
-		answer := matchResponse.GetAnswer()
-		log.Printf("Number of companies: %v", answer.GetLongValue())
-	}
-
-	query = `
+	gqlQuery = `
 match
 	$contract isa contract;
 get $contract; 
 count;
 `
 
-	requestId = ksuid.New().String()
-	matchAggregateResponses, err = client.RunMatchAggregateQuery(dataTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
+	matchAggregateResponses, err = queryManager.MatchAggregate(gqlQuery, options, metadata)
 	if err != nil {
-		return fmt.Errorf("could not get database data: %w", err)
+		return fmt.Errorf("could not get database data: %v \r\n %w", gqlQuery, err)
 	}
+	log.Printf("Number of contracts: %v", matchAggregateResponses.GetLongValue())
 
-	for _, matchResponse := range matchAggregateResponses {
-		answer := matchResponse.GetAnswer()
-		log.Printf("Number of contracts: %v", answer.GetLongValue())
-	}
-
-	query = `
+	gqlQuery = `
 match
 	$call isa call;
 get $call; 
 count;
 `
 
-	requestId = ksuid.New().String()
-	matchAggregateResponses, err = client.RunMatchAggregateQuery(dataTransactionClient, requestId, metadata, query, explain, batchSize, latencyMillis)
+	matchAggregateResponses, err = queryManager.MatchAggregate(gqlQuery, options, metadata)
 	if err != nil {
-		return fmt.Errorf("could not get database data: %w", err)
+		return fmt.Errorf("could not get database data: %v \r\n %w", gqlQuery, err)
 	}
+	log.Printf("Number of calls: %v", matchAggregateResponses.GetLongValue())
 
-	for _, matchResponse := range matchAggregateResponses {
-		answer := matchResponse.GetAnswer()
-		log.Printf("Number of calls: %v", answer.GetLongValue())
-	}
-
-	err = client.CloseTransaction(dataTransactionClient)
+	err = transactionManager.CloseTransaction()
 	if err != nil {
 		return fmt.Errorf("could not close transaction: %w", err)
 	}
