@@ -2,34 +2,34 @@ package entity_type
 
 import (
 	"github.com/taliesins/typedb-client-go/v2/client/common"
-	"github.com/taliesins/typedb-client-go/v2/grakn_protocol"
+	"github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 )
 
-func newTransactionRequest(req *grakn_protocol.Transaction_Req_TypeReq) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
+func newTransactionRequest(req *typedb_protocol.Transaction_Req_TypeReq) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
 		Req: req,
 	}
 }
 
-func newTypeRequest(label common.Label) *grakn_protocol.Type_Req {
-	builder := &grakn_protocol.Type_Req{
+func newTypeRequest(label common.Label) *typedb_protocol.Type_Req {
+	builder := &typedb_protocol.Type_Req{
 		Label: label.Name,
 		Scope: label.Scope,
 	}
 	return builder
 }
 
-func setEntityTypeCreateReq(typeReq *grakn_protocol.Type_Req, entityTypeCreateReq *grakn_protocol.EntityType_Create_Req) *grakn_protocol.Transaction_Req_TypeReq {
-	typeReq.Req = &grakn_protocol.Type_Req_EntityTypeCreateReq{
+func setEntityTypeCreateReq(typeReq *typedb_protocol.Type_Req, entityTypeCreateReq *typedb_protocol.EntityType_Create_Req) *typedb_protocol.Transaction_Req_TypeReq {
+	typeReq.Req = &typedb_protocol.Type_Req_EntityTypeCreateReq{
 		EntityTypeCreateReq: entityTypeCreateReq,
 	}
 
-	return &grakn_protocol.Transaction_Req_TypeReq{
+	return &typedb_protocol.Transaction_Req_TypeReq{
 		TypeReq: typeReq,
 	}
 }
 
-func CreateReq(label common.Label) *grakn_protocol.Transaction_Req {
+func CreateReq(label common.Label) *typedb_protocol.Transaction_Req {
 	return newTransactionRequest(setEntityTypeCreateReq(newTypeRequest(label),
-		&grakn_protocol.EntityType_Create_Req{}))
+		&typedb_protocol.EntityType_Create_Req{}))
 }

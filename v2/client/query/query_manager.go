@@ -6,7 +6,7 @@ import (
 	"github.com/segmentio/ksuid"
 	"github.com/taliesins/typedb-client-go/v2/client/common/rpc/request_builder/query_manager"
 	"github.com/taliesins/typedb-client-go/v2/client/common/rpc/request_builder/transaction"
-	grakn "github.com/taliesins/typedb-client-go/v2/grakn_protocol"
+	grakn "github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 )
 
 type QueryManager interface {
@@ -31,11 +31,11 @@ type QueryManagerAsync interface {
 }
 
 type queryManagerImpl struct {
-	TransactionClient grakn.GraknCore_TransactionClient
+	TransactionClient grakn.TypeDB_TransactionClient
 	Context context.Context
 }
 
-func NewQueryManager(transactionClient grakn.GraknCore_TransactionClient, ctx context.Context) *queryManagerImpl {
+func NewQueryManager(transactionClient grakn.TypeDB_TransactionClient, ctx context.Context) *queryManagerImpl {
 	return &queryManagerImpl{
 		TransactionClient: transactionClient,
 		Context: ctx,
@@ -429,7 +429,7 @@ func (q *queryManagerImpl) stream(ctx context.Context, req *grakn.Transaction_Re
 type cancelableStream struct {
 	ctx  context.Context
 	reqId []byte
-	transactionClient grakn.GraknCore_TransactionClient
+	transactionClient grakn.TypeDB_TransactionClient
 	data chan *grakn.Transaction_ResPart
 	err  error
 }
@@ -471,7 +471,7 @@ func (c *cancelableStream) begin() {
 	}
 }
 
-func newCancelableStream(ctx context.Context, reqId []byte, transactionClient grakn.GraknCore_TransactionClient) *cancelableStream {
+func newCancelableStream(ctx context.Context, reqId []byte, transactionClient grakn.TypeDB_TransactionClient) *cancelableStream {
 	c := &cancelableStream{
 		ctx:  ctx,
 		reqId: reqId,

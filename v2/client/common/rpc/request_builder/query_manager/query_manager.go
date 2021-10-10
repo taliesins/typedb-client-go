@@ -1,13 +1,13 @@
 package query_manager
 
-import "github.com/taliesins/typedb-client-go/v2/grakn_protocol"
+import "github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 
-func DefineReq(query string, options *grakn_protocol.Options) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_QueryManagerReq{
-			QueryManagerReq: &grakn_protocol.QueryManager_Req{
-				Req: &grakn_protocol.QueryManager_Req_DefineReq{
-					DefineReq: &grakn_protocol.QueryManager_Define_Req{
+func DefineReq(query string, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: &typedb_protocol.QueryManager_Req{
+				Req: &typedb_protocol.QueryManager_Req_DefineReq{
+					DefineReq: &typedb_protocol.QueryManager_Define_Req{
 						Query: query,
 					},
 				},
@@ -17,12 +17,12 @@ func DefineReq(query string, options *grakn_protocol.Options) *grakn_protocol.Tr
 	}
 }
 
-func UndefineReq(query string, options *grakn_protocol.Options) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_QueryManagerReq{
-			QueryManagerReq: &grakn_protocol.QueryManager_Req{
-				Req: &grakn_protocol.QueryManager_Req_UndefineReq{
-					UndefineReq: &grakn_protocol.QueryManager_Undefine_Req{
+func UndefineReq(query string, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: &typedb_protocol.QueryManager_Req{
+				Req: &typedb_protocol.QueryManager_Req_UndefineReq{
+					UndefineReq: &typedb_protocol.QueryManager_Undefine_Req{
 						Query: query,
 					},
 				},
@@ -32,12 +32,12 @@ func UndefineReq(query string, options *grakn_protocol.Options) *grakn_protocol.
 	}
 }
 
-func MatchReq(query string, options *grakn_protocol.Options) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_QueryManagerReq{
-			QueryManagerReq: &grakn_protocol.QueryManager_Req{
-				Req: &grakn_protocol.QueryManager_Req_MatchReq{
-					MatchReq: &grakn_protocol.QueryManager_Match_Req{
+func MatchReq(query string, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: &typedb_protocol.QueryManager_Req{
+				Req: &typedb_protocol.QueryManager_Req_MatchReq{
+					MatchReq: &typedb_protocol.QueryManager_Match_Req{
 						Query: query,
 					},
 				},
@@ -47,12 +47,12 @@ func MatchReq(query string, options *grakn_protocol.Options) *grakn_protocol.Tra
 	}
 }
 
-func MatchAggregateReq(query string, options *grakn_protocol.Options) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_QueryManagerReq{
-			QueryManagerReq: &grakn_protocol.QueryManager_Req{
-				Req: &grakn_protocol.QueryManager_Req_MatchAggregateReq{
-					MatchAggregateReq: &grakn_protocol.QueryManager_MatchAggregate_Req{
+func MatchAggregateReq(query string, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: &typedb_protocol.QueryManager_Req{
+				Req: &typedb_protocol.QueryManager_Req_MatchAggregateReq{
+					MatchAggregateReq: &typedb_protocol.QueryManager_MatchAggregate_Req{
 						Query: query,
 					},
 				},
@@ -62,12 +62,12 @@ func MatchAggregateReq(query string, options *grakn_protocol.Options) *grakn_pro
 	}
 }
 
-func MatchGroupReq(query string, options *grakn_protocol.Options) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_QueryManagerReq{
-			QueryManagerReq: &grakn_protocol.QueryManager_Req{
-				Req: &grakn_protocol.QueryManager_Req_MatchGroupReq{
-					MatchGroupReq: &grakn_protocol.QueryManager_MatchGroup_Req{
+func MatchGroupReq(query string, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: &typedb_protocol.QueryManager_Req{
+				Req: &typedb_protocol.QueryManager_Req_MatchGroupReq{
+					MatchGroupReq: &typedb_protocol.QueryManager_MatchGroup_Req{
 						Query: query,
 					},
 				},
@@ -77,12 +77,12 @@ func MatchGroupReq(query string, options *grakn_protocol.Options) *grakn_protoco
 	}
 }
 
-func MatchGroupAggregateReq(query string, options *grakn_protocol.Options) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_QueryManagerReq{
-			QueryManagerReq: &grakn_protocol.QueryManager_Req{
-				Req: &grakn_protocol.QueryManager_Req_MatchGroupAggregateReq{
-					MatchGroupAggregateReq: &grakn_protocol.QueryManager_MatchGroupAggregate_Req{
+func MatchGroupAggregateReq(query string, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: &typedb_protocol.QueryManager_Req{
+				Req: &typedb_protocol.QueryManager_Req_MatchGroupAggregateReq{
+					MatchGroupAggregateReq: &typedb_protocol.QueryManager_MatchGroupAggregate_Req{
 						Query: query,
 					},
 				},
@@ -92,12 +92,12 @@ func MatchGroupAggregateReq(query string, options *grakn_protocol.Options) *grak
 	}
 }
 
-func InsertReq(query string, options *grakn_protocol.Options) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_QueryManagerReq{
-			QueryManagerReq: &grakn_protocol.QueryManager_Req{
-				Req: &grakn_protocol.QueryManager_Req_InsertReq{
-					InsertReq: &grakn_protocol.QueryManager_Insert_Req{
+func InsertReq(query string, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: &typedb_protocol.QueryManager_Req{
+				Req: &typedb_protocol.QueryManager_Req_InsertReq{
+					InsertReq: &typedb_protocol.QueryManager_Insert_Req{
 						Query: query,
 					},
 				},
@@ -107,12 +107,12 @@ func InsertReq(query string, options *grakn_protocol.Options) *grakn_protocol.Tr
 	}
 }
 
-func DeleteReq(query string, options *grakn_protocol.Options) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_QueryManagerReq{
-			QueryManagerReq: &grakn_protocol.QueryManager_Req{
-				Req: &grakn_protocol.QueryManager_Req_DeleteReq{
-					DeleteReq: &grakn_protocol.QueryManager_Delete_Req{
+func DeleteReq(query string, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: &typedb_protocol.QueryManager_Req{
+				Req: &typedb_protocol.QueryManager_Req_DeleteReq{
+					DeleteReq: &typedb_protocol.QueryManager_Delete_Req{
 						Query: query,
 					},
 				},
@@ -122,12 +122,12 @@ func DeleteReq(query string, options *grakn_protocol.Options) *grakn_protocol.Tr
 	}
 }
 
-func UpdateReq(query string, options *grakn_protocol.Options) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_QueryManagerReq{
-			QueryManagerReq: &grakn_protocol.QueryManager_Req{
-				Req: &grakn_protocol.QueryManager_Req_UpdateReq{
-					UpdateReq: &grakn_protocol.QueryManager_Update_Req{
+func UpdateReq(query string, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: &typedb_protocol.QueryManager_Req{
+				Req: &typedb_protocol.QueryManager_Req_UpdateReq{
+					UpdateReq: &typedb_protocol.QueryManager_Update_Req{
 						Query: query,
 					},
 				},
@@ -137,12 +137,12 @@ func UpdateReq(query string, options *grakn_protocol.Options) *grakn_protocol.Tr
 	}
 }
 
-func ExplainReq(id int64, options *grakn_protocol.Options) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_QueryManagerReq{
-			QueryManagerReq: &grakn_protocol.QueryManager_Req{
-				Req: &grakn_protocol.QueryManager_Req_ExplainReq{
-					ExplainReq: &grakn_protocol.QueryManager_Explain_Req{
+func ExplainReq(id int64, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: &typedb_protocol.QueryManager_Req{
+				Req: &typedb_protocol.QueryManager_Req_ExplainReq{
+					ExplainReq: &typedb_protocol.QueryManager_Explain_Req{
 						ExplainableId: id,
 					},
 				},

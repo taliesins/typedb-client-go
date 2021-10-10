@@ -2,85 +2,85 @@ package attribute
 
 import (
 	"encoding/hex"
-	"github.com/taliesins/typedb-client-go/v2/grakn_protocol"
+	"github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 	"time"
 )
 
-func newTransactionRequest(req *grakn_protocol.Transaction_Req_ThingReq) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
+func newTransactionRequest(req *typedb_protocol.Transaction_Req_ThingReq) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
 		Req: req,
 	}
 }
 
-func newThingRequest(iid string) *grakn_protocol.Thing_Req {
+func newThingRequest(iid string) *typedb_protocol.Thing_Req {
 	data, err := hex.DecodeString(iid)
 	if err != nil {
 		panic(err)
 	}
 
-	return &grakn_protocol.Thing_Req{
+	return &typedb_protocol.Thing_Req{
 		Iid: data,
 	}
 }
 
-func setAttributeGetOwnersReq(thingReq *grakn_protocol.Thing_Req, attributeGetOwnersReq *grakn_protocol.Attribute_GetOwners_Req) *grakn_protocol.Transaction_Req_ThingReq {
-	thingReq.Req = &grakn_protocol.Thing_Req_AttributeGetOwnersReq{
+func setAttributeGetOwnersReq(thingReq *typedb_protocol.Thing_Req, attributeGetOwnersReq *typedb_protocol.Attribute_GetOwners_Req) *typedb_protocol.Transaction_Req_ThingReq {
+	thingReq.Req = &typedb_protocol.Thing_Req_AttributeGetOwnersReq{
 		AttributeGetOwnersReq: attributeGetOwnersReq,
 	}
 
-	return &grakn_protocol.Transaction_Req_ThingReq{
+	return &typedb_protocol.Transaction_Req_ThingReq{
 		ThingReq: thingReq,
 	}
 }
 
-func GetOwnersReq(iid string) *grakn_protocol.Transaction_Req {
+func GetOwnersReq(iid string) *typedb_protocol.Transaction_Req {
 	return newTransactionRequest(setAttributeGetOwnersReq(newThingRequest(iid),
-		&grakn_protocol.Attribute_GetOwners_Req{}))
+		&typedb_protocol.Attribute_GetOwners_Req{}))
 }
 
-func GetOwnersByTypeReq(iid string, ownerType *grakn_protocol.Type) *grakn_protocol.Transaction_Req {
+func GetOwnersByTypeReq(iid string, ownerType *typedb_protocol.Type) *typedb_protocol.Transaction_Req {
 	return newTransactionRequest(setAttributeGetOwnersReq(newThingRequest(iid),
-		&grakn_protocol.Attribute_GetOwners_Req{
-			Filter: &grakn_protocol.Attribute_GetOwners_Req_ThingType{
+		&typedb_protocol.Attribute_GetOwners_Req{
+			Filter: &typedb_protocol.Attribute_GetOwners_Req_ThingType{
 				ThingType: ownerType,
 			}}))
 }
 
-func AttributeValueBooleanReq(value bool) *grakn_protocol.Attribute_Value {
-	return &grakn_protocol.Attribute_Value{
-		Value: &grakn_protocol.Attribute_Value_Boolean{
+func AttributeValueBooleanReq(value bool) *typedb_protocol.Attribute_Value {
+	return &typedb_protocol.Attribute_Value{
+		Value: &typedb_protocol.Attribute_Value_Boolean{
 			Boolean: value,
 		},
 	}
 }
 
-func AttributeValueLongReq(value int64) *grakn_protocol.Attribute_Value {
-	return &grakn_protocol.Attribute_Value{
-		Value: &grakn_protocol.Attribute_Value_Long{
+func AttributeValueLongReq(value int64) *typedb_protocol.Attribute_Value {
+	return &typedb_protocol.Attribute_Value{
+		Value: &typedb_protocol.Attribute_Value_Long{
 			Long: value,
 		},
 	}
 }
 
-func AttributeValueDoubleReq(value float64) *grakn_protocol.Attribute_Value {
-	return &grakn_protocol.Attribute_Value{
-		Value: &grakn_protocol.Attribute_Value_Double{
+func AttributeValueDoubleReq(value float64) *typedb_protocol.Attribute_Value {
+	return &typedb_protocol.Attribute_Value{
+		Value: &typedb_protocol.Attribute_Value_Double{
 			Double: value,
 		},
 	}
 }
 
-func AttributeValueStringReq(value string) *grakn_protocol.Attribute_Value {
-	return &grakn_protocol.Attribute_Value{
-		Value: &grakn_protocol.Attribute_Value_String_{
+func AttributeValueStringReq(value string) *typedb_protocol.Attribute_Value {
+	return &typedb_protocol.Attribute_Value{
+		Value: &typedb_protocol.Attribute_Value_String_{
 			String_: value,
 		},
 	}
 }
 
-func AttributeValueDateTimeReq(value time.Time) *grakn_protocol.Attribute_Value {
-	return &grakn_protocol.Attribute_Value{
-		Value: &grakn_protocol.Attribute_Value_DateTime{
+func AttributeValueDateTimeReq(value time.Time) *typedb_protocol.Attribute_Value {
+	return &typedb_protocol.Attribute_Value{
+		Value: &typedb_protocol.Attribute_Value_DateTime{
 			DateTime: value.Unix(),
 		},
 	}

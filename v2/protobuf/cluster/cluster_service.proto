@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2021 Grakn Labs
+// Copyright (C) 2021 Vaticle
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,17 +17,17 @@
 
 syntax = "proto3";
 
-option go_package = "./v2/grakn_protocol;grakn_protocol";
-option java_package = "grakn.protocol";
+option go_package = "./v2/typedb_protocol;typedb_protocol";
+option java_package = "com.vaticle.typedb.protocol";
 option java_outer_classname = "ClusterServiceProto";
 option java_generic_services = true;
 
 import "v2/protobuf/cluster/cluster_server.proto";
 import "v2/protobuf/cluster/cluster_database.proto";
 
-package grakn.protocol;
+package typedb.protocol;
 
-service GraknCluster {
+service TypeDBCluster {
 
     rpc servers_all (ServerManager.All.Req) returns (ServerManager.All.Res);
     rpc databases_get (ClusterDatabaseManager.Get.Req) returns (ClusterDatabaseManager.Get.Res);

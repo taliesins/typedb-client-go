@@ -6,7 +6,7 @@ import (
 	"github.com/taliesins/typedb-client-go/phone_data"
 	"github.com/taliesins/typedb-client-go/v2/client/query"
 	"github.com/taliesins/typedb-client-go/v2/client/transaction"
-	grakn "github.com/taliesins/typedb-client-go/v2/grakn_protocol"
+	"github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 	"google.golang.org/grpc"
 	"log"
 	"time"
@@ -27,7 +27,7 @@ func Run() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 
-	graknClient := grakn.NewGraknCoreClient(conn)
+	graknClient := typedb_protocol.NewTypeDBClient(conn)
 
 	databaseName := "test"
 	err = SetupDatabase(ctx, graknClient, databaseName)
@@ -55,15 +55,15 @@ func Run() {
 	}
 }
 
-func SetupDatabase(ctx context.Context, graknClient grakn.GraknCoreClient, databaseName string) (err error) {
-	databaseAllResult, err := graknClient.DatabasesAll(ctx, &grakn.CoreDatabaseManager_All_Req{})
+func SetupDatabase(ctx context.Context, graknClient typedb_protocol.TypeDBClient, databaseName string) (err error) {
+	databaseAllResult, err := graknClient.DatabasesAll(ctx, &typedb_protocol.CoreDatabaseManager_All_Req{})
 
 	if err != nil {
 		return fmt.Errorf("could not list databases: %w", err)
 	}
 	log.Printf("databases: %v", databaseAllResult.Names)
 
-	databaseContainsResult, err := graknClient.DatabasesContains(ctx, &grakn.CoreDatabaseManager_Contains_Req{
+	databaseContainsResult, err := graknClient.DatabasesContains(ctx, &typedb_protocol.CoreDatabaseManager_Contains_Req{
 		Name: databaseName,
 	})
 	if err != nil {
@@ -73,7 +73,7 @@ func SetupDatabase(ctx context.Context, graknClient grakn.GraknCoreClient, datab
 	if databaseContainsResult.Contains {
 		log.Printf("database %v exists", databaseName)
 
-		_, err = graknClient.DatabaseDelete(ctx, &grakn.CoreDatabase_Delete_Req{
+		_, err = graknClient.DatabaseDelete(ctx, &typedb_protocol.CoreDatabase_Delete_Req{
 			Name: databaseName,
 		})
 
@@ -85,7 +85,7 @@ func SetupDatabase(ctx context.Context, graknClient grakn.GraknCoreClient, datab
 		log.Printf("database %v does not exist", databaseName)
 	}
 
-	_, err = graknClient.DatabasesCreate(ctx, &grakn.CoreDatabaseManager_Create_Req{
+	_, err = graknClient.DatabasesCreate(ctx, &typedb_protocol.CoreDatabaseManager_Create_Req{
 		Name: databaseName,
 	})
 
@@ -94,7 +94,7 @@ func SetupDatabase(ctx context.Context, graknClient grakn.GraknCoreClient, datab
 	}
 	log.Printf("database %s created", databaseName)
 
-	databaseAllResult, err = graknClient.DatabasesAll(ctx, &grakn.CoreDatabaseManager_All_Req{})
+	databaseAllResult, err = graknClient.DatabasesAll(ctx, &typedb_protocol.CoreDatabaseManager_All_Req{})
 
 	if err != nil {
 		return fmt.Errorf("could not list databases: %v", err)
@@ -104,13 +104,13 @@ func SetupDatabase(ctx context.Context, graknClient grakn.GraknCoreClient, datab
 	return err
 }
 
-func ExecuteSchema(graknClient grakn.GraknCoreClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
+func ExecuteSchema(graknClient typedb_protocol.TypeDBClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
 	latencyMillis := int32(100)
 
-	schemaSessionOpenResult, err := graknClient.SessionOpen(ctx, &grakn.Session_Open_Req{
+	schemaSessionOpenResult, err := graknClient.SessionOpen(ctx, &typedb_protocol.Session_Open_Req{
 		Database: databaseName,
-		Type:     grakn.Session_SCHEMA,
-		Options:  &grakn.Options{},
+		Type:     typedb_protocol.Session_SCHEMA,
+		Options:  &typedb_protocol.Options{},
 	})
 	if err != nil {
 		return fmt.Errorf("could not open session: %w", err)
@@ -128,7 +128,7 @@ func ExecuteSchema(graknClient grakn.GraknCoreClient, ctx context.Context, datab
 		return fmt.Errorf("could not get schema: %w", err)
 	}
 
-	_, err = graknClient.SessionClose(ctx, &grakn.Session_Close_Req{
+	_, err = graknClient.SessionClose(ctx, &typedb_protocol.Session_Close_Req{
 		SessionId: schemaSessionOpenResult.SessionId,
 	})
 	if err != nil {
@@ -138,13 +138,13 @@ func ExecuteSchema(graknClient grakn.GraknCoreClient, ctx context.Context, datab
 	return err
 }
 
-func ExecuteData(graknClient grakn.GraknCoreClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
+func ExecuteData(graknClient typedb_protocol.TypeDBClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
 	latencyMillis := int32(100)
 
-	dataSessionOpenResult, err := graknClient.SessionOpen(ctx, &grakn.Session_Open_Req{
+	dataSessionOpenResult, err := graknClient.SessionOpen(ctx, &typedb_protocol.Session_Open_Req{
 		Database: databaseName,
-		Type:     grakn.Session_DATA,
-		Options:  &grakn.Options{},
+		Type:     typedb_protocol.Session_DATA,
+		Options:  &typedb_protocol.Options{},
 	})
 	if err != nil {
 		return fmt.Errorf("could not open session: %w", err)
@@ -162,7 +162,7 @@ func ExecuteData(graknClient grakn.GraknCoreClient, ctx context.Context, databas
 		return fmt.Errorf("could not get data: %w", err)
 	}
 
-	_, err = graknClient.SessionClose(ctx, &grakn.Session_Close_Req{
+	_, err = graknClient.SessionClose(ctx, &typedb_protocol.Session_Close_Req{
 		SessionId: dataSessionOpenResult.SessionId,
 	})
 	if err != nil {
@@ -172,7 +172,7 @@ func ExecuteData(graknClient grakn.GraknCoreClient, ctx context.Context, databas
 	return err
 }
 
-func CreateTestDatabaseSchema(graknClient grakn.GraknCoreClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+func CreateTestDatabaseSchema(graknClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
 	gqlQuery, err := phone_data.GetPhoneCallsSchemaV2Gql()
 	if err != nil {
 		return fmt.Errorf("could not get phone calls gsql: %w", err)
@@ -183,27 +183,32 @@ func CreateTestDatabaseSchema(graknClient grakn.GraknCoreClient, ctx context.Con
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	options := &grakn.Options{
-		InferOpt: &grakn.Options_Infer{
+	transactionOptions := &typedb_protocol.Options{
+		InferOpt: &typedb_protocol.Options_Infer{
 			Infer: true,
 		},
-		ExplainOpt: &grakn.Options_Explain{
-			Explain: true,
-		},
-		BatchSizeOpt: &grakn.Options_BatchSize{
-			BatchSize: int32(0),
+		ExplainOpt: &typedb_protocol.Options_Explain{
+			Explain: false,
 		},
 	}
 	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
 
-	err = transactionManager.OpenTransaction(sessionId, grakn.Transaction_WRITE, options, latencyMillis, metadata)
+	err = transactionManager.OpenTransaction(sessionId, typedb_protocol.Transaction_WRITE, transactionOptions, latencyMillis, metadata)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
+	queryOptions := &typedb_protocol.Options{
+		InferOpt: &typedb_protocol.Options_Infer{
+			Infer: true,
+		},
+		ExplainOpt: &typedb_protocol.Options_Explain{
+			Explain: false,
+		},
+	}
 	queryManager := query.NewQueryManager(transactionClient, ctx)
 
-	err = queryManager.Define(gqlQuery, options, metadata)
+	err = queryManager.Define(gqlQuery, queryOptions, metadata)
 	if err != nil {
 		return fmt.Errorf("could not run define query: %w", err)
 	}
@@ -221,7 +226,7 @@ func CreateTestDatabaseSchema(graknClient grakn.GraknCoreClient, ctx context.Con
 	return err
 }
 
-func GetTestDatabaseSchema(graknClient grakn.GraknCoreClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+func GetTestDatabaseSchema(graknClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
 	gqlQuery := `
 match 
 	$x sub thing; 
@@ -234,20 +239,17 @@ get
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	options := &grakn.Options{
-		InferOpt: &grakn.Options_Infer{
+	options := &typedb_protocol.Options{
+		InferOpt: &typedb_protocol.Options_Infer{
 			Infer: true,
 		},
-		ExplainOpt: &grakn.Options_Explain{
+		ExplainOpt: &typedb_protocol.Options_Explain{
 			Explain: true,
-		},
-		BatchSizeOpt: &grakn.Options_BatchSize{
-			BatchSize: int32(0),
 		},
 	}
 	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
 
-	err = transactionManager.OpenTransaction(sessionId, grakn.Transaction_READ, options, latencyMillis, metadata)
+	err = transactionManager.OpenTransaction(sessionId, typedb_protocol.Transaction_READ, options, latencyMillis, metadata)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
@@ -271,7 +273,7 @@ get
 	return err
 }
 
-func CreateTestDatabaseData(graknClient grakn.GraknCoreClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+func CreateTestDatabaseData(graknClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
 	gqlQueries, err := phone_data.GetPhoneCallsDataGql()
 	if err != nil {
 		return fmt.Errorf("could not get phone calls data gql: %w", err)
@@ -282,20 +284,17 @@ func CreateTestDatabaseData(graknClient grakn.GraknCoreClient, ctx context.Conte
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	options := &grakn.Options{
-		InferOpt: &grakn.Options_Infer{
+	options := &typedb_protocol.Options{
+		InferOpt: &typedb_protocol.Options_Infer{
 			Infer: true,
 		},
-		ExplainOpt: &grakn.Options_Explain{
-			Explain: true,
-		},
-		BatchSizeOpt: &grakn.Options_BatchSize{
-			BatchSize: int32(0),
+		ExplainOpt: &typedb_protocol.Options_Explain{
+			Explain: false,
 		},
 	}
 	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
 
-	err = transactionManager.OpenTransaction(sessionId, grakn.Transaction_WRITE, options, latencyMillis, metadata)
+	err = transactionManager.OpenTransaction(sessionId, typedb_protocol.Transaction_WRITE, options, latencyMillis, metadata)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
@@ -326,7 +325,7 @@ func CreateTestDatabaseData(graknClient grakn.GraknCoreClient, ctx context.Conte
 	return err
 }
 
-func GetTestDatabaseData(graknClient grakn.GraknCoreClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+func GetTestDatabaseData(graknClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
 	gqlQuery := `
 match
 	$person isa person;
@@ -339,20 +338,17 @@ count;
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	options := &grakn.Options{
-		InferOpt: &grakn.Options_Infer{
+	options := &typedb_protocol.Options{
+		InferOpt: &typedb_protocol.Options_Infer{
 			Infer: true,
 		},
-		ExplainOpt: &grakn.Options_Explain{
+		ExplainOpt: &typedb_protocol.Options_Explain{
 			Explain: true,
-		},
-		BatchSizeOpt: &grakn.Options_BatchSize{
-			BatchSize: int32(0),
 		},
 	}
 	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
 
-	err = transactionManager.OpenTransaction(sessionId, grakn.Transaction_READ, options, latencyMillis, metadata)
+	err = transactionManager.OpenTransaction(sessionId, typedb_protocol.Transaction_READ, options, latencyMillis, metadata)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}

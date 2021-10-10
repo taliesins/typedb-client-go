@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/segmentio/ksuid"
 	"github.com/taliesins/typedb-client-go/v2/client/common/rpc/request_builder/transaction"
-	grakn "github.com/taliesins/typedb-client-go/v2/grakn_protocol"
+	grakn "github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 )
 
 type TransactionManager interface {
@@ -17,11 +17,11 @@ type TransactionManager interface {
 }
 
 type transactionManagerImpl struct {
-	TransactionClient grakn.GraknCore_TransactionClient
+	TransactionClient grakn.TypeDB_TransactionClient
 	Context context.Context
 }
 
-func NewTransactionManager(transactionClient grakn.GraknCore_TransactionClient, ctx context.Context) *transactionManagerImpl {
+func NewTransactionManager(transactionClient grakn.TypeDB_TransactionClient, ctx context.Context) *transactionManagerImpl {
 	return &transactionManagerImpl{
 		TransactionClient: transactionClient,
 		Context: ctx,

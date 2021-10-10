@@ -1,13 +1,13 @@
 package concept_manager
 
-import "github.com/taliesins/typedb-client-go/v2/grakn_protocol"
+import "github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 
-func PutEntityTypeReq(label string) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_ConceptManagerReq{
-			ConceptManagerReq: &grakn_protocol.ConceptManager_Req{
-				Req: &grakn_protocol.ConceptManager_Req_PutEntityTypeReq{
-					PutEntityTypeReq: &grakn_protocol.ConceptManager_PutEntityType_Req{
+func PutEntityTypeReq(label string) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_ConceptManagerReq{
+			ConceptManagerReq: &typedb_protocol.ConceptManager_Req{
+				Req: &typedb_protocol.ConceptManager_Req_PutEntityTypeReq{
+					PutEntityTypeReq: &typedb_protocol.ConceptManager_PutEntityType_Req{
 						Label: label,
 					},
 				},
@@ -16,12 +16,12 @@ func PutEntityTypeReq(label string) *grakn_protocol.Transaction_Req {
 	}
 }
 
-func PutRelationTypeReq(label string) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_ConceptManagerReq{
-			ConceptManagerReq: &grakn_protocol.ConceptManager_Req{
-				Req: &grakn_protocol.ConceptManager_Req_PutRelationTypeReq{
-					PutRelationTypeReq: &grakn_protocol.ConceptManager_PutRelationType_Req{
+func PutRelationTypeReq(label string) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_ConceptManagerReq{
+			ConceptManagerReq: &typedb_protocol.ConceptManager_Req{
+				Req: &typedb_protocol.ConceptManager_Req_PutRelationTypeReq{
+					PutRelationTypeReq: &typedb_protocol.ConceptManager_PutRelationType_Req{
 						Label: label,
 					},
 				},
@@ -30,12 +30,12 @@ func PutRelationTypeReq(label string) *grakn_protocol.Transaction_Req {
 	}
 }
 
-func PutAttributeTypeReq(label string) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_ConceptManagerReq{
-			ConceptManagerReq: &grakn_protocol.ConceptManager_Req{
-				Req: &grakn_protocol.ConceptManager_Req_PutAttributeTypeReq{
-					PutAttributeTypeReq: &grakn_protocol.ConceptManager_PutAttributeType_Req{
+func PutAttributeTypeReq(label string) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_ConceptManagerReq{
+			ConceptManagerReq: &typedb_protocol.ConceptManager_Req{
+				Req: &typedb_protocol.ConceptManager_Req_PutAttributeTypeReq{
+					PutAttributeTypeReq: &typedb_protocol.ConceptManager_PutAttributeType_Req{
 						Label: label,
 					},
 				},
@@ -44,12 +44,12 @@ func PutAttributeTypeReq(label string) *grakn_protocol.Transaction_Req {
 	}
 }
 
-func GetThingTypeReq(label string) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_ConceptManagerReq{
-			ConceptManagerReq: &grakn_protocol.ConceptManager_Req{
-				Req: &grakn_protocol.ConceptManager_Req_GetThingTypeReq{
-					GetThingTypeReq: &grakn_protocol.ConceptManager_GetThingType_Req{
+func GetThingTypeReq(label string) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_ConceptManagerReq{
+			ConceptManagerReq: &typedb_protocol.ConceptManager_Req{
+				Req: &typedb_protocol.ConceptManager_Req_GetThingTypeReq{
+					GetThingTypeReq: &typedb_protocol.ConceptManager_GetThingType_Req{
 						Label: label,
 					},
 				},
@@ -58,12 +58,12 @@ func GetThingTypeReq(label string) *grakn_protocol.Transaction_Req {
 	}
 }
 
-func GetThingReq(iid []byte) *grakn_protocol.Transaction_Req {
-	return &grakn_protocol.Transaction_Req{
-		Req: &grakn_protocol.Transaction_Req_ConceptManagerReq{
-			ConceptManagerReq: &grakn_protocol.ConceptManager_Req{
-				Req: &grakn_protocol.ConceptManager_Req_GetThingReq{
-					GetThingReq: &grakn_protocol.ConceptManager_GetThing_Req{
+func GetThingReq(iid []byte) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_ConceptManagerReq{
+			ConceptManagerReq: &typedb_protocol.ConceptManager_Req{
+				Req: &typedb_protocol.ConceptManager_Req_GetThingReq{
+					GetThingReq: &typedb_protocol.ConceptManager_GetThing_Req{
 						Iid: iid,
 					},
 				},

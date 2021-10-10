@@ -1,19 +1,19 @@
 package database_manager
 
-import "github.com/taliesins/typedb-client-go/v2/grakn_protocol"
+import "github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 
-func CreateReq(name string) *grakn_protocol.CoreDatabaseManager_Create_Req {
-	return &grakn_protocol.CoreDatabaseManager_Create_Req{
+func CreateReq(name string) *typedb_protocol.CoreDatabaseManager_Create_Req {
+	return &typedb_protocol.CoreDatabaseManager_Create_Req{
 		Name: name,
 	}
 }
 
-func ContainsReq(name string) *grakn_protocol.CoreDatabaseManager_Create_Req {
-	return &grakn_protocol.CoreDatabaseManager_Create_Req{
+func ContainsReq(name string) *typedb_protocol.CoreDatabaseManager_Create_Req {
+	return &typedb_protocol.CoreDatabaseManager_Create_Req{
 		Name: name,
 	}
 }
 
-func AllReq() *grakn_protocol.CoreDatabaseManager_All_Req {
-	return &grakn_protocol.CoreDatabaseManager_All_Req{}
+func AllReq() *typedb_protocol.CoreDatabaseManager_All_Req {
+	return &typedb_protocol.CoreDatabaseManager_All_Req{}
 }
