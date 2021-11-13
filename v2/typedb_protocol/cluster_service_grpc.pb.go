@@ -17,7 +17,18 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TypeDBClusterClient interface {
+	// Server Manager API
 	ServersAll(ctx context.Context, in *ServerManager_All_Req, opts ...grpc.CallOption) (*ServerManager_All_Res, error)
+	// User Manager API
+	UsersContains(ctx context.Context, in *ClusterUserManager_Contains_Req, opts ...grpc.CallOption) (*ClusterUserManager_Contains_Res, error)
+	UsersCreate(ctx context.Context, in *ClusterUserManager_Create_Req, opts ...grpc.CallOption) (*ClusterUserManager_Create_Res, error)
+	UsersAll(ctx context.Context, in *ClusterUserManager_All_Req, opts ...grpc.CallOption) (*ClusterUserManager_All_Res, error)
+	// User API
+	UserPassword(ctx context.Context, in *ClusterUser_Password_Req, opts ...grpc.CallOption) (*ClusterUser_Password_Res, error)
+	UserDelete(ctx context.Context, in *ClusterUser_Delete_Req, opts ...grpc.CallOption) (*ClusterUser_Delete_Res, error)
+	// User Token API
+	UserTokenRenew(ctx context.Context, in *ClusterUserToken_Renew_Req, opts ...grpc.CallOption) (*ClusterUserToken_Renew_Res, error)
+	// Database Manager API
 	DatabasesGet(ctx context.Context, in *ClusterDatabaseManager_Get_Req, opts ...grpc.CallOption) (*ClusterDatabaseManager_Get_Res, error)
 	DatabasesAll(ctx context.Context, in *ClusterDatabaseManager_All_Req, opts ...grpc.CallOption) (*ClusterDatabaseManager_All_Res, error)
 }
@@ -33,6 +44,60 @@ func NewTypeDBClusterClient(cc grpc.ClientConnInterface) TypeDBClusterClient {
 func (c *typeDBClusterClient) ServersAll(ctx context.Context, in *ServerManager_All_Req, opts ...grpc.CallOption) (*ServerManager_All_Res, error) {
 	out := new(ServerManager_All_Res)
 	err := c.cc.Invoke(ctx, "/typedb.protocol.TypeDBCluster/servers_all", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *typeDBClusterClient) UsersContains(ctx context.Context, in *ClusterUserManager_Contains_Req, opts ...grpc.CallOption) (*ClusterUserManager_Contains_Res, error) {
+	out := new(ClusterUserManager_Contains_Res)
+	err := c.cc.Invoke(ctx, "/typedb.protocol.TypeDBCluster/users_contains", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *typeDBClusterClient) UsersCreate(ctx context.Context, in *ClusterUserManager_Create_Req, opts ...grpc.CallOption) (*ClusterUserManager_Create_Res, error) {
+	out := new(ClusterUserManager_Create_Res)
+	err := c.cc.Invoke(ctx, "/typedb.protocol.TypeDBCluster/users_create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *typeDBClusterClient) UsersAll(ctx context.Context, in *ClusterUserManager_All_Req, opts ...grpc.CallOption) (*ClusterUserManager_All_Res, error) {
+	out := new(ClusterUserManager_All_Res)
+	err := c.cc.Invoke(ctx, "/typedb.protocol.TypeDBCluster/users_all", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *typeDBClusterClient) UserPassword(ctx context.Context, in *ClusterUser_Password_Req, opts ...grpc.CallOption) (*ClusterUser_Password_Res, error) {
+	out := new(ClusterUser_Password_Res)
+	err := c.cc.Invoke(ctx, "/typedb.protocol.TypeDBCluster/user_password", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *typeDBClusterClient) UserDelete(ctx context.Context, in *ClusterUser_Delete_Req, opts ...grpc.CallOption) (*ClusterUser_Delete_Res, error) {
+	out := new(ClusterUser_Delete_Res)
+	err := c.cc.Invoke(ctx, "/typedb.protocol.TypeDBCluster/user_delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *typeDBClusterClient) UserTokenRenew(ctx context.Context, in *ClusterUserToken_Renew_Req, opts ...grpc.CallOption) (*ClusterUserToken_Renew_Res, error) {
+	out := new(ClusterUserToken_Renew_Res)
+	err := c.cc.Invoke(ctx, "/typedb.protocol.TypeDBCluster/user_token_renew", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -61,7 +126,18 @@ func (c *typeDBClusterClient) DatabasesAll(ctx context.Context, in *ClusterDatab
 // All implementations must embed UnimplementedTypeDBClusterServer
 // for forward compatibility
 type TypeDBClusterServer interface {
+	// Server Manager API
 	ServersAll(context.Context, *ServerManager_All_Req) (*ServerManager_All_Res, error)
+	// User Manager API
+	UsersContains(context.Context, *ClusterUserManager_Contains_Req) (*ClusterUserManager_Contains_Res, error)
+	UsersCreate(context.Context, *ClusterUserManager_Create_Req) (*ClusterUserManager_Create_Res, error)
+	UsersAll(context.Context, *ClusterUserManager_All_Req) (*ClusterUserManager_All_Res, error)
+	// User API
+	UserPassword(context.Context, *ClusterUser_Password_Req) (*ClusterUser_Password_Res, error)
+	UserDelete(context.Context, *ClusterUser_Delete_Req) (*ClusterUser_Delete_Res, error)
+	// User Token API
+	UserTokenRenew(context.Context, *ClusterUserToken_Renew_Req) (*ClusterUserToken_Renew_Res, error)
+	// Database Manager API
 	DatabasesGet(context.Context, *ClusterDatabaseManager_Get_Req) (*ClusterDatabaseManager_Get_Res, error)
 	DatabasesAll(context.Context, *ClusterDatabaseManager_All_Req) (*ClusterDatabaseManager_All_Res, error)
 	mustEmbedUnimplementedTypeDBClusterServer()
@@ -73,6 +149,24 @@ type UnimplementedTypeDBClusterServer struct {
 
 func (UnimplementedTypeDBClusterServer) ServersAll(context.Context, *ServerManager_All_Req) (*ServerManager_All_Res, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServersAll not implemented")
+}
+func (UnimplementedTypeDBClusterServer) UsersContains(context.Context, *ClusterUserManager_Contains_Req) (*ClusterUserManager_Contains_Res, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UsersContains not implemented")
+}
+func (UnimplementedTypeDBClusterServer) UsersCreate(context.Context, *ClusterUserManager_Create_Req) (*ClusterUserManager_Create_Res, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UsersCreate not implemented")
+}
+func (UnimplementedTypeDBClusterServer) UsersAll(context.Context, *ClusterUserManager_All_Req) (*ClusterUserManager_All_Res, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UsersAll not implemented")
+}
+func (UnimplementedTypeDBClusterServer) UserPassword(context.Context, *ClusterUser_Password_Req) (*ClusterUser_Password_Res, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserPassword not implemented")
+}
+func (UnimplementedTypeDBClusterServer) UserDelete(context.Context, *ClusterUser_Delete_Req) (*ClusterUser_Delete_Res, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserDelete not implemented")
+}
+func (UnimplementedTypeDBClusterServer) UserTokenRenew(context.Context, *ClusterUserToken_Renew_Req) (*ClusterUserToken_Renew_Res, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserTokenRenew not implemented")
 }
 func (UnimplementedTypeDBClusterServer) DatabasesGet(context.Context, *ClusterDatabaseManager_Get_Req) (*ClusterDatabaseManager_Get_Res, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DatabasesGet not implemented")
@@ -107,6 +201,114 @@ func _TypeDBCluster_ServersAll_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TypeDBClusterServer).ServersAll(ctx, req.(*ServerManager_All_Req))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TypeDBCluster_UsersContains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClusterUserManager_Contains_Req)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TypeDBClusterServer).UsersContains(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/typedb.protocol.TypeDBCluster/users_contains",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TypeDBClusterServer).UsersContains(ctx, req.(*ClusterUserManager_Contains_Req))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TypeDBCluster_UsersCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClusterUserManager_Create_Req)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TypeDBClusterServer).UsersCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/typedb.protocol.TypeDBCluster/users_create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TypeDBClusterServer).UsersCreate(ctx, req.(*ClusterUserManager_Create_Req))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TypeDBCluster_UsersAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClusterUserManager_All_Req)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TypeDBClusterServer).UsersAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/typedb.protocol.TypeDBCluster/users_all",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TypeDBClusterServer).UsersAll(ctx, req.(*ClusterUserManager_All_Req))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TypeDBCluster_UserPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClusterUser_Password_Req)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TypeDBClusterServer).UserPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/typedb.protocol.TypeDBCluster/user_password",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TypeDBClusterServer).UserPassword(ctx, req.(*ClusterUser_Password_Req))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TypeDBCluster_UserDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClusterUser_Delete_Req)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TypeDBClusterServer).UserDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/typedb.protocol.TypeDBCluster/user_delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TypeDBClusterServer).UserDelete(ctx, req.(*ClusterUser_Delete_Req))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TypeDBCluster_UserTokenRenew_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClusterUserToken_Renew_Req)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TypeDBClusterServer).UserTokenRenew(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/typedb.protocol.TypeDBCluster/user_token_renew",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TypeDBClusterServer).UserTokenRenew(ctx, req.(*ClusterUserToken_Renew_Req))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -154,6 +356,30 @@ var _TypeDBCluster_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "servers_all",
 			Handler:    _TypeDBCluster_ServersAll_Handler,
+		},
+		{
+			MethodName: "users_contains",
+			Handler:    _TypeDBCluster_UsersContains_Handler,
+		},
+		{
+			MethodName: "users_create",
+			Handler:    _TypeDBCluster_UsersCreate_Handler,
+		},
+		{
+			MethodName: "users_all",
+			Handler:    _TypeDBCluster_UsersAll_Handler,
+		},
+		{
+			MethodName: "user_password",
+			Handler:    _TypeDBCluster_UserPassword_Handler,
+		},
+		{
+			MethodName: "user_delete",
+			Handler:    _TypeDBCluster_UserDelete_Handler,
+		},
+		{
+			MethodName: "user_token_renew",
+			Handler:    _TypeDBCluster_UserTokenRenew_Handler,
 		},
 		{
 			MethodName: "databases_get",

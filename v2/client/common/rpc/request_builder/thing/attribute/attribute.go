@@ -6,33 +6,6 @@ import (
 	"time"
 )
 
-func newTransactionRequest(req *typedb_protocol.Transaction_Req_ThingReq) *typedb_protocol.Transaction_Req {
-	return &typedb_protocol.Transaction_Req{
-		Req: req,
-	}
-}
-
-func newThingRequest(iid string) *typedb_protocol.Thing_Req {
-	data, err := hex.DecodeString(iid)
-	if err != nil {
-		panic(err)
-	}
-
-	return &typedb_protocol.Thing_Req{
-		Iid: data,
-	}
-}
-
-func setAttributeGetOwnersReq(thingReq *typedb_protocol.Thing_Req, attributeGetOwnersReq *typedb_protocol.Attribute_GetOwners_Req) *typedb_protocol.Transaction_Req_ThingReq {
-	thingReq.Req = &typedb_protocol.Thing_Req_AttributeGetOwnersReq{
-		AttributeGetOwnersReq: attributeGetOwnersReq,
-	}
-
-	return &typedb_protocol.Transaction_Req_ThingReq{
-		ThingReq: thingReq,
-	}
-}
-
 func GetOwnersReq(iid string) *typedb_protocol.Transaction_Req {
 	return newTransactionRequest(setAttributeGetOwnersReq(newThingRequest(iid),
 		&typedb_protocol.Attribute_GetOwners_Req{}))
@@ -83,5 +56,32 @@ func AttributeValueDateTimeReq(value time.Time) *typedb_protocol.Attribute_Value
 		Value: &typedb_protocol.Attribute_Value_DateTime{
 			DateTime: value.Unix(),
 		},
+	}
+}
+
+func newTransactionRequest(req *typedb_protocol.Transaction_Req_ThingReq) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: req,
+	}
+}
+
+func newThingRequest(iid string) *typedb_protocol.Thing_Req {
+	data, err := hex.DecodeString(iid)
+	if err != nil {
+		panic(err)
+	}
+
+	return &typedb_protocol.Thing_Req{
+		Iid: data,
+	}
+}
+
+func setAttributeGetOwnersReq(thingReq *typedb_protocol.Thing_Req, attributeGetOwnersReq *typedb_protocol.Attribute_GetOwners_Req) *typedb_protocol.Transaction_Req_ThingReq {
+	thingReq.Req = &typedb_protocol.Thing_Req_AttributeGetOwnersReq{
+		AttributeGetOwnersReq: attributeGetOwnersReq,
+	}
+
+	return &typedb_protocol.Transaction_Req_ThingReq{
+		ThingReq: thingReq,
 	}
 }

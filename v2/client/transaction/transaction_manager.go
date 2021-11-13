@@ -2,102 +2,131 @@ package transaction
 
 import (
 	"context"
-	"fmt"
-	"github.com/segmentio/ksuid"
+	"github.com/taliesins/typedb-client-go/v2/client/common"
 	"github.com/taliesins/typedb-client-go/v2/client/common/rpc/request_builder/transaction"
-	grakn "github.com/taliesins/typedb-client-go/v2/typedb_protocol"
+	"github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 )
 
 type TransactionManager interface {
-	OpenTransaction(sessionId []byte, transactionType grakn.Transaction_Type, options *grakn.Options, latencyMillis int32, metadata map[string]string) error
+	OpenTransaction(sessionId []byte, transactionType typedb_protocol.Transaction_Type, options *typedb_protocol.Options, latencyMillis int32, metadata map[string]string) error
 	CommitTransaction(metadata map[string]string) error
 	RollbackTransaction(metadata map[string]string) error
 	CloseTransaction() error
-	Stream(requestId []byte, metadata map[string]string) (*grakn.Transaction_Res, error)
+	Stream(requestId []byte, metadata map[string]string) (*typedb_protocol.Transaction_Res, error)
 }
 
 type transactionManagerImpl struct {
-	TransactionClient grakn.TypeDB_TransactionClient
-	Context context.Context
+	TransactionClient typedb_protocol.TypeDB_TransactionClient
+	Context           context.Context
 }
 
-func NewTransactionManager(transactionClient grakn.TypeDB_TransactionClient, ctx context.Context) *transactionManagerImpl {
+func NewTransactionManager(transactionClient typedb_protocol.TypeDB_TransactionClient, ctx context.Context) *transactionManagerImpl {
 	return &transactionManagerImpl{
 		TransactionClient: transactionClient,
 		Context: ctx,
 	}
 }
 
-func (q *transactionManagerImpl) OpenTransaction(sessionId []byte, transactionType grakn.Transaction_Type, options *grakn.Options, latencyMillis int32, metadata map[string]string) error {
+func (q *transactionManagerImpl) OpenTransaction(sessionId []byte, transactionType typedb_protocol.Transaction_Type, options *typedb_protocol.Options, latencyMillis int32, metadata map[string]string) error {
 	request := transaction.OpenReq(sessionId, transactionType, options, latencyMillis)
 	request.Metadata = metadata
 
-	response, err := q.query(request)
+	response, err := common.NewPromise(q.TransactionClient, q.Context, request)
 	if err != nil {
 		return err
 	}
 
-	response.GetOpenRes()
-	return nil
+	for {
+		select {
+		case <-response.Ctx.Done():
+			return response.Ctx.Err()
+		case data, ok := <-response.Data:
+			if !ok {
+				return response.Err
+			}
+
+			data.GetOpenRes()
+
+			return nil
+		}
+	}
 }
 
 func (q *transactionManagerImpl) CommitTransaction(metadata map[string]string) error {
 	request := transaction.CommitReq()
 	request.Metadata = metadata
 
-	response, err := q.query(request)
+	response, err := common.NewPromise(q.TransactionClient, q.Context, request)
 	if err != nil {
 		return err
 	}
 
-	response.GetCommitRes()
-	return nil
+	for {
+		select {
+		case <-response.Ctx.Done():
+			return response.Ctx.Err()
+		case data, ok := <-response.Data:
+			if !ok {
+				return response.Err
+			}
+
+			data.GetCommitRes()
+
+			return nil
+		}
+	}
 }
 
 func (q *transactionManagerImpl) RollbackTransaction(metadata map[string]string) error {
 	request := transaction.RollbackReq()
 	request.Metadata = metadata
 
-	response, err := q.query(request)
+	response, err := common.NewPromise(q.TransactionClient, q.Context, request)
 	if err != nil {
 		return err
 	}
 
-	response.GetRollbackRes()
-	return nil
+	for {
+		select {
+		case <-response.Ctx.Done():
+			return response.Ctx.Err()
+		case data, ok := <-response.Data:
+			if !ok {
+				return response.Err
+			}
+
+			data.GetRollbackRes()
+
+			return nil
+		}
+	}
 }
 
 func (q *transactionManagerImpl) CloseTransaction() error {
 	return q.TransactionClient.CloseSend()
 }
 
-func (q *transactionManagerImpl) Stream(requestId []byte, metadata map[string]string) (*grakn.Transaction_Res, error) {
+func (q *transactionManagerImpl) Stream(requestId []byte, metadata map[string]string) (*typedb_protocol.Transaction_Res, error) {
 	request := transaction.StreamReq(requestId)
 	request.Metadata = metadata
 
-	response, err := q.query(request)
+	response, err := common.NewPromise(q.TransactionClient, q.Context, request)
 	if err != nil {
 		return nil, err
 	}
 
-	return response, nil
-}
+	var result *typedb_protocol.Transaction_Res = nil
 
-func (q *transactionManagerImpl) query(req *grakn.Transaction_Req) (res *grakn.Transaction_Res, err error) { //Promise<QueryProto.Res> {
-	requestId := ksuid.New().String()
-	req.ReqId = []byte(requestId)
+	for {
+		select {
+		case <-response.Ctx.Done():
+			return result, response.Ctx.Err()
+		case data, ok := <-response.Data:
+			if !ok {
+				return nil, response.Err
+			}
 
-	err = q.TransactionClient.Send(
-		&grakn.Transaction_Client{
-			Reqs: []*grakn.Transaction_Req{
-				req,
-			},
-		},
-	)
-
-	transactionServer, err := q.TransactionClient.Recv()
-	if err != nil {
-		return nil, fmt.Errorf("could not receive query response: %w", err)
+			result = data
+		}
 	}
-	return transactionServer.GetRes(), err
 }

@@ -5,6 +5,39 @@ import (
 	"github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 )
 
+func CreateReq(label common.Label) *typedb_protocol.Transaction_Req {
+	return newTransactionRequest(setRelationTypeCreateReq(newTypeRequest(label), &typedb_protocol.RelationType_Create_Req{}))
+}
+
+func GetRelatesReq(label common.Label) *typedb_protocol.Transaction_Req {
+	return newTransactionRequest(setRelationTypeGetRelatesReq(newTypeRequest(label), &typedb_protocol.RelationType_GetRelates_Req{}))
+}
+
+func GetRelatesByRoleReq(label common.Label, roleLabel string) *typedb_protocol.Transaction_Req {
+	return newTransactionRequest(setRelationTypeGetRelatesForRoleLabelReq(newTypeRequest(label), &typedb_protocol.RelationType_GetRelatesForRoleLabel_Req{Label: roleLabel}))
+}
+
+func SetRelatesReq(label common.Label, roleLabel string) *typedb_protocol.Transaction_Req {
+	return newTransactionRequest(setRelationTypeSetRelatesReq(newTypeRequest(label), &typedb_protocol.RelationType_SetRelates_Req{Label: roleLabel}))
+}
+
+func SetRelatesOverriddenReq(label common.Label, roleLabel string, overriddenLabel string) *typedb_protocol.Transaction_Req {
+	return newTransactionRequest(setRelationTypeSetRelatesReq(newTypeRequest(label),
+		&typedb_protocol.RelationType_SetRelates_Req{
+			Label: roleLabel,
+			Overridden: &typedb_protocol.RelationType_SetRelates_Req_OverriddenLabel{
+				OverriddenLabel: overriddenLabel,
+			},
+		}))
+}
+
+func UnsetRelatesReq(label common.Label, roleLabel string) *typedb_protocol.Transaction_Req {
+	return newTransactionRequest(setRelationTypeUnsetRelatesReq(newTypeRequest(label),
+		&typedb_protocol.RelationType_UnsetRelates_Req{
+			Label: roleLabel,
+		}))
+}
+
 func newTransactionRequest(req *typedb_protocol.Transaction_Req_TypeReq) *typedb_protocol.Transaction_Req {
 	return &typedb_protocol.Transaction_Req{
 		Req: req,
@@ -29,10 +62,6 @@ func setRelationTypeCreateReq(typeReq *typedb_protocol.Type_Req, relationTypeCre
 	}
 }
 
-func CreateReq(label common.Label) *typedb_protocol.Transaction_Req {
-	return newTransactionRequest(setRelationTypeCreateReq(newTypeRequest(label), &typedb_protocol.RelationType_Create_Req{}))
-}
-
 func setRelationTypeGetRelatesReq(typeReq *typedb_protocol.Type_Req, relationTypeGetRelatesReq *typedb_protocol.RelationType_GetRelates_Req) *typedb_protocol.Transaction_Req_TypeReq {
 	typeReq.Req = &typedb_protocol.Type_Req_RelationTypeGetRelatesReq{
 		RelationTypeGetRelatesReq: relationTypeGetRelatesReq,
@@ -41,10 +70,6 @@ func setRelationTypeGetRelatesReq(typeReq *typedb_protocol.Type_Req, relationTyp
 	return &typedb_protocol.Transaction_Req_TypeReq{
 		TypeReq: typeReq,
 	}
-}
-
-func GetRelatesReq(label common.Label) *typedb_protocol.Transaction_Req {
-	return newTransactionRequest(setRelationTypeGetRelatesReq(newTypeRequest(label), &typedb_protocol.RelationType_GetRelates_Req{}))
 }
 
 func setRelationTypeGetRelatesForRoleLabelReq(typeReq *typedb_protocol.Type_Req, relationTypeGetRelatesForRoleLabelReq *typedb_protocol.RelationType_GetRelatesForRoleLabel_Req) *typedb_protocol.Transaction_Req_TypeReq {
@@ -57,10 +82,6 @@ func setRelationTypeGetRelatesForRoleLabelReq(typeReq *typedb_protocol.Type_Req,
 	}
 }
 
-func GetRelatesByRoleReq(label common.Label, roleLabel string) *typedb_protocol.Transaction_Req {
-	return newTransactionRequest(setRelationTypeGetRelatesForRoleLabelReq(newTypeRequest(label), &typedb_protocol.RelationType_GetRelatesForRoleLabel_Req{Label: roleLabel}))
-}
-
 func setRelationTypeSetRelatesReq(typeReq *typedb_protocol.Type_Req, relationTypeSetRelatesReq *typedb_protocol.RelationType_SetRelates_Req) *typedb_protocol.Transaction_Req_TypeReq {
 	typeReq.Req = &typedb_protocol.Type_Req_RelationTypeSetRelatesReq{
 		RelationTypeSetRelatesReq: relationTypeSetRelatesReq,
@@ -71,20 +92,6 @@ func setRelationTypeSetRelatesReq(typeReq *typedb_protocol.Type_Req, relationTyp
 	}
 }
 
-func SetRelatesReq(label common.Label, roleLabel string) *typedb_protocol.Transaction_Req {
-	return newTransactionRequest(setRelationTypeSetRelatesReq(newTypeRequest(label), &typedb_protocol.RelationType_SetRelates_Req{Label: roleLabel}))
-}
-
-func SetRelatesOverriddenReq(label common.Label, roleLabel string, overriddenLabel string) *typedb_protocol.Transaction_Req {
-return newTransactionRequest(setRelationTypeSetRelatesReq(newTypeRequest(label),
-	&typedb_protocol.RelationType_SetRelates_Req{
-		Label: roleLabel,
-		Overridden: &typedb_protocol.RelationType_SetRelates_Req_OverriddenLabel{
-			OverriddenLabel: overriddenLabel,
-		},
-	}))
-}
-
 func setRelationTypeUnsetRelatesReq(typeReq *typedb_protocol.Type_Req, relationTypeUnsetRelatesReq *typedb_protocol.RelationType_UnsetRelates_Req) *typedb_protocol.Transaction_Req_TypeReq {
 	typeReq.Req = &typedb_protocol.Type_Req_RelationTypeUnsetRelatesReq{
 		RelationTypeUnsetRelatesReq: relationTypeUnsetRelatesReq,
@@ -93,11 +100,4 @@ func setRelationTypeUnsetRelatesReq(typeReq *typedb_protocol.Type_Req, relationT
 	return &typedb_protocol.Transaction_Req_TypeReq{
 		TypeReq: typeReq,
 	}
-}
-
-func UnsetRelatesReq(label common.Label, roleLabel string) *typedb_protocol.Transaction_Req {
-	return newTransactionRequest(setRelationTypeUnsetRelatesReq(newTypeRequest(label),
-		&typedb_protocol.RelationType_UnsetRelates_Req{
-			Label: roleLabel,
-		}))
 }

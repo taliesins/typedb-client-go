@@ -27,10 +27,10 @@ func Run() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 
-	graknClient := typedb_protocol.NewTypeDBClient(conn)
+	typeDBClient := typedb_protocol.NewTypeDBClient(conn)
 
 	databaseName := "test"
-	err = SetupDatabase(ctx, graknClient, databaseName)
+	err = SetupDatabase(ctx, typeDBClient, databaseName)
 	if err != nil {
 		log.Fatalf("Can't setup database: %v", err)
 		panic(err)
@@ -38,7 +38,7 @@ func Run() {
 
 	metadata := map[string]string{}
 
-	err = ExecuteSchema(graknClient, ctx, databaseName, metadata)
+	err = ExecuteSchema(typeDBClient, ctx, databaseName, metadata)
 	if err != nil {
 		log.Fatalf("Can't setup schema: %v", err)
 		panic(err)
@@ -46,7 +46,7 @@ func Run() {
 		log.Printf("Schema Complete")
 	}
 
-	err = ExecuteData(graknClient, ctx, databaseName, metadata)
+	err = ExecuteData(typeDBClient, ctx, databaseName, metadata)
 	if err != nil {
 		log.Fatalf("Can't setup data: %v", err)
 		panic(err)
@@ -55,15 +55,15 @@ func Run() {
 	}
 }
 
-func SetupDatabase(ctx context.Context, graknClient typedb_protocol.TypeDBClient, databaseName string) (err error) {
-	databaseAllResult, err := graknClient.DatabasesAll(ctx, &typedb_protocol.CoreDatabaseManager_All_Req{})
+func SetupDatabase(ctx context.Context, typeDBClient typedb_protocol.TypeDBClient, databaseName string) (err error) {
+	databaseAllResult, err := typeDBClient.DatabasesAll(ctx, &typedb_protocol.CoreDatabaseManager_All_Req{})
 
 	if err != nil {
 		return fmt.Errorf("could not list databases: %w", err)
 	}
 	log.Printf("databases: %v", databaseAllResult.Names)
 
-	databaseContainsResult, err := graknClient.DatabasesContains(ctx, &typedb_protocol.CoreDatabaseManager_Contains_Req{
+	databaseContainsResult, err := typeDBClient.DatabasesContains(ctx, &typedb_protocol.CoreDatabaseManager_Contains_Req{
 		Name: databaseName,
 	})
 	if err != nil {
@@ -73,7 +73,7 @@ func SetupDatabase(ctx context.Context, graknClient typedb_protocol.TypeDBClient
 	if databaseContainsResult.Contains {
 		log.Printf("database %v exists", databaseName)
 
-		_, err = graknClient.DatabaseDelete(ctx, &typedb_protocol.CoreDatabase_Delete_Req{
+		_, err = typeDBClient.DatabaseDelete(ctx, &typedb_protocol.CoreDatabase_Delete_Req{
 			Name: databaseName,
 		})
 
@@ -85,7 +85,7 @@ func SetupDatabase(ctx context.Context, graknClient typedb_protocol.TypeDBClient
 		log.Printf("database %v does not exist", databaseName)
 	}
 
-	_, err = graknClient.DatabasesCreate(ctx, &typedb_protocol.CoreDatabaseManager_Create_Req{
+	_, err = typeDBClient.DatabasesCreate(ctx, &typedb_protocol.CoreDatabaseManager_Create_Req{
 		Name: databaseName,
 	})
 
@@ -94,7 +94,7 @@ func SetupDatabase(ctx context.Context, graknClient typedb_protocol.TypeDBClient
 	}
 	log.Printf("database %s created", databaseName)
 
-	databaseAllResult, err = graknClient.DatabasesAll(ctx, &typedb_protocol.CoreDatabaseManager_All_Req{})
+	databaseAllResult, err = typeDBClient.DatabasesAll(ctx, &typedb_protocol.CoreDatabaseManager_All_Req{})
 
 	if err != nil {
 		return fmt.Errorf("could not list databases: %v", err)
@@ -104,10 +104,10 @@ func SetupDatabase(ctx context.Context, graknClient typedb_protocol.TypeDBClient
 	return err
 }
 
-func ExecuteSchema(graknClient typedb_protocol.TypeDBClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
+func ExecuteSchema(typeDBClient typedb_protocol.TypeDBClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
 	latencyMillis := int32(100)
 
-	schemaSessionOpenResult, err := graknClient.SessionOpen(ctx, &typedb_protocol.Session_Open_Req{
+	schemaSessionOpenResult, err := typeDBClient.SessionOpen(ctx, &typedb_protocol.Session_Open_Req{
 		Database: databaseName,
 		Type:     typedb_protocol.Session_SCHEMA,
 		Options:  &typedb_protocol.Options{},
@@ -118,17 +118,17 @@ func ExecuteSchema(graknClient typedb_protocol.TypeDBClient, ctx context.Context
 		log.Printf("Opened session: %v", schemaSessionOpenResult.SessionId)
 	}
 
-	err = CreateTestDatabaseSchema(graknClient, ctx, schemaSessionOpenResult.SessionId, metadata, latencyMillis)
+	err = CreateTestDatabaseSchema(typeDBClient, ctx, schemaSessionOpenResult.SessionId, metadata, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not create schema: %w", err)
 	}
 
-	err = GetTestDatabaseSchema(graknClient, ctx, schemaSessionOpenResult.SessionId, metadata, latencyMillis)
+	err = GetTestDatabaseSchema(typeDBClient, ctx, schemaSessionOpenResult.SessionId, metadata, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not get schema: %w", err)
 	}
 
-	_, err = graknClient.SessionClose(ctx, &typedb_protocol.Session_Close_Req{
+	_, err = typeDBClient.SessionClose(ctx, &typedb_protocol.Session_Close_Req{
 		SessionId: schemaSessionOpenResult.SessionId,
 	})
 	if err != nil {
@@ -138,10 +138,10 @@ func ExecuteSchema(graknClient typedb_protocol.TypeDBClient, ctx context.Context
 	return err
 }
 
-func ExecuteData(graknClient typedb_protocol.TypeDBClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
+func ExecuteData(typeDBClient typedb_protocol.TypeDBClient, ctx context.Context, databaseName string, metadata map[string]string) (err error) {
 	latencyMillis := int32(100)
 
-	dataSessionOpenResult, err := graknClient.SessionOpen(ctx, &typedb_protocol.Session_Open_Req{
+	dataSessionOpenResult, err := typeDBClient.SessionOpen(ctx, &typedb_protocol.Session_Open_Req{
 		Database: databaseName,
 		Type:     typedb_protocol.Session_DATA,
 		Options:  &typedb_protocol.Options{},
@@ -152,17 +152,17 @@ func ExecuteData(graknClient typedb_protocol.TypeDBClient, ctx context.Context, 
 		log.Printf("Opened session: %v", dataSessionOpenResult.SessionId)
 	}
 
-	err = CreateTestDatabaseData(graknClient, ctx, dataSessionOpenResult.SessionId, metadata, latencyMillis)
+	err = CreateTestDatabaseData(typeDBClient, ctx, dataSessionOpenResult.SessionId, metadata, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not create data: %w", err)
 	}
 
-	err = GetTestDatabaseData(graknClient, ctx, dataSessionOpenResult.SessionId, metadata, latencyMillis)
+	err = GetTestDatabaseData(typeDBClient, ctx, dataSessionOpenResult.SessionId, metadata, latencyMillis)
 	if err != nil {
 		return fmt.Errorf("could not get data: %w", err)
 	}
 
-	_, err = graknClient.SessionClose(ctx, &typedb_protocol.Session_Close_Req{
+	_, err = typeDBClient.SessionClose(ctx, &typedb_protocol.Session_Close_Req{
 		SessionId: dataSessionOpenResult.SessionId,
 	})
 	if err != nil {
@@ -172,13 +172,13 @@ func ExecuteData(graknClient typedb_protocol.TypeDBClient, ctx context.Context, 
 	return err
 }
 
-func CreateTestDatabaseSchema(graknClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+func CreateTestDatabaseSchema(typeDBClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
 	gqlQuery, err := phone_data.GetPhoneCallsSchemaV2Gql()
 	if err != nil {
 		return fmt.Errorf("could not get phone calls gsql: %w", err)
 	}
 
-	transactionClient, err := graknClient.Transaction(ctx)
+	transactionClient, err := typeDBClient.Transaction(ctx)
 	if err != nil {
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
@@ -226,7 +226,7 @@ func CreateTestDatabaseSchema(graknClient typedb_protocol.TypeDBClient, ctx cont
 	return err
 }
 
-func GetTestDatabaseSchema(graknClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+func GetTestDatabaseSchema(typeDBClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
 	gqlQuery := `
 match 
 	$x sub thing; 
@@ -234,7 +234,7 @@ get
 	$x;
 `
 
-	transactionClient, err := graknClient.Transaction(ctx)
+	transactionClient, err := typeDBClient.Transaction(ctx)
 	if err != nil {
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
@@ -273,13 +273,13 @@ get
 	return err
 }
 
-func CreateTestDatabaseData(graknClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+func CreateTestDatabaseData(typeDBClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
 	gqlQueries, err := phone_data.GetPhoneCallsDataGql()
 	if err != nil {
 		return fmt.Errorf("could not get phone calls data gql: %w", err)
 	}
 
-	transactionClient, err := graknClient.Transaction(ctx)
+	transactionClient, err := typeDBClient.Transaction(ctx)
 	if err != nil {
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
@@ -325,7 +325,7 @@ func CreateTestDatabaseData(graknClient typedb_protocol.TypeDBClient, ctx contex
 	return err
 }
 
-func GetTestDatabaseData(graknClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
+func GetTestDatabaseData(typeDBClient typedb_protocol.TypeDBClient, ctx context.Context, sessionId []byte, metadata map[string]string, latencyMillis int32) (err error) {
 	gqlQuery := `
 match
 	$person isa person;
@@ -333,7 +333,7 @@ get $person;
 count;
 `
 
-	transactionClient, err := graknClient.Transaction(ctx)
+	transactionClient, err := typeDBClient.Transaction(ctx)
 	if err != nil {
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}

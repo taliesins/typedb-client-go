@@ -2,6 +2,15 @@ package query_manager
 
 import "github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 
+func QueryManagerReq(queryReq *typedb_protocol.QueryManager_Req, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
+	queryReq.Options = options
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{
+			QueryManagerReq: queryReq,
+		},
+	}
+}
+
 func DefineReq(query string, options *typedb_protocol.Options) *typedb_protocol.Transaction_Req {
 	return &typedb_protocol.Transaction_Req{
 		Req: &typedb_protocol.Transaction_Req_QueryManagerReq{

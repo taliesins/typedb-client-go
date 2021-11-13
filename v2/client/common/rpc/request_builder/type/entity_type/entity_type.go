@@ -5,6 +5,11 @@ import (
 	"github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 )
 
+func CreateReq(label common.Label) *typedb_protocol.Transaction_Req {
+	return newTransactionRequest(setEntityTypeCreateReq(newTypeRequest(label),
+		&typedb_protocol.EntityType_Create_Req{}))
+}
+
 func newTransactionRequest(req *typedb_protocol.Transaction_Req_TypeReq) *typedb_protocol.Transaction_Req {
 	return &typedb_protocol.Transaction_Req{
 		Req: req,
@@ -29,7 +34,3 @@ func setEntityTypeCreateReq(typeReq *typedb_protocol.Type_Req, entityTypeCreateR
 	}
 }
 
-func CreateReq(label common.Label) *typedb_protocol.Transaction_Req {
-	return newTransactionRequest(setEntityTypeCreateReq(newTypeRequest(label),
-		&typedb_protocol.EntityType_Create_Req{}))
-}

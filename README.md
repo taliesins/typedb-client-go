@@ -6,9 +6,9 @@ A very rough and quick spike to get a Grakn Go Client up and running. Does not f
 ## Protoc
 Download protoc and put in path: 
 
-[Linux](https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/protoc-3.14.0-linux-x86_64.zip)
-[Mac](protoc-3.14.0-osx-x86_64.zip)
-[Windows](https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/protoc-3.14.0-win64.zip)
+[Linux](https://github.com/protocolbuffers/protobuf/releases/download/v3.18.1/protoc-3.18.1-linux-x86_64.zip)
+[Mac](https://github.com/protocolbuffers/protobuf/releases/download/v3.18.1/protoc-3.18.1-osx-x86_64.zip)
+[Windows](https://github.com/protocolbuffers/protobuf/releases/download/v3.18.1/protoc-3.18.1-win64.zip)
 
 For more information see https://developers.google.com/protocol-buffers/docs/downloads
 

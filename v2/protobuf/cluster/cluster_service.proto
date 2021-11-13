@@ -23,14 +23,30 @@ option java_outer_classname = "ClusterServiceProto";
 option java_generic_services = true;
 
 import "v2/protobuf/cluster/cluster_server.proto";
+import "v2/protobuf/cluster/cluster_user.proto";
 import "v2/protobuf/cluster/cluster_database.proto";
+import "v2/protobuf/cluster/cluster_user_token.proto";
 
 package typedb.protocol;
 
 service TypeDBCluster {
 
+    // Server Manager API
     rpc servers_all (ServerManager.All.Req) returns (ServerManager.All.Res);
+
+    // User Manager API
+    rpc users_contains (ClusterUserManager.Contains.Req) returns (ClusterUserManager.Contains.Res);
+    rpc users_create (ClusterUserManager.Create.Req) returns (ClusterUserManager.Create.Res);
+    rpc users_all (ClusterUserManager.All.Req) returns (ClusterUserManager.All.Res);
+
+    // User API
+    rpc user_password (ClusterUser.Password.Req) returns (ClusterUser.Password.Res);
+    rpc user_delete (ClusterUser.Delete.Req) returns (ClusterUser.Delete.Res);
+
+    // User Token API
+    rpc user_token_renew (ClusterUserToken.Renew.Req) returns (ClusterUserToken.Renew.Res);
+
+    // Database Manager API
     rpc databases_get (ClusterDatabaseManager.Get.Req) returns (ClusterDatabaseManager.Get.Res);
     rpc databases_all (ClusterDatabaseManager.All.Req) returns (ClusterDatabaseManager.All.Res);
-
 }

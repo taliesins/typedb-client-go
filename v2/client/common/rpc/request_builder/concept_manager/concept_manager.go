@@ -2,6 +2,14 @@ package concept_manager
 
 import "github.com/taliesins/typedb-client-go/v2/typedb_protocol"
 
+func ConceptManagerReq(req *typedb_protocol.ConceptManager_Req) *typedb_protocol.Transaction_Req {
+	return &typedb_protocol.Transaction_Req{
+		Req: &typedb_protocol.Transaction_Req_ConceptManagerReq{
+			ConceptManagerReq: req,
+		},
+	}
+}
+
 func PutEntityTypeReq(label string) *typedb_protocol.Transaction_Req {
 	return &typedb_protocol.Transaction_Req{
 		Req: &typedb_protocol.Transaction_Req_ConceptManagerReq{
@@ -30,13 +38,14 @@ func PutRelationTypeReq(label string) *typedb_protocol.Transaction_Req {
 	}
 }
 
-func PutAttributeTypeReq(label string) *typedb_protocol.Transaction_Req {
+func PutAttributeTypeReq(label string, valueType typedb_protocol.AttributeType_ValueType) *typedb_protocol.Transaction_Req {
 	return &typedb_protocol.Transaction_Req{
 		Req: &typedb_protocol.Transaction_Req_ConceptManagerReq{
 			ConceptManagerReq: &typedb_protocol.ConceptManager_Req{
 				Req: &typedb_protocol.ConceptManager_Req_PutAttributeTypeReq{
 					PutAttributeTypeReq: &typedb_protocol.ConceptManager_PutAttributeType_Req{
 						Label: label,
+						ValueType: valueType,
 					},
 				},
 			},
