@@ -56,7 +56,7 @@ func (q *queryManagerImpl) Match(query string, options *typedb_protocol.Options,
 			return answers, response.Ctx.Err()
 		case data, ok := <-response.Data:
 			if !ok {
-				return nil, response.Err
+				return answers, response.Err
 			}
 			answers = append(answers, data.GetQueryManagerResPart().GetMatchResPart().GetAnswers()...)
 		}
@@ -101,7 +101,7 @@ func (q *queryManagerImpl) MatchAsync(query string, options *typedb_protocol.Opt
 }
 
 func (q *queryManagerImpl) MatchAggregate(query string, options *typedb_protocol.Options, metadata map[string]string) (*typedb_protocol.Numeric, error) { //Promise<Numeric>{
-	request := query_manager.MatchReq(query, options)
+	request := query_manager.MatchAggregateReq(query, options)
 	request.Metadata = metadata
 	response, err := common.NewPromise(q.TransactionClient, q.Context, request)
 	if err != nil {
@@ -116,7 +116,7 @@ func (q *queryManagerImpl) MatchAggregate(query string, options *typedb_protocol
 			return attributeType, response.Ctx.Err()
 		case data, ok := <-response.Data:
 			if !ok {
-				return nil, response.Err
+				return attributeType, response.Err
 			}
 
 			attributeType = data.GetQueryManagerRes().GetMatchAggregateRes().GetAnswer()
@@ -139,7 +139,7 @@ func (q *queryManagerImpl) MatchGroup(query string, options *typedb_protocol.Opt
 			return answers, response.Ctx.Err()
 		case data, ok := <-response.Data:
 			if !ok {
-				return nil, response.Err
+				return answers, response.Err
 			}
 			answers = append(answers, data.GetQueryManagerResPart().GetMatchGroupResPart().GetAnswers()...)
 		}
@@ -197,7 +197,7 @@ func (q *queryManagerImpl) MatchGroupAggregate(query string, options *typedb_pro
 			return answers, response.Ctx.Err()
 		case data, ok := <-response.Data:
 			if !ok {
-				return nil, response.Err
+				return answers, response.Err
 			}
 			answers = append(answers, data.GetQueryManagerResPart().GetMatchGroupAggregateResPart().GetAnswers()...)
 		}
@@ -243,7 +243,7 @@ func (q *queryManagerImpl) MatchGroupAggregateAsync(query string, options *typed
 func (q *queryManagerImpl) Insert(query string, options *typedb_protocol.Options, metadata map[string]string) ([]*typedb_protocol.ConceptMap, error) { //Stream<ConceptMap>{
 	request := query_manager.InsertReq(query, options)
 	request.Metadata = metadata
-	response, err := common.NewStream(q.TransactionClient, q.Context,request)
+	response, err := common.NewStream(q.TransactionClient, q.Context, request)
 	if err != nil {
 		return nil, err
 	}
@@ -255,8 +255,9 @@ func (q *queryManagerImpl) Insert(query string, options *typedb_protocol.Options
 			return answers, response.Ctx.Err()
 		case data, ok := <-response.Data:
 			if !ok {
-				return nil, response.Err
+				return answers, response.Err
 			}
+			
 			answers = append(answers, data.GetQueryManagerResPart().GetInsertResPart().GetAnswers()...)
 		}
 	}
@@ -336,7 +337,7 @@ func (q *queryManagerImpl) Update(query string, options *typedb_protocol.Options
 			return answers, response.Ctx.Err()
 		case data, ok := <-response.Data:
 			if !ok {
-				return nil, response.Err
+				return answers, response.Err
 			}
 			answers = append(answers, data.GetQueryManagerResPart().GetUpdateResPart().GetAnswers()...)
 		}
@@ -440,7 +441,7 @@ func (q *queryManagerImpl) Explain(explainable *typedb_protocol.Explainable, opt
 			return explanations, response.Ctx.Err()
 		case data, ok := <-response.Data:
 			if !ok {
-				return nil, response.Err
+				return explanations, response.Err
 			}
 			explanations = append(explanations, data.GetQueryManagerResPart().GetExplainResPart().GetExplanations()...)
 		}

@@ -24,12 +24,13 @@ func Run() {
 	defer conn.Close()
 
 	// Set up context
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*120)
 	defer cancel()
 
 	typeDBClient := typedb_protocol.NewTypeDBClient(conn)
 
 	databaseName := "test"
+
 	err = SetupDatabase(ctx, typeDBClient, databaseName)
 	if err != nil {
 		log.Fatalf("Can't setup database: %v", err)
@@ -144,7 +145,14 @@ func ExecuteData(typeDBClient typedb_protocol.TypeDBClient, ctx context.Context,
 	dataSessionOpenResult, err := typeDBClient.SessionOpen(ctx, &typedb_protocol.Session_Open_Req{
 		Database: databaseName,
 		Type:     typedb_protocol.Session_DATA,
-		Options:  &typedb_protocol.Options{},
+		Options:  &typedb_protocol.Options{
+			TransactionTimeoutOpt: &typedb_protocol.Options_TransactionTimeoutMillis{
+				TransactionTimeoutMillis: 1000*120,
+			},
+			SessionIdleTimeoutOpt: &typedb_protocol.Options_SessionIdleTimeoutMillis{
+				SessionIdleTimeoutMillis: 1000*240,
+			},
+		},
 	})
 	if err != nil {
 		return fmt.Errorf("could not open session: %w", err)
@@ -199,9 +207,6 @@ func CreateTestDatabaseSchema(typeDBClient typedb_protocol.TypeDBClient, ctx con
 	}
 
 	queryOptions := &typedb_protocol.Options{
-		InferOpt: &typedb_protocol.Options_Infer{
-			Infer: true,
-		},
 		ExplainOpt: &typedb_protocol.Options_Explain{
 			Explain: false,
 		},
@@ -239,24 +244,26 @@ get
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	options := &typedb_protocol.Options{
-		InferOpt: &typedb_protocol.Options_Infer{
-			Infer: true,
-		},
+	transactionOptions := &typedb_protocol.Options{
 		ExplainOpt: &typedb_protocol.Options_Explain{
 			Explain: true,
 		},
 	}
 	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
 
-	err = transactionManager.OpenTransaction(sessionId, typedb_protocol.Transaction_READ, options, latencyMillis, metadata)
+	err = transactionManager.OpenTransaction(sessionId, typedb_protocol.Transaction_READ, transactionOptions, latencyMillis, metadata)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
 	queryManager := query.NewQueryManager(transactionClient, ctx)
 
-	matchResponses, err := queryManager.Match(gqlQuery, options, metadata)
+	queryOptions := &typedb_protocol.Options{
+		ExplainOpt: &typedb_protocol.Options_Explain{
+			Explain: true,
+		},
+	}
+	matchResponses, err := queryManager.Match(gqlQuery, queryOptions, metadata)
 	if err != nil {
 		return fmt.Errorf("could not run match query: %w", err)
 	}
@@ -284,7 +291,7 @@ func CreateTestDatabaseData(typeDBClient typedb_protocol.TypeDBClient, ctx conte
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	options := &typedb_protocol.Options{
+	transactionOptions := &typedb_protocol.Options{
 		InferOpt: &typedb_protocol.Options_Infer{
 			Infer: true,
 		},
@@ -294,15 +301,21 @@ func CreateTestDatabaseData(typeDBClient typedb_protocol.TypeDBClient, ctx conte
 	}
 	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
 
-	err = transactionManager.OpenTransaction(sessionId, typedb_protocol.Transaction_WRITE, options, latencyMillis, metadata)
+	err = transactionManager.OpenTransaction(sessionId, typedb_protocol.Transaction_WRITE, transactionOptions, latencyMillis, metadata)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
 	queryManager := query.NewQueryManager(transactionClient, ctx)
 
+	queryOptions := &typedb_protocol.Options{
+		ExplainOpt: &typedb_protocol.Options_Explain{
+			Explain: false,
+		},
+	}
+
 	for _, gqlQuery := range gqlQueries {
-		insertResponses, err := queryManager.Insert(gqlQuery, options, metadata)
+		insertResponses, err := queryManager.Insert(gqlQuery, queryOptions, metadata)
 		if err != nil {
 			return fmt.Errorf("could not insert phone calls data: %w", err)
 		}
@@ -338,7 +351,7 @@ count;
 		return fmt.Errorf("could not create transaction client: %w", err)
 	}
 
-	options := &typedb_protocol.Options{
+	transactionOptions := &typedb_protocol.Options{
 		InferOpt: &typedb_protocol.Options_Infer{
 			Infer: true,
 		},
@@ -348,19 +361,24 @@ count;
 	}
 	transactionManager := transaction.NewTransactionManager(transactionClient, ctx)
 
-	err = transactionManager.OpenTransaction(sessionId, typedb_protocol.Transaction_READ, options, latencyMillis, metadata)
+	err = transactionManager.OpenTransaction(sessionId, typedb_protocol.Transaction_READ, transactionOptions, latencyMillis, metadata)
 	if err != nil {
 		return fmt.Errorf("could not open transaction: %w", err)
 	}
 
 	queryManager := query.NewQueryManager(transactionClient, ctx)
 
-	matchAggregateResponses, err := queryManager.MatchAggregate(gqlQuery, options, metadata)
+	queryOptions := &typedb_protocol.Options{
+		ExplainOpt: &typedb_protocol.Options_Explain{
+			Explain: false,
+		},
+	}
+
+	matchAggregateResponses, err := queryManager.MatchAggregate(gqlQuery, queryOptions, metadata)
 	if err != nil {
 		return fmt.Errorf("could not get database data: %v \r\n %w", gqlQuery, err)
 	}
 	log.Printf("Number of people: %v", matchAggregateResponses.GetLongValue())
-
 
 	gqlQuery = `
 match
@@ -368,7 +386,7 @@ match
 get $company; 
 count;
 `
-	matchAggregateResponses, err = queryManager.MatchAggregate(gqlQuery, options, metadata)
+	matchAggregateResponses, err = queryManager.MatchAggregate(gqlQuery, queryOptions, metadata)
 	if err != nil {
 		return fmt.Errorf("could not get database data: %v \r\n %w", gqlQuery, err)
 	}
@@ -381,7 +399,7 @@ get $contract;
 count;
 `
 
-	matchAggregateResponses, err = queryManager.MatchAggregate(gqlQuery, options, metadata)
+	matchAggregateResponses, err = queryManager.MatchAggregate(gqlQuery, queryOptions, metadata)
 	if err != nil {
 		return fmt.Errorf("could not get database data: %v \r\n %w", gqlQuery, err)
 	}
@@ -394,7 +412,7 @@ get $call;
 count;
 `
 
-	matchAggregateResponses, err = queryManager.MatchAggregate(gqlQuery, options, metadata)
+	matchAggregateResponses, err = queryManager.MatchAggregate(gqlQuery, queryOptions, metadata)
 	if err != nil {
 		return fmt.Errorf("could not get database data: %v \r\n %w", gqlQuery, err)
 	}

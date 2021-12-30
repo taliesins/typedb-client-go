@@ -52,32 +52,54 @@ func (c *stream) begin() {
 			return
 		}
 
-		transactionResponse := transactionServer.GetResPart()
-		c.Data <- transactionResponse
-
-		switch transactionResponse.GetStreamResPart().GetState() {
-		case typedb_protocol.Transaction_Stream_DONE:
-			close(c.Data)
-			return
-		case typedb_protocol.Transaction_Stream_CONTINUE:
-			err = c.TransactionClient.Send(
-				&typedb_protocol.Transaction_Client{
-					Reqs: []*typedb_protocol.Transaction_Req{
-						transaction.StreamReq(c.ReqId),
-					},
-				},
-			)
-			if err != nil {
-				c.Err = err
+		transactionResponsePart := transactionServer.GetResPart()
+		if transactionResponsePart == nil {
+			transactionResponse := transactionServer.GetRes()
+			if transactionResponse == nil {
+				c.Err = fmt.Errorf("Unknown response type")
+				close(c.Data)
+				return
+			} else {
+				c.Err = fmt.Errorf("single response type")
 				close(c.Data)
 				return
 			}
-		default:
-			c.Err = fmt.Errorf("unknown stream state: %s", transactionServer.GetResPart().GetStreamResPart().GetState())
-			close(c.Data)
-			return
+		} else {
+			streamResPart := transactionResponsePart.GetStreamResPart()
+			if streamResPart == nil {
+				c.Data <- transactionResponsePart
+			} else {
+				state := streamResPart.GetState()
+				switch state {
+				case typedb_protocol.Transaction_Stream_DONE:
+					close(c.Data)
+					return
+				case typedb_protocol.Transaction_Stream_CONTINUE:
+					err = c.TransactionClient.Send(
+						&typedb_protocol.Transaction_Client{
+							Reqs: []*typedb_protocol.Transaction_Req{
+								transaction.StreamReq(c.ReqId),
+							},
+						},
+					)
+
+					if err != nil {
+						c.Err = err
+						close(c.Data)
+						return
+					}
+				default:
+					c.Err = fmt.Errorf("unknown stream state")
+					close(c.Data)
+					return
+				}
+			}
 		}
 	}
+
+	c.Err = fmt.Errorf("Exited event loop: %w", c.Err)
+	close(c.Data)
+	return
 }
 
 
