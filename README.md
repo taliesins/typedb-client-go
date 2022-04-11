@@ -40,3 +40,40 @@ protoc --go-grpc_out=. v2/protobuf/common/*.proto
 protoc --go-grpc_out=. v2/protobuf/cluster/*.proto
 protoc --go-grpc_out=. v2/protobuf/core/*.proto
 ```
+
+# To test
+
+## Pre-requisites
+Download TypeDB: 
+
+[Linux](https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-linux-2.8.0.tar.gz)
+[Mac](https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-mac-2.8.0.zip)
+[Windows](https://github.com/vaticle/typedb/releases/download/2.8.0/typedb-all-windows-2.8.0.zip)
+
+For more information see https://vaticle.com/download#typedb
+
+## Run TypeDB
+
+Run TypeDB from extracted directory
+
+```
+set SERVER_JAVAOPTS="-Xms4G"
+set STORAGE_JAVAOPTS="-Xms8G"
+SET JAVA_OPTS="-Xms4G -Xmx8G"
+
+CALL typedb.bat server
+```
+
+## Run test app
+
+Test up will setup database as required, and will then read and write to it
+
+Compile
+```
+go build
+```
+
+Run
+```
+typedb-client-go
+```
