@@ -1,7 +1,7 @@
 package main
 
 import (
-	example "github.com/taliesins/client-go/phone_data/v2"
+	example "github.com/taliesins/typedb-client-go/phone_data/v2"
 )
 
 func main() {

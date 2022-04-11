@@ -2,11 +2,12 @@ package client
 
 import (
 	"fmt"
-	grakn "github.com/taliesins/client-go/v1/grakn_protocol"
 	"log"
+
+	grakn "github.com/taliesins/typedb-client-go/v1/grakn_protocol"
 )
 
-func GetById(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string, id string) (concept *grakn.Concept, err error){
+func GetById(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string, id string) (concept *grakn.Concept, err error) {
 	if id != "" {
 		err = transactionClient.Send(&grakn.Transaction_Req{
 			Req: &grakn.Transaction_Req_GetConceptReq{
@@ -39,7 +40,7 @@ func GetById(transactionClient grakn.SessionService_TransactionClient, metadata 
 	return nil, nil
 }
 
-func GetAttributesByValue(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string, batchSize int32, value *grakn.ValueObject) (concepts []*grakn.Concept, err error){
+func GetAttributesByValue(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string, batchSize int32, value *grakn.ValueObject) (concepts []*grakn.Concept, err error) {
 	var options grakn.Transaction_Iter_Req_Options
 	if batchSize == 0 {
 		options = grakn.Transaction_Iter_Req_Options{
@@ -224,8 +225,7 @@ func OpenTransaction(transactionClient grakn.SessionService_TransactionClient, s
 func CommitTransaction(transactionClient grakn.SessionService_TransactionClient, metadata map[string]string) (err error) {
 	err = transactionClient.Send(&grakn.Transaction_Req{
 		Req: &grakn.Transaction_Req_CommitReq{
-			CommitReq: &grakn.Transaction_Commit_Req{
-			},
+			CommitReq: &grakn.Transaction_Commit_Req{},
 		},
 		Metadata: metadata,
 	})
