@@ -16,7 +16,7 @@ For more information see https://developers.google.com/protocol-buffers/docs/dow
 Build go protoc plugin
 ```
 export GO111MODULE=on
-go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.0
+go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.1
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2.0
 ```
 

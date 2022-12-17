@@ -28,6 +28,8 @@ type TypeDBClient interface {
 	DatabasesAll(ctx context.Context, in *CoreDatabaseManager_All_Req, opts ...grpc.CallOption) (*CoreDatabaseManager_All_Res, error)
 	// Database API
 	DatabaseSchema(ctx context.Context, in *CoreDatabase_Schema_Req, opts ...grpc.CallOption) (*CoreDatabase_Schema_Res, error)
+	DatabaseTypeSchema(ctx context.Context, in *CoreDatabase_TypeSchema_Req, opts ...grpc.CallOption) (*CoreDatabase_TypeSchema_Res, error)
+	DatabaseRuleSchema(ctx context.Context, in *CoreDatabase_RuleSchema_Req, opts ...grpc.CallOption) (*CoreDatabase_RuleSchema_Res, error)
 	DatabaseDelete(ctx context.Context, in *CoreDatabase_Delete_Req, opts ...grpc.CallOption) (*CoreDatabase_Delete_Res, error)
 	// Session API
 	SessionOpen(ctx context.Context, in *Session_Open_Req, opts ...grpc.CallOption) (*Session_Open_Res, error)
@@ -79,6 +81,24 @@ func (c *typeDBClient) DatabasesAll(ctx context.Context, in *CoreDatabaseManager
 func (c *typeDBClient) DatabaseSchema(ctx context.Context, in *CoreDatabase_Schema_Req, opts ...grpc.CallOption) (*CoreDatabase_Schema_Res, error) {
 	out := new(CoreDatabase_Schema_Res)
 	err := c.cc.Invoke(ctx, "/typedb.protocol.TypeDB/database_schema", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *typeDBClient) DatabaseTypeSchema(ctx context.Context, in *CoreDatabase_TypeSchema_Req, opts ...grpc.CallOption) (*CoreDatabase_TypeSchema_Res, error) {
+	out := new(CoreDatabase_TypeSchema_Res)
+	err := c.cc.Invoke(ctx, "/typedb.protocol.TypeDB/database_type_schema", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *typeDBClient) DatabaseRuleSchema(ctx context.Context, in *CoreDatabase_RuleSchema_Req, opts ...grpc.CallOption) (*CoreDatabase_RuleSchema_Res, error) {
+	out := new(CoreDatabase_RuleSchema_Res)
+	err := c.cc.Invoke(ctx, "/typedb.protocol.TypeDB/database_rule_schema", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -162,6 +182,8 @@ type TypeDBServer interface {
 	DatabasesAll(context.Context, *CoreDatabaseManager_All_Req) (*CoreDatabaseManager_All_Res, error)
 	// Database API
 	DatabaseSchema(context.Context, *CoreDatabase_Schema_Req) (*CoreDatabase_Schema_Res, error)
+	DatabaseTypeSchema(context.Context, *CoreDatabase_TypeSchema_Req) (*CoreDatabase_TypeSchema_Res, error)
+	DatabaseRuleSchema(context.Context, *CoreDatabase_RuleSchema_Req) (*CoreDatabase_RuleSchema_Res, error)
 	DatabaseDelete(context.Context, *CoreDatabase_Delete_Req) (*CoreDatabase_Delete_Res, error)
 	// Session API
 	SessionOpen(context.Context, *Session_Open_Req) (*Session_Open_Res, error)
@@ -191,6 +213,12 @@ func (UnimplementedTypeDBServer) DatabasesAll(context.Context, *CoreDatabaseMana
 }
 func (UnimplementedTypeDBServer) DatabaseSchema(context.Context, *CoreDatabase_Schema_Req) (*CoreDatabase_Schema_Res, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DatabaseSchema not implemented")
+}
+func (UnimplementedTypeDBServer) DatabaseTypeSchema(context.Context, *CoreDatabase_TypeSchema_Req) (*CoreDatabase_TypeSchema_Res, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DatabaseTypeSchema not implemented")
+}
+func (UnimplementedTypeDBServer) DatabaseRuleSchema(context.Context, *CoreDatabase_RuleSchema_Req) (*CoreDatabase_RuleSchema_Res, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DatabaseRuleSchema not implemented")
 }
 func (UnimplementedTypeDBServer) DatabaseDelete(context.Context, *CoreDatabase_Delete_Req) (*CoreDatabase_Delete_Res, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DatabaseDelete not implemented")
@@ -288,6 +316,42 @@ func _TypeDB_DatabaseSchema_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TypeDBServer).DatabaseSchema(ctx, req.(*CoreDatabase_Schema_Req))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TypeDB_DatabaseTypeSchema_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CoreDatabase_TypeSchema_Req)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TypeDBServer).DatabaseTypeSchema(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/typedb.protocol.TypeDB/database_type_schema",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TypeDBServer).DatabaseTypeSchema(ctx, req.(*CoreDatabase_TypeSchema_Req))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TypeDB_DatabaseRuleSchema_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CoreDatabase_RuleSchema_Req)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TypeDBServer).DatabaseRuleSchema(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/typedb.protocol.TypeDB/database_rule_schema",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TypeDBServer).DatabaseRuleSchema(ctx, req.(*CoreDatabase_RuleSchema_Req))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -412,6 +476,14 @@ var TypeDB_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "database_schema",
 			Handler:    _TypeDB_DatabaseSchema_Handler,
+		},
+		{
+			MethodName: "database_type_schema",
+			Handler:    _TypeDB_DatabaseTypeSchema_Handler,
+		},
+		{
+			MethodName: "database_rule_schema",
+			Handler:    _TypeDB_DatabaseRuleSchema_Handler,
 		},
 		{
 			MethodName: "database_delete",
